@@ -16,7 +16,7 @@ LazyData: true
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.1.0
 Imports: 
-    data.table,
+    data.table (>= 1.12.0),
     flextable,
     officer
 Suggests: 
