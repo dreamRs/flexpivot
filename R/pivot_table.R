@@ -9,7 +9,7 @@
 #' @return a \code{data.table}
 #' @export
 #'
-#' @importFrom data.table as.data.table := melt dcast
+#' @importFrom data.table as.data.table := melt dcast setattr
 #' @importFrom stats as.formula
 #'
 #' @example examples/pivot_table.R
@@ -18,8 +18,12 @@ pivot_table <- function(data, rows, cols = NULL, stats = c("n", "p", "p_row", "p
   data <- as.data.table(data)
   agg <- data[, list(n = .N), keyby = c(rows, cols)]
   agg[, p := round(n / sum(n, na.rm = TRUE) * 100, 2)]
-  if (is.null(cols))
+  if (is.null(cols)) {
+    setattr(agg, "class", c(class(agg), "pivot_table"))
+    setattr(agg, "rows", rows)
+    setattr(agg, "cols", cols)
     return(agg[])
+  }
   agg[, p_row := round(n / sum(n, na.rm = TRUE) * 100, 2), by = c(rows)]
   agg[, p_col := round(n / sum(n, na.rm = TRUE) * 100, 2), by = c(cols)]
   agg[, (stats) := lapply(.SD, as.numeric), .SDcols = stats]
@@ -31,7 +35,7 @@ pivot_table <- function(data, rows, cols = NULL, stats = c("n", "p", "p_row", "p
     variable.name = "stats",
     verbose = FALSE
   )
-  dcast(
+  result <- dcast(
     data = agg,
     formula = as.formula(paste(
       paste(c(rows, "stats"), collapse = " + "),
@@ -42,6 +46,10 @@ pivot_table <- function(data, rows, cols = NULL, stats = c("n", "p", "p_row", "p
     sep = "_|_",
     fill = 0
   )
+  setattr(result, "class", c(class(result), "pivot_table"))
+  setattr(result, "rows", rows)
+  setattr(result, "cols", cols)
+  result[]
 }
 
 
@@ -59,6 +67,9 @@ pivot_table2 <- function(data, rows, cols = NULL, stats = c("n", "p", "p_row", "
   agg[, p := round(n / sum(n, na.rm = TRUE) * 100, 2), by = "grouping"]
   if (is.null(cols)) {
     agg[, grouping := NULL]
+    setattr(agg, "class", c(class(agg), "pivot_table"))
+    setattr(agg, "rows", rows)
+    setattr(agg, "cols", cols)
     return(agg[])
   }
   agg[, p_row := round(n / sum(n, na.rm = TRUE) * 100, 2), by = c(rows, "grouping")]
@@ -72,7 +83,7 @@ pivot_table2 <- function(data, rows, cols = NULL, stats = c("n", "p", "p_row", "
     variable.name = "stats",
     verbose = FALSE
   )
-  dcast(
+  result <- dcast(
     data = agg,
     formula = as.formula(paste(
       paste(c(rows, "stats"), collapse = " + "),
@@ -83,6 +94,10 @@ pivot_table2 <- function(data, rows, cols = NULL, stats = c("n", "p", "p_row", "
     sep = "_|_",
     fill = 0
   )
+  setattr(result, "class", c(class(result), "pivot_table"))
+  setattr(result, "rows", rows)
+  setattr(result, "cols", cols)
+  result[]
 }
 
 
