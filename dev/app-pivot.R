@@ -40,7 +40,9 @@ server <- function(input, output, session) {
   })
 
   output$table <- renderUI({
-    htmltools_value(flextable(pivot_r()), class = "table table-responsive")
+    ft <- flex(pivot_r())
+    ft <- set_table_properties(ft, layout = "autofit", width = .8)
+    htmltools_value(ft)
   })
 
 }
