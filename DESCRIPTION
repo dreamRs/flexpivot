@@ -17,6 +17,7 @@ Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.1.0
 Imports: 
     data.table,
-    flextable
+    flextable,
+    officer
 Suggests: 
     ggplot2
