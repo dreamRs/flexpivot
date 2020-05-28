@@ -17,7 +17,7 @@ ui <- fluidPage(
     sourceLabel = "Variables",
     targetsLabels = c("row", "col", "value"),
     choices = names(diamonds),
-    replace = TRUE
+    replace = FALSE
   ),
   # verbatimTextOutput("test")
   uiOutput(outputId = "table")

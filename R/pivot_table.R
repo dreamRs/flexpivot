@@ -43,3 +43,46 @@ pivot_table <- function(data, rows, cols = NULL, stats = c("n", "p", "p_row", "p
     fill = 0
   )
 }
+
+
+
+
+pivot_table2 <- function(data, rows, cols = NULL, stats = c("n", "p", "p_row", "p_col")) {
+  stats <- match.arg(stats, several.ok = TRUE)
+  data <- as.data.table(data)
+  agg <- cube(x = diamonds, j = list(n = .N), by = c(rows, cols), id = TRUE)
+  for (i in c(rows, cols)) {
+    ind <- unlist(agg[, lapply(.SD, is.na), .SDcols = i], use.names = FALSE) &
+      agg$grouping > 0
+    set(x = agg, i = which(ind), j = i, value = "Total")
+  }
+  agg[, p := round(n / sum(n, na.rm = TRUE) * 100, 2), by = "grouping"]
+  if (is.null(cols)) {
+    agg[, grouping := NULL]
+    return(agg[])
+  }
+  agg[, p_row := round(n / sum(n, na.rm = TRUE) * 100, 2), by = c(rows, "grouping")]
+  agg[, p_col := round(n / sum(n, na.rm = TRUE) * 100, 2), by = c(cols, "grouping")]
+  agg[, (stats) := lapply(.SD, as.numeric), .SDcols = stats]
+  agg <- melt(
+    data = agg,
+    id.vars = c(rows, cols),
+    measure.vars = stats,
+    variable.factor = FALSE,
+    variable.name = "stats",
+    verbose = FALSE
+  )
+  dcast(
+    data = agg,
+    formula = as.formula(paste(
+      paste(c(rows, "stats"), collapse = " + "),
+      paste(cols, collapse = " + "),
+      sep = " ~ "
+    )),
+    value.var = "value",
+    sep = "_|_",
+    fill = 0
+  )
+}
+
+
