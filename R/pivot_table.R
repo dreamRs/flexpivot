@@ -54,11 +54,11 @@ pivot_table <- function(data, rows, cols = NULL, stats = c("n", "p", "p_row", "p
 
 
 
-
+#' @importFrom data.table as.data.table := melt dcast setattr cube set
 pivot_table2 <- function(data, rows, cols = NULL, stats = c("n", "p", "p_row", "p_col")) {
   stats <- match.arg(stats, several.ok = TRUE)
   data <- as.data.table(data)
-  agg <- cube(x = diamonds, j = list(n = .N), by = c(rows, cols), id = TRUE)
+  agg <- cube(x = data, j = list(n = .N), by = c(rows, cols), id = TRUE)
   for (i in c(rows, cols)) {
     ind <- unlist(agg[, lapply(.SD, is.na), .SDcols = i], use.names = FALSE) &
       agg$grouping > 0
