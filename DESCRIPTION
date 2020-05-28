@@ -18,3 +18,5 @@ RoxygenNote: 7.1.0
 Imports: 
     data.table,
     flextable
+Suggests: 
+    ggplot2
