@@ -4,7 +4,7 @@
 \alias{pivot_table}
 \title{Create a pivot table}
 \usage{
-pivot_table(data, rows, cols, stats = c("n", "p", "p_row", "p_col"))
+pivot_table(data, rows, cols = NULL, stats = c("n", "p", "p_row", "p_col"))
 }
 \arguments{
 \item{data}{a \code{data.frame}.}
@@ -43,4 +43,7 @@ pivot_table(diamonds, rows = c("clarity", "cut"), cols = "color")
 pivot_table(diamonds, rows = "cut", cols = c("color", "clarity"))
 
 
+# Without cols
+pivot_table(diamonds, rows = "cut")
+pivot_table(diamonds, rows = c("clarity", "cut"))
 }

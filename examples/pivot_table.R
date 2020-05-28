@@ -19,3 +19,6 @@ pivot_table(diamonds, rows = c("clarity", "cut"), cols = "color")
 pivot_table(diamonds, rows = "cut", cols = c("color", "clarity"))
 
 
+# Without cols
+pivot_table(diamonds, rows = "cut")
+pivot_table(diamonds, rows = c("clarity", "cut"))
