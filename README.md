@@ -22,6 +22,7 @@ Pivot:
 
 * [ ] make pivot_table2() robust to add totals
 * [ ] add value arg to compute summary statistic according to rows and cols
+* [ ] check NAs
 
 
 Flex: 
@@ -29,6 +30,7 @@ Flex:
 * [ ] add column var above levels in header
 * [ ] if several cols make multi-level header method
 * [ ] format values : percent, integer, etc
+* [ ] conditional formating ?
 
 
 Addin:
@@ -39,5 +41,5 @@ Addin:
 
 General: 
 
-* [ ] export mehods: word, ppt, excel
+* [ ] export mehods: word, ppt (via officer), excel (via clipboard)
 
