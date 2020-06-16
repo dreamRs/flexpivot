@@ -15,7 +15,7 @@ ui <- fluidPage(
   dragulaInput(
     inputId = "vars",
     sourceLabel = "Variables",
-    targetsLabels = c("row", "col", "value"),
+    targetsLabels = c("row", "col", "weight"),
     choices = names(diamonds),
     replace = FALSE
   ),

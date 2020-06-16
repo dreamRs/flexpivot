@@ -9,7 +9,8 @@ pivot_labels(
   n = "Count",
   p = "Percentage",
   p_col = "Column perc.",
-  p_row = "Row perc."
+  p_row = "Row perc.",
+  rows = NULL
 )
 }
 \arguments{
@@ -22,6 +23,8 @@ pivot_labels(
 \item{p_col}{Column perc.}
 
 \item{p_row}{Row perc.}
+
+\item{rows}{Labels for variables use as rows.}
 }
 \value{
 a \code{list} that can be use in \code{\link{pivot_format}}.
@@ -35,6 +38,11 @@ data("diamonds", package = "ggplot2")
 # With two variables
 pivot_format(
   pivot = pivot_table(diamonds, rows = "cut", cols = "color"),
-  labels = pivot_labels(stats = "Statistique", n = "N", p = "\%")
+  labels = pivot_labels(
+    stats = "Statistique",
+    n = "N",
+    p = "\%",
+    rows = c("Cut variable")
+  )
 )
 }

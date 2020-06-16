@@ -76,6 +76,16 @@ pivot_format <- function(pivot,
       skip_absent = TRUE
     )
   }
+
+  if (!is.null(labels$rows)) {
+    setnames(
+      x = pivot,
+      old = rows,
+      new = labels$rows,
+      skip_absent = TRUE
+    )
+  }
+
   ft <- flextable(pivot)
   ft <- theme_zebra(ft, odd_header = "transparent", even_header = "transparent", odd_body = "#ECEFF4")
   ft <- merge_v(ft, part = "body", j = seq_along(rows))
@@ -111,6 +121,7 @@ pivot_format <- function(pivot,
 #' @param p Percentage.
 #' @param p_col Column perc.
 #' @param p_row Row perc.
+#' @param rows Labels for variables use as rows.
 #'
 #' @return a \code{list} that can be use in \code{\link{pivot_format}}.
 #' @export
@@ -121,19 +132,26 @@ pivot_format <- function(pivot,
 #' # With two variables
 #' pivot_format(
 #'   pivot = pivot_table(diamonds, rows = "cut", cols = "color"),
-#'   labels = pivot_labels(stats = "Statistique", n = "N", p = "%")
+#'   labels = pivot_labels(
+#'     stats = "Statistique",
+#'     n = "N",
+#'     p = "%",
+#'     rows = c("Cut variable")
+#'   )
 #' )
 pivot_labels <- function(stats = "Statistic",
                          n = "Count",
                          p = "Percentage",
                          p_col = "Column perc.",
-                         p_row = "Row perc.") {
+                         p_row = "Row perc.",
+                         rows = NULL) {
   list(
     stats = stats,
     n = n,
     p = p,
     p_col = p_col,
-    p_row = p_row
+    p_row = p_row,
+    rows = rows
   )
 }
 
