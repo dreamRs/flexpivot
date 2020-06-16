@@ -40,7 +40,7 @@ server <- function(input, output, session) {
   })
 
   output$table <- renderUI({
-    ft <- flex(pivot_r())
+    ft <- format_pivot(pivot_r())
     ft <- set_table_properties(ft, layout = "autofit", width = .8)
     htmltools_value(ft)
   })

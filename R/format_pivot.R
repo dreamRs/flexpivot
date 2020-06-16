@@ -1,5 +1,5 @@
 
-#' Flex format for `pivot_table`
+#' Flextable format for `pivot_table`
 #'
 #' @param pivot a `pivot_table` object.
 #' @param background Background color.
@@ -11,8 +11,8 @@
 #' @importFrom officer fp_border
 #' @importFrom data.table first := setnames
 #'
-#' @example examples/flex.R
-flex <- function(pivot, background = "#81A1C1") {
+#' @example examples/format_pivot.R
+format_pivot <- function(pivot, background = "#81A1C1") {
   if (!inherits(pivot, "pivot_table"))
     stop("'pivot' must be a 'pivot_table' object")
   rows <- attr(pivot, "rows")

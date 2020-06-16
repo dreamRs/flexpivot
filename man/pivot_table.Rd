@@ -4,7 +4,13 @@
 \alias{pivot_table}
 \title{Create a pivot table}
 \usage{
-pivot_table(data, rows, cols = NULL, stats = c("n", "p", "p_row", "p_col"))
+pivot_table(
+  data,
+  rows,
+  cols = NULL,
+  wt = NULL,
+  stats = c("n", "p", "p_row", "p_col")
+)
 }
 \arguments{
 \item{data}{a \code{data.frame}.}
@@ -12,6 +18,8 @@ pivot_table(data, rows, cols = NULL, stats = c("n", "p", "p_row", "p_col"))
 \item{rows}{Character vector of variable(s) to use as rows.}
 
 \item{cols}{Character vector of variable(s) to use as columns.}
+
+\item{wt}{Character, variable to use as weights if any.}
 
 \item{stats}{Statistic(s) to compute.}
 }
