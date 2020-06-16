@@ -10,7 +10,7 @@
 #' @return a \code{data.table}
 #' @export
 #'
-#' @importFrom data.table as.data.table := setnames melt dcast setattr cube set .SD
+#' @importFrom data.table as.data.table := setnames melt dcast setattr cube set .SD setorderv
 #' @importFrom stats as.formula
 #'
 #' @example examples/pivot_table.R
@@ -25,6 +25,7 @@ pivot_table <- function(data, rows, cols = NULL, wt = NULL, stats = c("n", "p", 
     setnames(data, old = wt, new = "wt")
   }
   agg <- cube(x = data, j = list(n = sum(wt)), by = c(rows, cols), id = TRUE)
+  setorderv(agg, cols = rows, na.last = TRUE)
   for (i in c(rows, cols)) {
     ind <- unlist(agg[, lapply(.SD, is.na), .SDcols = i], use.names = FALSE) &
       agg$grouping > 0
@@ -60,6 +61,7 @@ pivot_table <- function(data, rows, cols = NULL, wt = NULL, stats = c("n", "p", 
     sep = "_|_",
     fill = 0
   )
+
   setattr(result, "class", c(class(result), "pivot_table"))
   setattr(result, "rows", rows)
   setattr(result, "cols", cols)
