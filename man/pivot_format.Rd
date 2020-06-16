@@ -8,7 +8,8 @@ pivot_format(
   pivot,
   background = "#81A1C1",
   border = "#FFFFFF",
-  labels = pivot_labels()
+  labels = pivot_labels(),
+  formatter = pivot_formatter()
 )
 }
 \arguments{
@@ -19,6 +20,8 @@ pivot_format(
 \item{border}{Border color (applies to all table).}
 
 \item{labels}{Custom labels for statistics, see \code{\link{pivot_labels}}.}
+
+\item{formatter}{Function to format content, see \code{\link{pivot_formatter}}.}
 }
 \value{
 a \code{flextable} object.

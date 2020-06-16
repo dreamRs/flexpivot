@@ -5,27 +5,70 @@
 #' @param background Background color.
 #' @param border Border color (applies to all table).
 #' @param labels Custom labels for statistics, see \code{\link{pivot_labels}}.
+#' @param formatter Function to format content, see \code{\link{pivot_formatter}}.
 #'
 #' @return a `flextable` object.
 #' @export
 #'
 #' @importFrom flextable flextable theme_zebra merge_v bg color bold fontsize padding width border
 #' @importFrom officer fp_border
-#' @importFrom data.table first := setnames
+#' @importFrom data.table copy .SD first := setnames
 #'
 #' @example examples/pivot_format.R
-pivot_format <- function(pivot, background = "#81A1C1", border = "#FFFFFF", labels = pivot_labels()) {
+pivot_format <- function(pivot,
+                         background = "#81A1C1",
+                         border = "#FFFFFF",
+                         labels = pivot_labels(),
+                         formatter = pivot_formatter()) {
   if (!inherits(pivot, "pivot_table"))
     stop("'pivot' must be a 'pivot_table' object")
-  rows <- attr(pivot, "rows")
-  cols <- attr(pivot, "cols")
-  if (hasName(pivot, "stats")) {
+  pivot <- copy(pivot)
+  rows <- attr(pivot, "rows", exact = TRUE)
+  cols <- attr(pivot, "cols", exact = TRUE)
+  if (!is.null(cols)) {
+
+    # Apply formatter
+    cols_vars <- setdiff(names(pivot), c(rows, "stats"))
+    pivot[, (cols_vars) := lapply(.SD, as.character), .SDcols = cols_vars]
+    pivot[stats == "n", (cols_vars) := lapply(.SD, function(x) {
+      formatter$n(as.numeric(x))
+    }), .SDcols = cols_vars]
+    pivot[stats == "p", (cols_vars) := lapply(.SD, function(x) {
+      formatter$p(as.numeric(x))
+    }), .SDcols = cols_vars]
+    pivot[stats == "p_col", (cols_vars) := lapply(.SD, function(x) {
+      formatter$p_col(as.numeric(x))
+    }), .SDcols = cols_vars]
+    pivot[stats == "p_row", (cols_vars) := lapply(.SD, function(x) {
+      formatter$p_row(as.numeric(x))
+    }), .SDcols = cols_vars]
+
+    # Apply labels
     pivot[stats == "n", stats := labels$n]
     pivot[stats == "p", stats := labels$p]
     pivot[stats == "p_col", stats := labels$p_col]
     pivot[stats == "p_row", stats := labels$p_row]
     setnames(pivot, "stats", labels$stats)
+
   } else {
+
+    # Apply formatter
+    cols_vars <- setdiff(names(pivot), rows)
+    pivot[, (cols_vars) := lapply(.SD, as.character), .SDcols = cols_vars]
+    if (hasName(pivot, "n")) {
+      pivot[, n := formatter$n(as.numeric(n))]
+    }
+    if (hasName(pivot, "p")) {
+      pivot[, p := formatter$p(as.numeric(p))]
+    }
+    if (hasName(pivot, "p_col")) {
+      pivot[, p_col := formatter$p_col(as.numeric(p_col))]
+    }
+    if (hasName(pivot, "p_row")) {
+      pivot[, p_row := formatter$p_row(as.numeric(p_row))]
+    }
+
+    # Apply labels
     setnames(
       x = pivot,
       old = c("n", "p", "p_row", "p_col"),
@@ -98,7 +141,34 @@ pivot_labels <- function(stats = "Statistic",
 
 
 
-
+#' Formatters for \code{pivot_format}
+#'
+#' @param n Function, applied to n.
+#' @param p Function, applied to p.
+#' @param p_col Function, applied to p_col.
+#' @param p_row Function, applied to p_row.
+#'
+#' @return a \code{list} of \code{function}s that can be use in \code{\link{pivot_format}}.
+#' @export
+#'
+#' @example examples/pivot_formatter.R
+pivot_formatter <- function(n = round,
+                            p = function(x) {
+                              paste0(round(x, 1), "%")
+                            },
+                            p_col = function(x) {
+                              paste0(round(x, 1), "%")
+                            },
+                            p_row = function(x) {
+                              paste0(round(x, 1), "%")
+                            }) {
+  list(
+    n = n,
+    p = p,
+    p_col = p_col,
+    p_row = p_row
+  )
+}
 
 
 
