@@ -10,7 +10,7 @@
 #' @return a \code{data.table}
 #' @export
 #'
-#' @importFrom data.table as.data.table := setnames melt dcast setattr cube set
+#' @importFrom data.table as.data.table := setnames melt dcast setattr cube set .SD
 #' @importFrom stats as.formula
 #'
 #' @example examples/pivot_table.R
