@@ -4,6 +4,7 @@
 #' @param pivot a `pivot_table` object.
 #' @param background Background color.
 #' @param border Border color (applies to all table).
+#' @param fontSize Font size (applies to all table).
 #' @param labels Custom labels for statistics, see \code{\link{pivot_labels}}.
 #' @param formatter Function to format content, see \code{\link{pivot_formatter}}.
 #'
@@ -18,6 +19,7 @@
 pivot_format <- function(pivot,
                          background = "#81A1C1",
                          border = "#FFFFFF",
+                         fontSize = 14,
                          labels = pivot_labels(),
                          formatter = pivot_formatter()) {
   if (!inherits(pivot, "pivot_table"))
@@ -94,7 +96,7 @@ pivot_format <- function(pivot,
   ft <- color(ft, j = seq_along(rows), color = "#FFFFFF", part = "body")
   ft <- color(ft, color = "#FFFFFF", part = "header")
   ft <- bold(ft, j = seq_along(rows))
-  ft <- fontsize(x = ft, size = 15, part = "all")
+  ft <- fontsize(x = ft, size = fontSize, part = "all")
   ft <- padding(x = ft, padding = 10, part = "all")
   ft <- width(x = ft, width = 1.5)
   if (!is.null(cols)) {

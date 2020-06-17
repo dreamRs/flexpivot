@@ -8,6 +8,7 @@ pivot_format(
   pivot,
   background = "#81A1C1",
   border = "#FFFFFF",
+  fontSize = 14,
   labels = pivot_labels(),
   formatter = pivot_formatter()
 )
@@ -18,6 +19,8 @@ pivot_format(
 \item{background}{Background color.}
 
 \item{border}{Border color (applies to all table).}
+
+\item{fontSize}{Font size (applies to all table).}
 
 \item{labels}{Custom labels for statistics, see \code{\link{pivot_labels}}.}
 

@@ -18,6 +18,8 @@ RoxygenNote: 7.1.0
 Imports: 
     data.table (>= 1.12.0),
     flextable (>= 0.5.10),
-    officer
+    officer,
+    shiny,
+    htmltools
 Suggests: 
     ggplot2

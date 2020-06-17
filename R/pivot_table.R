@@ -23,6 +23,7 @@ pivot_table <- function(data,
                         total = TRUE) {
   stats <- match.arg(stats, several.ok = TRUE)
   data <- as.data.table(data)
+  rows_cols <- unique(c(rows, cols))
   if (is.null(wt)) {
     data[, wt := 1]
   } else {
@@ -30,9 +31,9 @@ pivot_table <- function(data,
       stop("Invalid 'wt' column: must be an available column in data.", call. = FALSE)
     setnames(data, old = wt, new = "wt")
   }
-  agg <- cube(x = data, j = list(n = sum(wt)), by = c(rows, cols), id = TRUE)
+  agg <- cube(x = data, j = list(n = sum(wt)), by = rows_cols, id = TRUE)
   setorderv(agg, cols = rows, na.last = TRUE)
-  for (i in c(rows, cols)) {
+  for (i in rows_cols) {
     ind <- unlist(agg[, lapply(.SD, is.na), .SDcols = i], use.names = FALSE) &
       agg$grouping > 0
     if (isTRUE(total)) {
@@ -54,7 +55,7 @@ pivot_table <- function(data,
   agg[, (stats) := lapply(.SD, as.numeric), .SDcols = stats]
   agg <- melt(
     data = agg,
-    id.vars = c(rows, cols),
+    id.vars = rows_cols,
     measure.vars = stats,
     variable.factor = FALSE,
     variable.name = "stats",
