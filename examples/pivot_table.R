@@ -10,6 +10,8 @@ pivot_table(diamonds, rows = "cut", cols = "color", stats = "n")
 # Only percent
 pivot_table(diamonds, rows = "cut", cols = "color", stats = "p")
 
+# Without total
+pivot_table(diamonds, rows = "cut", cols = "color", total = FALSE)
 
 
 # Two variable as rows

@@ -9,7 +9,8 @@ pivot_table(
   rows,
   cols = NULL,
   wt = NULL,
-  stats = c("n", "p", "p_row", "p_col")
+  stats = c("n", "p", "p_row", "p_col"),
+  total = TRUE
 )
 }
 \arguments{
@@ -22,6 +23,8 @@ pivot_table(
 \item{wt}{Character, variable to use as weights if any.}
 
 \item{stats}{Statistic(s) to compute.}
+
+\item{total}{Logical, add total or not.}
 }
 \value{
 a \code{data.table}
@@ -42,6 +45,8 @@ pivot_table(diamonds, rows = "cut", cols = "color", stats = "n")
 # Only percent
 pivot_table(diamonds, rows = "cut", cols = "color", stats = "p")
 
+# Without total
+pivot_table(diamonds, rows = "cut", cols = "color", total = FALSE)
 
 
 # Two variable as rows

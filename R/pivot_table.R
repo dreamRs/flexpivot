@@ -6,6 +6,7 @@
 #' @param cols Character vector of variable(s) to use as columns.
 #' @param wt Character, variable to use as weights if any.
 #' @param stats Statistic(s) to compute.
+#' @param total Logical, add total or not.
 #'
 #' @return a \code{data.table}
 #' @export
@@ -14,7 +15,12 @@
 #' @importFrom stats as.formula
 #'
 #' @example examples/pivot_table.R
-pivot_table <- function(data, rows, cols = NULL, wt = NULL, stats = c("n", "p", "p_row", "p_col")) {
+pivot_table <- function(data,
+                        rows,
+                        cols = NULL,
+                        wt = NULL,
+                        stats = c("n", "p", "p_row", "p_col"),
+                        total = TRUE) {
   stats <- match.arg(stats, several.ok = TRUE)
   data <- as.data.table(data)
   if (is.null(wt)) {
@@ -29,7 +35,11 @@ pivot_table <- function(data, rows, cols = NULL, wt = NULL, stats = c("n", "p", 
   for (i in c(rows, cols)) {
     ind <- unlist(agg[, lapply(.SD, is.na), .SDcols = i], use.names = FALSE) &
       agg$grouping > 0
-    set(x = agg, i = which(ind), j = i, value = "Total")
+    if (isTRUE(total)) {
+      set(x = agg, i = which(ind), j = i, value = "Total")
+    } else {
+      agg <- agg[-which(ind)]
+    }
   }
   agg[, p := round(n / sum(n, na.rm = TRUE) * 100, 2), by = "grouping"]
   if (is.null(cols)) {
