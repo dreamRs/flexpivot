@@ -1,7 +1,7 @@
 
 #' Flextable format for `pivot_table`
 #'
-#' @param pivot a `pivot_table` object.
+#' @param pivot A \code{\link{pivot_table}} object.
 #' @param background Background color.
 #' @param border Border color (applies to all table).
 #' @param fontSize Font size (applies to all table).

@@ -14,7 +14,7 @@ pivot_format(
 )
 }
 \arguments{
-\item{pivot}{a \code{pivot_table} object.}
+\item{pivot}{A \code{\link{pivot_table}} object.}
 
 \item{background}{Background color.}
 
