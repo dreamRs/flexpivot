@@ -65,7 +65,8 @@ ui <- fluidPage(
       selectInput(
         inputId = "row",
         label = "Row",
-        choices = c("cut", "color", "clarity")
+        choices = c("cut", "color", "clarity"),
+        width = "100\%"
       )
     ),
     column(
@@ -74,7 +75,8 @@ ui <- fluidPage(
         inputId = "col",
         label = "Col",
         choices = c("cut", "color", "clarity"),
-        selected = "color"
+        selected = "color",
+        width = "100\%"
       )
     )
   ),

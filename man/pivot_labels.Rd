@@ -6,10 +6,10 @@
 \usage{
 pivot_labels(
   stats = "Statistic",
-  n = "Count",
-  p = "Percentage",
-  p_col = "Column perc.",
-  p_row = "Row perc.",
+  n = "N",
+  p = "\%",
+  p_col = "Col \%",
+  p_row = "Row \%",
   rows = NULL
 )
 }

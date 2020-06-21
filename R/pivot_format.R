@@ -109,7 +109,8 @@ pivot_format <- function(pivot,
   }
   if (!is.null(border))
     ft <- border(ft, border = officer::fp_border(color = "#FFFFFF"), part = "all")
-  ft
+  class(ft) <- c(class(ft), "flexpivot")
+  return(ft)
 }
 
 
@@ -142,10 +143,10 @@ pivot_format <- function(pivot,
 #'   )
 #' )
 pivot_labels <- function(stats = "Statistic",
-                         n = "Count",
-                         p = "Percentage",
-                         p_col = "Column perc.",
-                         p_row = "Row perc.",
+                         n = "N",
+                         p = "%",
+                         p_col = "Col %",
+                         p_row = "Row %",
                          rows = NULL) {
   list(
     stats = stats,

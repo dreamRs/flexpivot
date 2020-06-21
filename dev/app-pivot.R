@@ -20,7 +20,7 @@ ui <- fluidPage(
     replace = FALSE
   ),
   # verbatimTextOutput("test")
-  uiOutput(outputId = "table")
+  pivotOutput(outputId = "table")
 )
 
 server <- function(input, output, session) {
@@ -39,10 +39,8 @@ server <- function(input, output, session) {
     )
   })
 
-  output$table <- renderUI({
-    ft <- pivot_format(pivot_r())
-    ft <- set_table_properties(ft, layout = "autofit", width = .8)
-    htmltools_value(ft)
+  output$table <- renderPivot({
+    pivot_r()
   })
 
 }
