@@ -5,6 +5,7 @@
 \alias{export}
 \alias{export_pptx}
 \alias{export_docx}
+\alias{export_xlsx}
 \title{Export pivot table}
 \usage{
 export(x, output, to = c("pptx", "docx", "xlsx"), ...)
@@ -12,6 +13,8 @@ export(x, output, to = c("pptx", "docx", "xlsx"), ...)
 export_pptx(x, output, ...)
 
 export_docx(x, output, ...)
+
+export_xlsx(x, output, ...)
 }
 \arguments{
 \item{x}{A \code{\link{pivot_table}} or \code{\link{pivot_format}} object.}
@@ -45,6 +48,11 @@ path_docx <- tempfile(fileext = ".docx")
 export_docx(pt, path_docx)
 browseURL(path_docx)
 
+
+# To Excel
+path_xlsx <- tempfile(fileext = ".xlsx")
+export_xlsx(pt, path_xlsx)
+browseURL(path_xlsx)
 
 
 # Clean up

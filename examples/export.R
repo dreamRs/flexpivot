@@ -15,6 +15,11 @@ export_docx(pt, path_docx)
 browseURL(path_docx)
 
 
+# To Excel
+path_xlsx <- tempfile(fileext = ".xlsx")
+export_xlsx(pt, path_xlsx)
+browseURL(path_xlsx)
+
 
 # Clean up
 unlink(path_pptx)

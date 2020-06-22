@@ -1,5 +1,5 @@
 Package: flexpivot
-Title: What the Package Does (One Line, Title Case)
+Title: Easy Pivot Table
 Version: 0.0.0.9000
 Authors@R: 
     c(person(given = "Victor",
@@ -9,7 +9,7 @@ Authors@R:
       person(given = "Fanny",
              family = "Meyer",
              role = "aut"))
-Description: What the package does (one paragraph).
+Description: Create pivot tables ready to be used in 'shiny' or 'markdown' and easily exportable to 'PowerPoint', 'Word' and 'Excel'.
 License: GPL-3
 Encoding: UTF-8
 LazyData: true
@@ -20,6 +20,7 @@ Imports:
     flextable (>= 0.5.10),
     officer,
     shiny,
-    htmltools
+    htmltools,
+    writexl
 Suggests: 
     ggplot2
