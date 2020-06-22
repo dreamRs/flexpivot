@@ -39,6 +39,12 @@ pivot_table <- function(data,
     setnames(data, old = wt, new = "wt_pivot_table")
   }
   agg <- cube(x = data, j = list(n = sum(.SD[["wt_pivot_table"]])), by = rows_cols, id = TRUE)
+  agg[, (rows_cols) := lapply(.SD, function(x) {
+    if (!inherits(x, c("character", "factor"))) {
+      x <- as.character(x)
+    }
+    x
+  }), .SDcols = rows_cols]
   setorderv(agg, cols = rows, na.last = TRUE)
   for (i in rows_cols) {
     ind <- unlist(agg[, lapply(.SD, is.na), .SDcols = i], use.names = FALSE) &
