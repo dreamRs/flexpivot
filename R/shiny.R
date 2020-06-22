@@ -74,12 +74,13 @@ renderPivot2 <- function(expr,
 
 #' @rdname pivot-shiny
 #' @export
-#' @importFrom htmltools tags validateCssUnit
-#' @importFrom shiny actionButton icon downloadLink
+#' @importFrom htmltools tags validateCssUnit tagList
+#' @importFrom shiny actionButton icon downloadLink actionLink
 #' @importFrom shinyWidgets dropMenu
 pivotOutput <- function(outputId, width = "100%", ...) {
   tags$div(
     class = "pivot-table-container",
+    html_dependency_clipboard(),
     dropMenu(
       actionButton(
         inputId = paste0(outputId, "_exports"),
@@ -88,19 +89,36 @@ pivotOutput <- function(outputId, width = "100%", ...) {
         class = "btn-xs pull-right"
       ),
       placement = "bottom-end",
+      actionLink(
+        inputId = paste0(outputId, "_clipboard"),
+        label = "Copy to clipboard",
+        `data-clipboard-target` = paste0("#", outputId),
+        class = "btn-pivot-table-clipboard",
+        icon = icon("clipboard")
+      ),
+      tags$br(),
       downloadLink(
         outputId = paste0(outputId, "_export_pptx"),
-        label = "Export to PowerPoint"
+        label = tagList(
+          tags$img(src = "flexpivot/icons/powerpoint.png"),
+          "Export to PowerPoint"
+        )
       ),
       tags$br(),
       downloadLink(
         outputId = paste0(outputId, "_export_docx"),
-        label = "Export to Word"
+        label = tagList(
+          tags$img(src = "flexpivot/icons/word.png"),
+          "Export to Word"
+        )
       ),
       tags$br(),
       downloadLink(
         outputId = paste0(outputId, "_export_xlsx"),
-        label = "Export to Excel"
+        label = tagList(
+          tags$img(src = "flexpivot/icons/excel.png"),
+          "Export to Excel"
+        )
       )
     ),
     tags$div(
@@ -108,7 +126,12 @@ pivotOutput <- function(outputId, width = "100%", ...) {
       style = if (!is.null(width)) paste0("width:", validateCssUnit(width), ";"),
       style = "overflow: auto;",
       ...
-    )
+    ),
+    tags$script(sprintf(
+      "var %s = new ClipboardJS('#%s');",
+      paste0(gsub("[^[:alnum:]]", "", outputId), "_clipboard"),
+      paste0(outputId, "_clipboard")
+    ))
   )
 }
 
@@ -202,5 +225,25 @@ renderPivot <- function(expr,
     list(html = rendered$html, deps = dependencies)
   }, pivotOutput, list())
 }
+
+
+
+
+#' @importFrom htmltools htmlDependency
+html_dependency_clipboard <- function() {
+  htmlDependency(
+    name = "clipboard",
+    version = "2.0.6",
+    package = "flexpivot",
+    src = c(file = "assets/clipboard"),
+    script = c("clipboard.min.js")
+  )
+}
+
+
+
+
+
+
 
 
