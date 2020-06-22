@@ -69,6 +69,15 @@ export_docx <- function(x, output, ...) {
 }
 
 
-
-
+#' @rdname export-pivot
+#' @export
+#' @importFrom writexl write_xlsx
+export_xlsx <- function(x, output, ...) {
+  output <- normalizePath(output, mustWork = FALSE)
+  if (!inherits(x, "pivot_table")) {
+    stop("export_xlsx works only with pivot_table objects", call. = FALSE)
+  }
+  x <- unpivot(x)
+  write_xlsx(x = x, path = output)
+}
 
