@@ -108,8 +108,6 @@ pivot_format <- function(pivot,
       border.top = fp_border(color = "#D8DEE9", width = 2), part = "body"
     )
   }
-  if (!is.null(border))
-    ft <- border(ft, border = fp_border(color = "#FFFFFF"), part = "all")
 
   if (is.null(cols)) {
     ft <- bg(ft, bg = background, part = "header")
@@ -145,6 +143,8 @@ pivot_format <- function(pivot,
   ft <- fontsize(x = ft, size = fontSize, part = "all")
   ft <- padding(x = ft, padding = 10, part = "all")
   ft <- width(x = ft, width = 1.5)
+  if (!is.null(border))
+    ft <- border(ft, border = fp_border(color = "#FFFFFF"), part = "all")
   setattr(ft, "class", c(class(ft), "flexpivot"))
   if (isTRUE(keep_data)) {
     setattr(ft, "data", copy(pivot))

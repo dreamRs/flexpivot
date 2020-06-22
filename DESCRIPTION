@@ -24,4 +24,5 @@ Imports:
     shinyWidgets (>= 0.5.3),
     writexl
 Suggests: 
-    ggplot2
+    ggplot2,
+    esquisse

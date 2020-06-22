@@ -1,0 +1,28 @@
+
+.pivot-addin-title-box {
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
+  background-color: #112446;
+  height: 45px;
+}
+
+.pivot-addin-title {
+  color: white;
+  text-align: center;
+  font-size: 30px;
+  font-weight: bold;
+  margin: auto;
+  line-height: 45px;
+}
+
+.pivot-addin-closebtn {
+  position: absolute;
+  right: 7px;
+  top: 8px;
+}
+
+.pivot-addin-container {
+  margin-top: 50px;
+}
