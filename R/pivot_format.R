@@ -11,7 +11,8 @@
 #' @return a `flextable` object.
 #' @export
 #'
-#' @importFrom flextable flextable theme_zebra merge_v bg color bold fontsize padding width border
+#' @importFrom flextable flextable theme_zebra merge_v bg color
+#'  bold fontsize padding width border set_header_df merge_h align
 #' @importFrom officer fp_border
 #' @importFrom data.table copy .SD first := setnames
 #'
@@ -23,10 +24,11 @@ pivot_format <- function(pivot,
                          labels = pivot_labels(),
                          formatter = pivot_formatter()) {
   if (!inherits(pivot, "pivot_table"))
-    stop("'pivot' must be a 'pivot_table' object")
+    stop("pivot_format: 'pivot' must be a 'pivot_table' object", call. = FALSE)
   pivot <- copy(pivot)
   rows <- attr(pivot, "rows", exact = TRUE)
   cols <- attr(pivot, "cols", exact = TRUE)
+  cols_values <- attr(pivot, "cols_values", exact = TRUE)
   if (!is.null(cols)) {
 
     # Apply formatter
@@ -92,23 +94,49 @@ pivot_format <- function(pivot,
   ft <- theme_zebra(ft, odd_header = "transparent", even_header = "transparent", odd_body = "#ECEFF4")
   ft <- merge_v(ft, part = "body", j = seq_along(rows))
   ft <- bg(ft, j = seq_along(rows), bg = background, part = "body")
-  ft <- bg(ft, bg = background, part = "header")
   ft <- color(ft, j = seq_along(rows), color = "#FFFFFF", part = "body")
-  ft <- color(ft, color = "#FFFFFF", part = "header")
   ft <- bold(ft, j = seq_along(rows))
-  ft <- fontsize(x = ft, size = fontSize, part = "all")
-  ft <- padding(x = ft, padding = 10, part = "all")
-  ft <- width(x = ft, width = 1.5)
+
   if (!is.null(cols)) {
     ft <- border(
       ft, i = as.formula(paste0(
         "~ ", labels$stats, " == '", pivot[[labels$stats]][1], "'"
       )),
-      border.top = officer::fp_border(color = "#D8DEE9", width = 2), part = "body"
+      border.top = fp_border(color = "#D8DEE9", width = 2), part = "body"
     )
   }
   if (!is.null(border))
-    ft <- border(ft, border = officer::fp_border(color = "#FFFFFF"), part = "all")
+    ft <- border(ft, border = fp_border(color = "#FFFFFF"), part = "all")
+
+  if (is.null(cols)) {
+    ft <- bg(ft, bg = background, part = "header")
+    ft <- color(ft, color = "#FFFFFF", part = "header")
+  } else {
+    if (identical(length(cols), 1L)) {
+      nm_pivot <- names(pivot)
+      typology_what <- rep("", ncol(pivot))
+      typology_what[nm_pivot %in% cols_values[[cols]]] <- cols
+      typology <- data.frame(
+        col_keys = nm_pivot,
+        what = typology_what,
+        measure = nm_pivot,
+        stringsAsFactors = FALSE
+      )
+      ft <- set_header_df(ft, mapping = typology, key = "col_keys")
+      ft <- merge_h(ft, part = "header")
+      ft <- align(ft, i = 1, align = "center", part = "header")
+      ft <- align(ft, i = 2, j = -c(1, 2), align = "right", part = "header")
+      ft <- bg(ft, i = 1, j = which(nm_pivot %in% cols_values[[cols]]), bg = background, part = "header")
+      ft <- bg(ft, i = 2, bg = background, part = "header")
+      ft <- color(ft, color = "#FFFFFF", part = "header")
+    } else {
+      ft <- bg(ft, bg = background, part = "header")
+      ft <- color(ft, color = "#FFFFFF", part = "header")
+    }
+  }
+  ft <- fontsize(x = ft, size = fontSize, part = "all")
+  ft <- padding(x = ft, padding = 10, part = "all")
+  ft <- width(x = ft, width = 1.5)
   class(ft) <- c(class(ft), "flexpivot")
   return(ft)
 }

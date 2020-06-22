@@ -11,7 +11,8 @@
 #' @return a \code{data.table}
 #' @export
 #'
-#' @importFrom data.table as.data.table := setnames melt dcast setattr cube set .SD setorderv
+#' @importFrom data.table is.data.table copy as.data.table := setnames
+#'  melt dcast setattr cube set .SD setorderv
 #' @importFrom stats as.formula
 #'
 #' @example examples/pivot_table.R
@@ -22,16 +23,22 @@ pivot_table <- function(data,
                         stats = c("n", "p", "p_row", "p_col"),
                         total = TRUE) {
   stats <- match.arg(stats, several.ok = TRUE)
-  data <- as.data.table(data)
+  if (is.data.table(data)) {
+    data <- copy(data)
+  } else {
+    data <- as.data.table(data)
+  }
   rows_cols <- unique(c(rows, cols))
+  if (is_valid(data, cols))
+    cols_values <- lapply(data[, .SD, .SDcols = cols], unique)
   if (is.null(wt)) {
-    data[, wt := 1]
+    set(data, j = "wt_pivot_table", value = 1)
   } else {
     if (!hasName(data, wt))
       stop("Invalid 'wt' column: must be an available column in data.", call. = FALSE)
-    setnames(data, old = wt, new = "wt")
+    setnames(data, old = wt, new = "wt_pivot_table")
   }
-  agg <- cube(x = data, j = list(n = sum(wt)), by = rows_cols, id = TRUE)
+  agg <- cube(x = data, j = list(n = sum(.SD[["wt_pivot_table"]])), by = rows_cols, id = TRUE)
   setorderv(agg, cols = rows, na.last = TRUE)
   for (i in rows_cols) {
     ind <- unlist(agg[, lapply(.SD, is.na), .SDcols = i], use.names = FALSE) &
@@ -76,6 +83,7 @@ pivot_table <- function(data,
   setattr(result, "class", c(class(result), "pivot_table"))
   setattr(result, "rows", rows)
   setattr(result, "cols", cols)
+  setattr(result, "cols_values", cols_values)
   result[]
 }
 
