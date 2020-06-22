@@ -52,21 +52,25 @@ renderPivot2 <- function(expr,
   pivot_fun <- exprToFunction(expr, env, quoted)
   renderUI({
     pivot <- pivot_fun()
-    if (!inherits(pivot, "pivot_table"))
-      stop("'expr' must return a pivot_table object!")
-    pivot_ft <- pivot_format(
-      pivot = pivot,
-      background = background,
-      border = border,
-      fontSize = fontSize,
-      labels = labels,
-      formatter = formatter
-    )
+    if (inherits(pivot, "pivot_table")) {
+      pivot <- pivot_format(
+        pivot = pivot,
+        background = background,
+        border = border,
+        fontSize = fontSize,
+        labels = labels,
+        formatter = formatter
+      )
+    }
+    if (!inherits(pivot, "flexpivot")) {
+      stop("renderPivot2: 'expr' must return a pivot_table or pivot_format object.", call. = FALSE)
+    }
+
     if (is.reactive(width)) {
       width <- width()
     }
-    pivot_ft <- set_table_properties(pivot_ft, layout = "autofit", width = width)
-    htmltools_value(pivot_ft)
+    pivot <- set_table_properties(pivot, layout = "autofit", width = width)
+    htmltools_value(pivot)
   })
 }
 
@@ -200,13 +204,23 @@ renderPivot <- function(expr,
                         env = parent.frame(),
                         quoted = FALSE,
                         filename = "export-pivot") {
-  # installExprFunction(expr, "func", env, quoted)
-  pivot_fun <- shiny::exprToFunction(expr, env, quoted)
-  createRenderFunction(pivot_fun, function(result, shinysession, name, ...) {
-    if (is.null(result) || length(result) == 0)
+  pivot_fun <- exprToFunction(expr, env, quoted)
+  createRenderFunction(pivot_fun, function(pivot, shinysession, name, ...) {
+    if (is.null(pivot) || length(pivot) == 0)
       return(NULL)
-    if (!inherits(result, "pivot_table"))
-      stop("'expr' must return a pivot_table object!")
+    if (inherits(pivot, "pivot_table")) {
+      pivot <- pivot_format(
+        pivot = pivot,
+        background = background,
+        border = border,
+        fontSize = fontSize,
+        labels = labels,
+        formatter = formatter
+      )
+    }
+    if (!inherits(pivot, "flexpivot")) {
+      stop("renderPivot: 'expr' must return a pivot_table or pivot_format object.", call. = FALSE)
+    }
 
     shinysession$output[[paste0(name, "_export_pptx")]] <- downloadHandler(
       filename = function() {
@@ -216,7 +230,8 @@ renderPivot <- function(expr,
       },
       content = function(file) {
         export_pptx(
-          x = result, output = file,
+          x = pivot,
+          output = file,
           background = background,
           border = border,
           fontSize = fontSize,
@@ -233,7 +248,8 @@ renderPivot <- function(expr,
       },
       content = function(file) {
         export_docx(
-          x = result, output = file,
+          x = pivot,
+          output = file,
           background = background,
           border = border,
           fontSize = fontSize,
@@ -249,23 +265,16 @@ renderPivot <- function(expr,
         paste0(filename, ".xlsx")
       },
       content = function(file) {
-        export_xlsx(x = result, output = file)
+        data <- attr(pivot, which = "data", exact = TRUE)
+        export_xlsx(x = data, output = file)
       }
     )
     if (is.reactive(width)) {
       width <- width()
     }
-    pivot_ft <- pivot_format(
-      pivot = result,
-      background = background,
-      border = border,
-      fontSize = fontSize,
-      labels = labels,
-      formatter = formatter
-    )
-    pivot_ft <- set_table_properties(pivot_ft, layout = "autofit", width = width)
-    pivot_ft <- htmltools_value(pivot_ft)
-    rendered <- renderTags(pivot_ft)
+    out <- set_table_properties(pivot, layout = "autofit", width = width)
+    out <- htmltools_value(out)
+    rendered <- renderTags(out)
     dependencies <- lapply(
       X = resolveDependencies(rendered$dependencies),
       FUN = createWebDependency

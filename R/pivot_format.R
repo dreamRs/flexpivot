@@ -7,6 +7,8 @@
 #' @param fontSize Font size (applies to all table).
 #' @param labels Custom labels for statistics, see \code{\link{pivot_labels}}.
 #' @param formatter Function to format content, see \code{\link{pivot_formatter}}.
+#' @param keep_data Keep data as attribute, this can
+#'  be useful to retrieve the data from which the table was formatted.
 #'
 #' @return a `flextable` object.
 #' @export
@@ -14,7 +16,7 @@
 #' @importFrom flextable flextable theme_zebra merge_v bg color
 #'  bold fontsize padding width border set_header_df merge_h align
 #' @importFrom officer fp_border
-#' @importFrom data.table copy .SD first := setnames
+#' @importFrom data.table copy .SD first := setnames setattr
 #'
 #' @example examples/pivot_format.R
 pivot_format <- function(pivot,
@@ -22,59 +24,60 @@ pivot_format <- function(pivot,
                          border = "#FFFFFF",
                          fontSize = 14,
                          labels = pivot_labels(),
-                         formatter = pivot_formatter()) {
+                         formatter = pivot_formatter(),
+                         keep_data = TRUE) {
   if (!inherits(pivot, "pivot_table"))
     stop("pivot_format: 'pivot' must be a 'pivot_table' object", call. = FALSE)
-  pivot <- copy(pivot)
-  rows <- attr(pivot, "rows", exact = TRUE)
-  cols <- attr(pivot, "cols", exact = TRUE)
-  cols_values <- attr(pivot, "cols_values", exact = TRUE)
+  pt <- copy(pivot)
+  rows <- attr(pt, "rows", exact = TRUE)
+  cols <- attr(pt, "cols", exact = TRUE)
+  cols_values <- attr(pt, "cols_values", exact = TRUE)
   if (!is.null(cols)) {
 
     # Apply formatter
-    cols_vars <- setdiff(names(pivot), c(rows, "stats"))
-    pivot[, (cols_vars) := lapply(.SD, as.character), .SDcols = cols_vars]
-    pivot[stats == "n", (cols_vars) := lapply(.SD, function(x) {
+    cols_vars <- setdiff(names(pt), c(rows, "stats"))
+    pt[, (cols_vars) := lapply(.SD, as.character), .SDcols = cols_vars]
+    pt[stats == "n", (cols_vars) := lapply(.SD, function(x) {
       formatter$n(as.numeric(x))
     }), .SDcols = cols_vars]
-    pivot[stats == "p", (cols_vars) := lapply(.SD, function(x) {
+    pt[stats == "p", (cols_vars) := lapply(.SD, function(x) {
       formatter$p(as.numeric(x))
     }), .SDcols = cols_vars]
-    pivot[stats == "p_col", (cols_vars) := lapply(.SD, function(x) {
+    pt[stats == "p_col", (cols_vars) := lapply(.SD, function(x) {
       formatter$p_col(as.numeric(x))
     }), .SDcols = cols_vars]
-    pivot[stats == "p_row", (cols_vars) := lapply(.SD, function(x) {
+    pt[stats == "p_row", (cols_vars) := lapply(.SD, function(x) {
       formatter$p_row(as.numeric(x))
     }), .SDcols = cols_vars]
 
     # Apply labels
-    pivot[stats == "n", stats := labels$n]
-    pivot[stats == "p", stats := labels$p]
-    pivot[stats == "p_col", stats := labels$p_col]
-    pivot[stats == "p_row", stats := labels$p_row]
-    setnames(pivot, "stats", labels$stats)
+    pt[stats == "n", stats := labels$n]
+    pt[stats == "p", stats := labels$p]
+    pt[stats == "p_col", stats := labels$p_col]
+    pt[stats == "p_row", stats := labels$p_row]
+    setnames(pt, "stats", labels$stats)
 
   } else {
 
     # Apply formatter
-    cols_vars <- setdiff(names(pivot), rows)
-    pivot[, (cols_vars) := lapply(.SD, as.character), .SDcols = cols_vars]
-    if (hasName(pivot, "n")) {
-      pivot[, n := formatter$n(as.numeric(n))]
+    cols_vars <- setdiff(names(pt), rows)
+    pt[, (cols_vars) := lapply(.SD, as.character), .SDcols = cols_vars]
+    if (hasName(pt, "n")) {
+      pt[, n := formatter$n(as.numeric(n))]
     }
-    if (hasName(pivot, "p")) {
-      pivot[, p := formatter$p(as.numeric(p))]
+    if (hasName(pt, "p")) {
+      pt[, p := formatter$p(as.numeric(p))]
     }
-    if (hasName(pivot, "p_col")) {
-      pivot[, p_col := formatter$p_col(as.numeric(p_col))]
+    if (hasName(pt, "p_col")) {
+      pt[, p_col := formatter$p_col(as.numeric(p_col))]
     }
-    if (hasName(pivot, "p_row")) {
-      pivot[, p_row := formatter$p_row(as.numeric(p_row))]
+    if (hasName(pt, "p_row")) {
+      pt[, p_row := formatter$p_row(as.numeric(p_row))]
     }
 
     # Apply labels
     setnames(
-      x = pivot,
+      x = pt,
       old = c("n", "p", "p_row", "p_col"),
       new = c(labels$n, labels$p, labels$p_col, labels$p_row),
       skip_absent = TRUE
@@ -83,14 +86,14 @@ pivot_format <- function(pivot,
 
   if (!is.null(labels$rows)) {
     setnames(
-      x = pivot,
+      x = pt,
       old = rows,
       new = labels$rows,
       skip_absent = TRUE
     )
   }
 
-  ft <- flextable(pivot)
+  ft <- flextable(pt)
   ft <- theme_zebra(ft, odd_header = "transparent", even_header = "transparent", odd_body = "#ECEFF4")
   ft <- merge_v(ft, part = "body", j = seq_along(rows))
   ft <- bg(ft, j = seq_along(rows), bg = background, part = "body")
@@ -100,7 +103,7 @@ pivot_format <- function(pivot,
   if (!is.null(cols)) {
     ft <- border(
       ft, i = as.formula(paste0(
-        "~ ", labels$stats, " == '", pivot[[labels$stats]][1], "'"
+        "~ ", labels$stats, " == '", pt[[labels$stats]][1], "'"
       )),
       border.top = fp_border(color = "#D8DEE9", width = 2), part = "body"
     )
@@ -113,8 +116,8 @@ pivot_format <- function(pivot,
     ft <- color(ft, color = "#FFFFFF", part = "header")
   } else {
     if (identical(length(cols), 1L)) {
-      nm_pivot <- names(pivot)
-      typology_what <- rep("", ncol(pivot))
+      nm_pivot <- names(pt)
+      typology_what <- rep("", ncol(pt))
       if (!is.null(labels$cols)) {
         label_col <- labels$cols[1]
       } else {
@@ -142,7 +145,10 @@ pivot_format <- function(pivot,
   ft <- fontsize(x = ft, size = fontSize, part = "all")
   ft <- padding(x = ft, padding = 10, part = "all")
   ft <- width(x = ft, width = 1.5)
-  class(ft) <- c(class(ft), "flexpivot")
+  setattr(ft, "class", c(class(ft), "flexpivot"))
+  if (isTRUE(keep_data)) {
+    setattr(ft, "data", copy(pivot))
+  }
   return(ft)
 }
 

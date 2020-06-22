@@ -10,7 +10,8 @@ pivot_format(
   border = "#FFFFFF",
   fontSize = 14,
   labels = pivot_labels(),
-  formatter = pivot_formatter()
+  formatter = pivot_formatter(),
+  keep_data = TRUE
 )
 }
 \arguments{
@@ -25,6 +26,9 @@ pivot_format(
 \item{labels}{Custom labels for statistics, see \code{\link{pivot_labels}}.}
 
 \item{formatter}{Function to format content, see \code{\link{pivot_formatter}}.}
+
+\item{keep_data}{Keep data as attribute, this can
+be useful to retrieve the data from which the table was formatted.}
 }
 \value{
 a \code{flextable} object.
