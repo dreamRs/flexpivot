@@ -115,7 +115,12 @@ pivot_format <- function(pivot,
     if (identical(length(cols), 1L)) {
       nm_pivot <- names(pivot)
       typology_what <- rep("", ncol(pivot))
-      typology_what[nm_pivot %in% cols_values[[cols]]] <- cols
+      if (!is.null(labels$cols)) {
+        label_col <- labels$cols[1]
+      } else {
+        label_col <- cols
+      }
+      typology_what[nm_pivot %in% cols_values[[cols]]] <- label_col
       typology <- data.frame(
         col_keys = nm_pivot,
         what = typology_what,
@@ -152,7 +157,7 @@ pivot_format <- function(pivot,
 #' @param p Percentage.
 #' @param p_col Column perc.
 #' @param p_row Row perc.
-#' @param rows Labels for variables use as rows.
+#' @param rows,cols Labels for variables use as rows/cols.
 #'
 #' @return a \code{list} that can be use in \code{\link{pivot_format}}.
 #' @export
@@ -175,14 +180,16 @@ pivot_labels <- function(stats = "Statistic",
                          p = "%",
                          p_col = "Col %",
                          p_row = "Row %",
-                         rows = NULL) {
+                         rows = NULL,
+                         cols = NULL) {
   list(
     stats = stats,
     n = n,
     p = p,
     p_col = p_col,
     p_row = p_row,
-    rows = rows
+    rows = rows,
+    cols = cols
   )
 }
 

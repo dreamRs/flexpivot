@@ -10,7 +10,8 @@ pivot_labels(
   p = "\%",
   p_col = "Col \%",
   p_row = "Row \%",
-  rows = NULL
+  rows = NULL,
+  cols = NULL
 )
 }
 \arguments{
@@ -24,7 +25,7 @@ pivot_labels(
 
 \item{p_row}{Row perc.}
 
-\item{rows}{Labels for variables use as rows.}
+\item{rows, cols}{Labels for variables use as rows/cols.}
 }
 \value{
 a \code{list} that can be use in \code{\link{pivot_format}}.
