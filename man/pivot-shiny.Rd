@@ -5,6 +5,7 @@
 \alias{pivot2Output}
 \alias{renderPivot2}
 \alias{pivotOutput}
+\alias{export_labels}
 \alias{renderPivot}
 \title{Pivot table Output in Shiny}
 \usage{
@@ -22,7 +23,15 @@ renderPivot2(
   quoted = FALSE
 )
 
-pivotOutput(outputId, width = "100\%", ...)
+pivotOutput(outputId, width = "100\%", export = export_labels(), ...)
+
+export_labels(
+  export = "Export",
+  clipboard = "Copy to clipboard",
+  powerpoint = "Export to PowerPoint",
+  word = "Export to Word",
+  excel = "Export to Excel"
+)
 
 renderPivot(
   expr,
@@ -61,6 +70,11 @@ This is useful for providing additional classes for the tag.}
 
 \item{quoted}{Is \code{expr} a quoted expression (with \code{quote()})? This
 is useful if you want to save an expression in a variable.}
+
+\item{export}{Export labels, use \code{NULL} to disable all exports.}
+
+\item{clipboard, powerpoint, word, excel}{Labels to display in
+export menu, use \code{NULL} to disable specific format.}
 
 \item{filename}{A string of the filename to export WITHOUT extension, it will be added accordint to type of export.}
 }

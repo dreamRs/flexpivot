@@ -2,6 +2,7 @@
 
 export(export)
 export(export_docx)
+export(export_labels)
 export(export_pptx)
 export(export_xlsx)
 export(pivot2Output)

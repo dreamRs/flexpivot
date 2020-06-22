@@ -71,56 +71,86 @@ renderPivot2 <- function(expr,
 }
 
 
-
+#' @param export Export labels, use \code{NULL} to disable all exports.
 #' @rdname pivot-shiny
 #' @export
 #' @importFrom htmltools tags validateCssUnit tagList
 #' @importFrom shiny actionButton icon downloadLink actionLink
 #' @importFrom shinyWidgets dropMenu
-pivotOutput <- function(outputId, width = "100%", ...) {
+pivotOutput <- function(outputId, width = "100%", export = export_labels(), ...) {
   tags$div(
     class = "pivot-table-container",
     html_dependency_clipboard(),
-    dropMenu(
-      actionButton(
-        inputId = paste0(outputId, "_exports"),
-        label = "Export",
-        icon = icon("caret-down"),
-        class = "btn-xs pull-right"
-      ),
-      placement = "bottom-end",
-      actionLink(
-        inputId = paste0(outputId, "_clipboard"),
-        label = "Copy to clipboard",
-        `data-clipboard-target` = paste0("#", outputId),
-        class = "btn-pivot-table-clipboard",
-        icon = icon("clipboard")
-      ),
-      tags$br(),
-      downloadLink(
-        outputId = paste0(outputId, "_export_pptx"),
-        label = tagList(
-          tags$img(src = "flexpivot/icons/powerpoint.png"),
-          "Export to PowerPoint"
-        )
-      ),
-      tags$br(),
-      downloadLink(
-        outputId = paste0(outputId, "_export_docx"),
-        label = tagList(
-          tags$img(src = "flexpivot/icons/word.png"),
-          "Export to Word"
-        )
-      ),
-      tags$br(),
-      downloadLink(
-        outputId = paste0(outputId, "_export_xlsx"),
-        label = tagList(
-          tags$img(src = "flexpivot/icons/excel.png"),
-          "Export to Excel"
-        )
+    if (!is.null(export)) {
+      dropMenu(
+        actionButton(
+          inputId = paste0(outputId, "_exports"),
+          label = export$export,
+          icon = icon("caret-down"),
+          class = "btn-xs pull-right"
+        ),
+        placement = "bottom-end",
+        if (!is.null(export$clipboard)) {
+          tagList(
+            actionLink(
+              inputId = paste0(outputId, "_clipboard"),
+              label = tagList(
+                tags$img(
+                  src = "flexpivot/icons/clippy.svg",
+                  style = "height: 20px; margin: 3px;"
+                ),
+                export$clipboard
+              ),
+              `data-clipboard-target` = paste0("#", outputId),
+              class = "btn-pivot-table-clipboard"
+            ),
+            tags$br()
+          )
+        },
+        if (!is.null(export$powerpoint)) {
+          tagList(
+            downloadLink(
+              outputId = paste0(outputId, "_export_pptx"),
+              label = tagList(
+                tags$img(
+                  src = "flexpivot/icons/microsoft-powerpoint.png",
+                  style = "height: 20px; margin: 3px;"
+                ),
+                export$powerpoint
+              )
+            ),
+            tags$br()
+          )
+        },
+        if (!is.null(export$word)) {
+          tagList(
+            downloadLink(
+              outputId = paste0(outputId, "_export_docx"),
+              label = tagList(
+                tags$img(
+                  src = "flexpivot/icons/microsoft-word.png",
+                  style = "height: 20px; margin: 3px;"
+                ),
+                export$word
+              )
+            ),
+            tags$br()
+          )
+        },
+        if (!is.null(export$excel)) {
+          downloadLink(
+            outputId = paste0(outputId, "_export_xlsx"),
+            label = tagList(
+              tags$img(
+                src = "flexpivot/icons/microsoft-excel.png",
+                style = "height: 20px; margin: 3px;"
+              ),
+              export$excel
+            )
+          )
+        }
       )
-    ),
+    },
     tags$div(
       id = outputId, class = "shiny-html-output shiny-pivot-output",
       style = if (!is.null(width)) paste0("width:", validateCssUnit(width), ";"),
@@ -132,6 +162,24 @@ pivotOutput <- function(outputId, width = "100%", ...) {
       paste0(gsub("[^[:alnum:]]", "", outputId), "_clipboard"),
       paste0(outputId, "_clipboard")
     ))
+  )
+}
+
+#' @param clipboard,powerpoint,word,excel Labels to display in
+#'  export menu, use \code{NULL} to disable specific format.
+#' @rdname pivot-shiny
+#' @export
+export_labels <- function(export = "Export",
+                          clipboard = "Copy to clipboard",
+                          powerpoint = "Export to PowerPoint",
+                          word = "Export to Word",
+                          excel = "Export to Excel") {
+  list(
+    export = export,
+    clipboard = clipboard,
+    powerpoint = powerpoint,
+    word = word,
+    excel = excel
   )
 }
 
