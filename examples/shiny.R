@@ -33,7 +33,7 @@ server <- function(input, output, session) {
 
   output$pivot <- renderPivot({
     pivot_table(diamonds, input$row, input$col)
-  })
+  }, background = "#A3BE8C")
 
 }
 

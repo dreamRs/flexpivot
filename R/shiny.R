@@ -1,5 +1,9 @@
 
-#' Pivot table Output in Shiny
+#' @title Pivot table Output in Shiny
+#'
+#' @description Display a \code{\link{pivot_table}} in Shiny:
+#'  * pivotOutput / renderPivot: adds a button to download pivot table in PowerPoint, Word and Excel.
+#'  * pivot2Output / renderPivot2: display only the pivot table.
 #'
 #' @param outputId Output variable to read from.
 #' @param width If not \code{NULL}, must be a valid CSS unit (like \code{'100\%'},
@@ -16,7 +20,7 @@
 #' @name pivot-shiny
 #'
 #' @example examples/shiny.R
-pivotOutput <- function(outputId, width = "100%", ...) {
+pivot2Output <- function(outputId, width = "100%", ...) {
   tags$div(
     id = outputId, class = "shiny-html-output shiny-pivot-output",
     style = if (!is.null(width)) paste0("width:", validateCssUnit(width), ";"),
@@ -34,7 +38,86 @@ pivotOutput <- function(outputId, width = "100%", ...) {
 #' @rdname pivot-shiny
 #' @export
 #'
-#' @importFrom shiny exprToFunction renderUI
+#' @importFrom shiny exprToFunction renderUI is.reactive
+#' @importFrom flextable set_table_properties htmltools_value
+renderPivot2 <- function(expr,
+                         width = 1,
+                         background = "#81A1C1",
+                         border = "#FFFFFF",
+                         fontSize = 14,
+                         labels = pivot_labels(),
+                         formatter = pivot_formatter(),
+                         env = parent.frame(),
+                         quoted = FALSE) {
+  pivot_fun <- exprToFunction(expr, env, quoted)
+  renderUI({
+    pivot <- pivot_fun()
+    if (!inherits(pivot, "pivot_table"))
+      stop("'expr' must return a pivot_table object!")
+    pivot_ft <- pivot_format(
+      pivot = pivot,
+      background = background,
+      border = border,
+      fontSize = fontSize,
+      labels = labels,
+      formatter = formatter
+    )
+    if (is.reactive(width)) {
+      width <- width()
+    }
+    pivot_ft <- set_table_properties(pivot_ft, layout = "autofit", width = width)
+    htmltools_value(pivot_ft)
+  })
+}
+
+
+
+#' @rdname pivot-shiny
+#' @export
+#' @importFrom htmltools tags validateCssUnit
+#' @importFrom shiny actionButton icon downloadLink
+#' @importFrom shinyWidgets dropMenu
+pivotOutput <- function(outputId, width = "100%", ...) {
+  tags$div(
+    class = "pivot-table-container",
+    dropMenu(
+      actionButton(
+        inputId = paste0(outputId, "_exports"),
+        label = "Export",
+        icon = icon("caret-down"),
+        class = "btn-xs pull-right"
+      ),
+      placement = "bottom-end",
+      downloadLink(
+        outputId = paste0(outputId, "_export_pptx"),
+        label = "Export to PowerPoint"
+      ),
+      tags$br(),
+      downloadLink(
+        outputId = paste0(outputId, "_export_docx"),
+        label = "Export to Word"
+      ),
+      tags$br(),
+      downloadLink(
+        outputId = paste0(outputId, "_export_xlsx"),
+        label = "Export to Excel"
+      )
+    ),
+    tags$div(
+      id = outputId, class = "shiny-html-output shiny-pivot-output",
+      style = if (!is.null(width)) paste0("width:", validateCssUnit(width), ";"),
+      style = "overflow: auto;",
+      ...
+    )
+  )
+}
+
+#' @param filename A string of the filename to export WITHOUT extension, it will be added accordint to type of export.
+#' @rdname pivot-shiny
+#' @export
+#' @importFrom shiny installExprFunction createRenderFunction downloadHandler
+#'  createWebDependency is.reactive
+#' @importFrom htmltools renderTags resolveDependencies
 #' @importFrom flextable set_table_properties htmltools_value
 renderPivot <- function(expr,
                         width = 1,
@@ -44,14 +127,80 @@ renderPivot <- function(expr,
                         labels = pivot_labels(),
                         formatter = pivot_formatter(),
                         env = parent.frame(),
-                        quoted = FALSE) {
+                        quoted = FALSE,
+                        filename = "export-pivot") {
+  # installExprFunction(expr, "func", env, quoted)
   pivot_fun <- shiny::exprToFunction(expr, env, quoted)
-  shiny::renderUI({
-    pivot <- pivot_fun()
-    if (!inherits(pivot, "pivot_table"))
+  createRenderFunction(pivot_fun, function(result, shinysession, name, ...) {
+    if (is.null(result) || length(result) == 0)
+      return(NULL)
+    if (!inherits(result, "pivot_table"))
       stop("'expr' must return a pivot_table object!")
-    pivot_ft <- pivot_format(pivot)
+
+    shinysession$output[[paste0(name, "_export_pptx")]] <- downloadHandler(
+      filename = function() {
+        if (is.function(filename))
+          filename <- filename()
+        paste0(filename, ".pptx")
+      },
+      content = function(file) {
+        export_pptx(
+          x = result, output = file,
+          background = background,
+          border = border,
+          fontSize = fontSize,
+          labels = labels,
+          formatter = formatter
+        )
+      }
+    )
+    shinysession$output[[paste0(name, "_export_docx")]] <- downloadHandler(
+      filename = function() {
+        if (is.function(filename))
+          filename <- filename()
+        paste0(filename, ".docx")
+      },
+      content = function(file) {
+        export_docx(
+          x = result, output = file,
+          background = background,
+          border = border,
+          fontSize = fontSize,
+          labels = labels,
+          formatter = formatter
+        )
+      }
+    )
+    shinysession$output[[paste0(name, "_export_xlsx")]] <- downloadHandler(
+      filename = function() {
+        if (is.function(filename))
+          filename <- filename()
+        paste0(filename, ".xlsx")
+      },
+      content = function(file) {
+        export_xlsx(x = result, output = file)
+      }
+    )
+    if (is.reactive(width)) {
+      width <- width()
+    }
+    pivot_ft <- pivot_format(
+      pivot = result,
+      background = background,
+      border = border,
+      fontSize = fontSize,
+      labels = labels,
+      formatter = formatter
+    )
     pivot_ft <- set_table_properties(pivot_ft, layout = "autofit", width = width)
-    htmltools_value(pivot_ft)
-  })
+    pivot_ft <- htmltools_value(pivot_ft)
+    rendered <- renderTags(pivot_ft)
+    dependencies <- lapply(
+      X = resolveDependencies(rendered$dependencies),
+      FUN = createWebDependency
+    )
+    list(html = rendered$html, deps = dependencies)
+  }, pivotOutput, list())
 }
+
+

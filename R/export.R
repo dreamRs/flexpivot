@@ -34,7 +34,7 @@ export_pptx <- function(x, output, ...) {
     x <- pivot_format(x, ...)
   }
   if (!inherits(x, "flexpivot")) {
-    stop("export: 'x' must be a pivot_table or pivot_format object.", call. = FALSE)
+    stop("export_pptx: 'x' must be a pivot_table or pivot_format object.", call. = FALSE)
   }
   x <- fontsize(x, size = 11, part = "all")
   x <- padding(x = x, padding = 3, part = "all")
@@ -59,7 +59,7 @@ export_docx <- function(x, output, ...) {
     x <- pivot_format(x, ...)
   }
   if (!inherits(x, "flexpivot")) {
-    stop("export: 'x' must be a pivot_table or pivot_format object.", call. = FALSE)
+    stop("export_docx: 'x' must be a pivot_table or pivot_format object.", call. = FALSE)
   }
   x <- fontsize(x, size = 11, part = "all")
   x <- padding(x = x, padding = 3, part = "all")

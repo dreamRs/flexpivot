@@ -21,6 +21,7 @@ Imports:
     officer,
     shiny,
     htmltools,
+    shinyWidgets (>= 0.5.3),
     writexl
 Suggests: 
     ggplot2

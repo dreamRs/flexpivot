@@ -2,10 +2,26 @@
 % Please edit documentation in R/shiny.R
 \name{pivot-shiny}
 \alias{pivot-shiny}
+\alias{pivot2Output}
+\alias{renderPivot2}
 \alias{pivotOutput}
 \alias{renderPivot}
 \title{Pivot table Output in Shiny}
 \usage{
+pivot2Output(outputId, width = "100\%", ...)
+
+renderPivot2(
+  expr,
+  width = 1,
+  background = "#81A1C1",
+  border = "#FFFFFF",
+  fontSize = 14,
+  labels = pivot_labels(),
+  formatter = pivot_formatter(),
+  env = parent.frame(),
+  quoted = FALSE
+)
+
 pivotOutput(outputId, width = "100\%", ...)
 
 renderPivot(
@@ -17,7 +33,8 @@ renderPivot(
   labels = pivot_labels(),
   formatter = pivot_formatter(),
   env = parent.frame(),
-  quoted = FALSE
+  quoted = FALSE,
+  filename = "export-pivot"
 )
 }
 \arguments{
@@ -44,12 +61,18 @@ This is useful for providing additional classes for the tag.}
 
 \item{quoted}{Is \code{expr} a quoted expression (with \code{quote()})? This
 is useful if you want to save an expression in a variable.}
+
+\item{filename}{A string of the filename to export WITHOUT extension, it will be added accordint to type of export.}
 }
 \value{
 An HTML output element that can be included in Shiny UI.
 }
 \description{
-Pivot table Output in Shiny
+Display a \code{\link{pivot_table}} in Shiny:
+\itemize{
+\item pivotOutput / renderPivot: adds a button to download pivot table in PowerPoint, Word and Excel.
+\item pivot2Output / renderPivot2: display only the pivot table.
+}
 }
 \examples{
 
@@ -87,7 +110,7 @@ server <- function(input, output, session) {
 
   output$pivot <- renderPivot({
     pivot_table(diamonds, input$row, input$col)
-  })
+  }, background = "#A3BE8C")
 
 }
 
