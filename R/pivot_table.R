@@ -12,7 +12,7 @@
 #' @export
 #'
 #' @importFrom data.table is.data.table copy as.data.table := setnames
-#'  melt dcast setattr cube set .SD setorderv chmatch frankv
+#'  melt dcast setattr cube set .SD setorderv chmatch frankv setcolorder
 #' @importFrom stats as.formula
 #'
 #' @example examples/pivot_table.R
@@ -29,15 +29,9 @@ pivot_table <- function(data,
     data <- as.data.table(data)
   }
   rows_cols <- unique(c(rows, cols))
-  rows_values <- lapply(data[, .SD, .SDcols = rows], function(x) {
-    if (inherits(x, "factor")) {
-      levels(x)
-    } else {
-      unique(x)
-    }
-  })
+  rows_values <- get_levels(data, rows)
   if (is_valid(data, cols))
-    cols_values <- lapply(data[, .SD, .SDcols = cols], unique)
+    cols_values <- get_levels(data, cols)
   if (is.null(wt)) {
     set(data, j = "wt_pivot_table", value = 1)
   } else {
@@ -97,6 +91,8 @@ pivot_table <- function(data,
     odr <- frankv(odr, ties.method = "first")
     result <- result[order(odr)]
   }
+  colorder <- get_cols_order(cols_values, total = total)
+  setcolorder(result, c(rows, "stats", colorder))
   setattr(result, "class", c(class(result), "pivot_table"))
   setattr(result, "rows", rows)
   setattr(result, "cols", cols)
