@@ -12,7 +12,7 @@
 #' @export
 #'
 #' @importFrom data.table is.data.table copy as.data.table := setnames
-#'  melt dcast setattr cube set .SD setorderv
+#'  melt dcast setattr cube set .SD setorderv chmatch frankv
 #' @importFrom stats as.formula
 #'
 #' @example examples/pivot_table.R
@@ -29,6 +29,13 @@ pivot_table <- function(data,
     data <- as.data.table(data)
   }
   rows_cols <- unique(c(rows, cols))
+  rows_values <- lapply(data[, .SD, .SDcols = rows], function(x) {
+    if (inherits(x, "factor")) {
+      levels(x)
+    } else {
+      unique(x)
+    }
+  })
   if (is_valid(data, cols))
     cols_values <- lapply(data[, .SD, .SDcols = cols], unique)
   if (is.null(wt)) {
@@ -38,7 +45,7 @@ pivot_table <- function(data,
       stop("Invalid 'wt' column: must be an available column in data.", call. = FALSE)
     setnames(data, old = wt, new = "wt_pivot_table")
   }
-  agg <- cube(x = data, j = list(n = sum(.SD[["wt_pivot_table"]])), by = rows_cols, id = TRUE)
+  agg <- cube(x = data, j = list(n = colSums(.SD)), .SDcols = "wt_pivot_table", by = rows_cols, id = TRUE)
   agg[, (rows_cols) := lapply(.SD, function(x) {
     if (!inherits(x, c("character", "factor"))) {
       x <- as.character(x)
@@ -46,11 +53,10 @@ pivot_table <- function(data,
     x
   }), .SDcols = rows_cols]
   setorderv(agg, cols = rows, na.last = TRUE)
-  for (i in rows_cols) {
-    ind <- unlist(agg[, lapply(.SD, is.na), .SDcols = i], use.names = FALSE) &
-      agg$grouping > 0
+  for (j in rows_cols) {
+    ind <- is.na(agg[[j]]) & agg$grouping > 0
     if (isTRUE(total)) {
-      set(x = agg, i = which(ind), j = i, value = "Total")
+      set(x = agg, i = which(ind), j = j, value = "Total")
     } else {
       agg <- agg[-which(ind)]
     }
@@ -83,9 +89,14 @@ pivot_table <- function(data,
     )),
     value.var = "value",
     sep = "_|_",
-    fill = 0
+    fill = 0,
+    drop = FALSE
   )
-
+  for (row in rev(names(rows_values))) {
+    odr <- chmatch(as.character(result[[row]]), table = c(rows_values[[row]], "Total"))
+    odr <- frankv(odr, ties.method = "first")
+    result <- result[order(odr)]
+  }
   setattr(result, "class", c(class(result), "pivot_table"))
   setattr(result, "rows", rows)
   setattr(result, "cols", cols)
