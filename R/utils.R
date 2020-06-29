@@ -44,9 +44,9 @@ complete <- function(data, vars, fill = list()) {
     FUN = function(var) {
       if (inherits(var, "factor")) {
         if (anyNA(var)) {
-          factor(c(levels(var), NA_character_))
+          factor(c(levels(var), NA_character_), levels = levels(var), ordered = is.ordered(var))
         } else {
-          factor(levels(var))
+          factor(levels(var), levels = levels(var), ordered = is.ordered(var))
         }
       } else {
         unique(var)
