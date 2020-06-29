@@ -20,6 +20,8 @@ get_levels <- function(data, vars) {
   lapply(data[, .SD, .SDcols = vars], function(x) {
     if (inherits(x, "factor")) {
       levels(x)
+    } else if (inherits(x, c("Date", "POSIXt", "numeric", "integer"))) {
+      as.character(sort(unique(x)))
     } else {
       as.character(unique(x))
     }
