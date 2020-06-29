@@ -85,6 +85,10 @@ pivotOutput <- function(outputId, width = "100%", export = export_labels(), ...)
   tags$div(
     class = "pivot-table-container",
     html_dependency_clipboard(),
+    tags$style(sprintf(
+      "#%s_dropmenu {display: inline;}", paste0(outputId, "_exports")
+    )),
+    ...,
     if (!is.null(export)) {
       dropMenu(
         actionButton(
@@ -158,8 +162,7 @@ pivotOutput <- function(outputId, width = "100%", export = export_labels(), ...)
     tags$div(
       id = outputId, class = "shiny-html-output shiny-pivot-output",
       style = if (!is.null(width)) paste0("width:", validateCssUnit(width), ";"),
-      style = "overflow: auto;",
-      ...
+      style = "overflow: auto;"
     ),
     tags$script(sprintf(
       "var %s = new ClipboardJS('#%s');",
