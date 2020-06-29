@@ -11,7 +11,8 @@ pivot_table(
   wt = NULL,
   stats = c("n", "p", "p_row", "p_col"),
   total = TRUE,
-  total_label = "Total"
+  total_label = "Total",
+  complete = TRUE
 )
 }
 \arguments{
@@ -28,6 +29,9 @@ pivot_table(
 \item{total}{Logical, add total or not.}
 
 \item{total_label}{Label to use fo total.}
+
+\item{complete}{Complete missing combination between
+\code{rows} if several and \code{cols} if any.}
 }
 \value{
 a \code{data.table}

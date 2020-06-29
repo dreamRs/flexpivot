@@ -8,6 +8,8 @@
 #' @param stats Statistic(s) to compute.
 #' @param total Logical, add total or not.
 #' @param total_label Label to use fo total.
+#' @param complete Complete missing combination between
+#'  \code{rows} if several and \code{cols} if any.
 #'
 #' @return a \code{data.table}
 #' @export
@@ -23,7 +25,8 @@ pivot_table <- function(data,
                         wt = NULL,
                         stats = c("n", "p", "p_row", "p_col"),
                         total = TRUE,
-                        total_label = "Total") {
+                        total_label = "Total",
+                        complete = TRUE) {
   stats <- match.arg(stats, several.ok = TRUE)
   if (is.data.table(data)) {
     data <- copy(data)
@@ -48,6 +51,13 @@ pivot_table <- function(data,
     by = rows_cols,
     id = TRUE
   )
+  if (isTRUE(complete)) {
+    agg <- complete(
+      data = agg,
+      vars = rows_cols,
+      fill = list(grouping = 0, n = 0)
+    )
+  }
   agg[, (rows_cols) := lapply(.SD, function(x) {
     if (!inherits(x, c("character", "factor"))) {
       x <- as.character(x)

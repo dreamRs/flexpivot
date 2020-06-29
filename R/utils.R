@@ -39,7 +39,20 @@ get_cols_order <- function(cols_values, total = TRUE, total_label = "Total") {
 
 #' @importFrom data.table CJ :=
 complete <- function(data, vars, fill = list()) {
-  data <- data[do.call(CJ, c(list(unique = TRUE), mget(vars))), on = vars]
+  data <- data[do.call(CJ, lapply(
+    X = mget(vars),
+    FUN = function(var) {
+      if (inherits(var, "factor")) {
+        if (anyNA(var)) {
+          factor(c(levels(var), NA_character_))
+        } else {
+          factor(levels(var))
+        }
+      } else {
+        unique(var)
+      }
+    }
+  )), on = vars]
   if (length(fill) > 0 && all(nzchar(names(fill)))) {
     for (fillvar in names(fill)) {
       data[is.na(get(fillvar)), (fillvar) := fill[[fillvar]]]
