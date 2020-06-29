@@ -7,6 +7,7 @@
 #' @param wt Character, variable to use as weights if any.
 #' @param stats Statistic(s) to compute.
 #' @param total Logical, add total or not.
+#' @param total_label Label to use fo total.
 #'
 #' @return a \code{data.table}
 #' @export
@@ -21,7 +22,8 @@ pivot_table <- function(data,
                         cols = NULL,
                         wt = NULL,
                         stats = c("n", "p", "p_row", "p_col"),
-                        total = TRUE) {
+                        total = TRUE,
+                        total_label = "Total") {
   stats <- match.arg(stats, several.ok = TRUE)
   if (is.data.table(data)) {
     data <- copy(data)
@@ -39,7 +41,13 @@ pivot_table <- function(data,
       stop("Invalid 'wt' column: must be an available column in data.", call. = FALSE)
     setnames(data, old = wt, new = "wt_pivot_table")
   }
-  agg <- cube(x = data, j = list(n = colSums(.SD)), .SDcols = "wt_pivot_table", by = rows_cols, id = TRUE)
+  agg <- cube(
+    x = data,
+    j = list(n = colSums(.SD)),
+    .SDcols = "wt_pivot_table",
+    by = rows_cols,
+    id = TRUE
+  )
   agg[, (rows_cols) := lapply(.SD, function(x) {
     if (!inherits(x, c("character", "factor"))) {
       x <- as.character(x)
@@ -50,7 +58,7 @@ pivot_table <- function(data,
   for (j in rows_cols) {
     ind <- is.na(agg[[j]]) & agg$grouping > 0
     if (isTRUE(total)) {
-      set(x = agg, i = which(ind), j = j, value = "Total")
+      set(x = agg, i = which(ind), j = j, value = total_label)
     } else {
       agg <- agg[-which(ind)]
     }
@@ -87,11 +95,11 @@ pivot_table <- function(data,
     drop = FALSE
   )
   for (row in rev(names(rows_values))) {
-    odr <- chmatch(as.character(result[[row]]), table = c(rows_values[[row]], "Total"))
+    odr <- chmatch(as.character(result[[row]]), table = c(rows_values[[row]], total_label))
     odr <- frankv(odr, ties.method = "first")
     result <- result[order(odr)]
   }
-  colorder <- get_cols_order(cols_values, total = total)
+  colorder <- get_cols_order(cols_values, total = total, total_label = total_label)
   setcolorder(result, c(rows, "stats", colorder))
   setattr(result, "class", c(class(result), "pivot_table"))
   setattr(result, "rows", rows)

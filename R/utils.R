@@ -29,9 +29,9 @@ get_levels <- function(data, vars) {
 }
 
 #' @importFrom data.table CJ transpose
-get_cols_order <- function(cols_values, total = TRUE) {
+get_cols_order <- function(cols_values, total = TRUE, total_label = "Total") {
   if (isTRUE(total))
-    cols_values <- lapply(cols_values, append, value = "Total")
+    cols_values <- lapply(cols_values, append, value = total_label)
   cols <- do.call(CJ, c(cols_values, list(unique = TRUE, sorted = FALSE)))
   cols <- as.list(cols)
   vapply(X = transpose(cols), FUN = paste, collapse = "_|_", FUN.VALUE = character(1))

@@ -10,7 +10,8 @@ pivot_table(
   cols = NULL,
   wt = NULL,
   stats = c("n", "p", "p_row", "p_col"),
-  total = TRUE
+  total = TRUE,
+  total_label = "Total"
 )
 }
 \arguments{
@@ -25,6 +26,8 @@ pivot_table(
 \item{stats}{Statistic(s) to compute.}
 
 \item{total}{Logical, add total or not.}
+
+\item{total_label}{Label to use fo total.}
 }
 \value{
 a \code{data.table}
