@@ -7,6 +7,7 @@
 #' @param fontSize Font size (applies to all table).
 #' @param labels Custom labels for statistics, see \code{\link{pivot_labels}}.
 #' @param formatter Function to format content, see \code{\link{pivot_formatter}}.
+#' @param drop_stats Drop the stats column, can be useful if have only one stat to show.
 #' @param keep_data Keep data as attribute, this can
 #'  be useful to retrieve the data from which the table was formatted.
 #'
@@ -25,6 +26,7 @@ pivot_format <- function(pivot,
                          fontSize = 14,
                          labels = pivot_labels(),
                          formatter = pivot_formatter(),
+                         drop_stats = FALSE,
                          keep_data = TRUE) {
   if (!inherits(pivot, "pivot_table"))
     stop("pivot_format: 'pivot' must be a 'pivot_table' object", call. = FALSE)
@@ -93,7 +95,12 @@ pivot_format <- function(pivot,
     )
   }
 
-  ft <- flextable(pt)
+  if (isTRUE(drop_stats)) {
+    col_keys <- setdiff(names(pt), labels$stats)
+  } else {
+    col_keys <- names(pt)
+  }
+  ft <- flextable(pt, col_keys = col_keys)
   ft <- theme_zebra(ft, odd_header = "transparent", even_header = "transparent", odd_body = "#ECEFF4")
   ft <- merge_v(ft, part = "body", j = seq_along(rows))
   ft <- bg(ft, j = seq_along(rows), bg = background, part = "body")
@@ -102,9 +109,7 @@ pivot_format <- function(pivot,
 
   if (!is.null(cols)) {
     ft <- border(
-      ft, i = as.formula(paste0(
-        "~ ", labels$stats, " == '", pt[[labels$stats]][1], "'"
-      )),
+      ft, i = which(pt[[labels$stats]] == pt[[labels$stats]][1]),
       border.top = fp_border(color = "#D8DEE9", width = 2), part = "body"
     )
   }
@@ -114,25 +119,24 @@ pivot_format <- function(pivot,
     ft <- color(ft, color = "#FFFFFF", part = "header")
   } else {
     if (identical(length(cols), 1L)) {
-      nm_pivot <- names(pt)
-      typology_what <- rep("", ncol(pt))
+      typology_what <- rep("", length(col_keys))
       if (!is.null(labels$cols)) {
         label_col <- labels$cols[1]
       } else {
         label_col <- cols
       }
-      typology_what[nm_pivot %in% cols_values[[cols]]] <- label_col
+      typology_what[col_keys %in% cols_values[[cols]]] <- label_col
       typology <- data.frame(
-        col_keys = nm_pivot,
+        col_keys = col_keys,
         what = typology_what,
-        measure = nm_pivot,
+        measure = col_keys,
         stringsAsFactors = FALSE
       )
       ft <- set_header_df(ft, mapping = typology, key = "col_keys")
       ft <- merge_h(ft, part = "header")
       ft <- align(ft, i = 1, align = "center", part = "header")
-      ft <- align(ft, i = 2, j = -c(1, 2), align = "right", part = "header")
-      ft <- bg(ft, i = 1, j = which(nm_pivot %in% cols_values[[cols]]), bg = background, part = "header")
+      ft <- align(ft, i = 2, align = "right", part = "header")
+      ft <- bg(ft, i = 1, j = which(col_keys %in% cols_values[[cols]]), bg = background, part = "header")
       ft <- bg(ft, i = 2, bg = background, part = "header")
       ft <- color(ft, color = "#FFFFFF", part = "header")
     } else {
@@ -140,6 +144,7 @@ pivot_format <- function(pivot,
       ft <- color(ft, color = "#FFFFFF", part = "header")
     }
   }
+  ft <- bold(ft, part = "header")
   ft <- fontsize(x = ft, size = fontSize, part = "all")
   ft <- padding(x = ft, padding = 10, part = "all")
   ft <- width(x = ft, width = 1.5)
@@ -168,19 +173,7 @@ pivot_format <- function(pivot,
 #' @return a \code{list} that can be use in \code{\link{pivot_format}}.
 #' @export
 #'
-#' @examples
-#' data("diamonds", package = "ggplot2")
-#'
-#' # With two variables
-#' pivot_format(
-#'   pivot = pivot_table(diamonds, rows = "cut", cols = "color"),
-#'   labels = pivot_labels(
-#'     stats = "Statistique",
-#'     n = "N",
-#'     p = "%",
-#'     rows = c("Cut variable")
-#'   )
-#' )
+#' @example examples/pivot_labels.R
 pivot_labels <- function(stats = "Statistic",
                          n = "N",
                          p = "%",
