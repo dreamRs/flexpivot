@@ -11,6 +11,7 @@ pivot_format(
   fontSize = 14,
   labels = pivot_labels(),
   formatter = pivot_formatter(),
+  drop_stats = FALSE,
   keep_data = TRUE
 )
 }
@@ -27,6 +28,8 @@ pivot_format(
 
 \item{formatter}{Function to format content, see \code{\link{pivot_formatter}}.}
 
+\item{drop_stats}{Drop the stats column, can be useful if have only one stat to show.}
+
 \item{keep_data}{Keep data as attribute, this can
 be useful to retrieve the data from which the table was formatted.}
 }
@@ -37,28 +40,49 @@ a \code{flextable} object.
 Flextable format for \code{pivot_table}
 }
 \examples{
-
-data("diamonds", package = "ggplot2")
+library(flexpivot)
+library(magrittr)
+data("nobel_laureates")
 
 # With two variables
-pivot_format(pivot_table(diamonds, rows = "cut", cols = "color"))
+nobel_laureates \%>\%
+  pivot_table("category", "gender") \%>\%
+  pivot_format()
 
 # Only count
-pivot_format(pivot_table(diamonds, rows = "cut", cols = "color", stats = "n"))
+nobel_laureates \%>\%
+  pivot_table("category", "gender", stats = "n") \%>\%
+  pivot_format(drop_stats = TRUE)
 
 # Only percent
-pivot_format(pivot_table(diamonds, rows = "cut", cols = "color", stats = "p"))
-
+nobel_laureates \%>\%
+  pivot_table("category", "gender", stats = "p") \%>\%
+  pivot_format()
 
 
 # Two variable as rows
-pivot_format(pivot_table(diamonds, rows = c("clarity", "cut"), cols = "color"))
-
-# Two variable as cols
-pivot_format(pivot_table(diamonds, rows = "cut", cols = c("color", "clarity")))
+nobel_laureates \%>\%
+  pivot_table(c("birth_continent", "gender"), "category", stats = "p") \%>\%
+  pivot_format()
 
 
 # Without cols
-pivot_format(pivot_table(diamonds, rows = "cut"))
-pivot_format(pivot_table(diamonds, rows = c("clarity", "cut")))
+pivot_format(pivot_table(nobel_laureates, rows = "category"))
+pivot_format(pivot_table(nobel_laureates, rows = c("category", "gender")))
+
+
+# Customize
+nobel_laureates \%>\%
+  pivot_table("category") \%>\%
+  pivot_format(
+    background = "#A3BE8C",
+    labels = pivot_labels(n = "Count", p = "Percentage")
+  )
+
+
+
+
+
+
+
 }

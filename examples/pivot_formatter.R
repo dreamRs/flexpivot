@@ -1,36 +1,36 @@
-
-data("diamonds", package = "ggplot2")
+library(flexpivot)
+data("nobel_laureates")
 
 # One variable
-pt <- pivot_table(diamonds, rows = "cut")
+pt <- pivot_table(nobel_laureates, rows = "category")
 
 pivot_format(pt)
 pivot_format(pt, formatter = pivot_formatter(
   n = function(x) {
-    format(round(x), big.mark = " ")
+    format(round(x * 100), big.mark = " ")
   }
 ))
 
 
 # Two variable as rows
-pt <- pivot_table(diamonds, rows = c("cut", "color"))
+pt <- pivot_table(nobel_laureates, rows = c("category", "gender"))
 
 pivot_format(pt)
 pivot_format(pt, formatter = pivot_formatter(
   n = function(x) {
-    format(round(x), big.mark = " ")
+    format(round(x * 100), big.mark = " ")
   }
 ))
 
 
 
 # One row, one column
-pt <- pivot_table(diamonds, rows = "cut", cols = "color")
+pt <- pivot_table(nobel_laureates, rows = "category", cols = "gender")
 
 pivot_format(pt)
 pivot_format(pt, formatter = pivot_formatter(
   n = function(x) {
-    format(round(x), big.mark = " ")
+    format(round(x * 100), big.mark = " ")
   }
 ))
 

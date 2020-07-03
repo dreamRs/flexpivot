@@ -12,11 +12,11 @@
 #' @examples
 #' if (interactive()) {
 #'
-#' data("diamonds", package = "ggplot2")
-#' pivot_addin(diamonds)
+#'   library(flexpivot)
+#'   data("nobel_laureates")
+#'   pivot_addin(nobel_laureates)
 #'
 #' }
-#'
 pivot_addin <- function(data) {
 
   if (!requireNamespace(package = "esquisse"))

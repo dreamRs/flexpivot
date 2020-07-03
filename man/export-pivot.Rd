@@ -33,9 +33,9 @@ Export formated pivot table to PowerPoint, Word or Excel document.
 }
 \examples{
 library(flexpivot)
-data("diamonds", package = "ggplot2")
+data("nobel_laureates")
 
-pt <- pivot_table(diamonds, rows = "cut", cols = "color")
+pt <- pivot_table(nobel_laureates, rows = "category", cols = "gender")
 
 # To PowerPoint
 path_pptx <- tempfile(fileext = ".pptx")
@@ -58,4 +58,5 @@ browseURL(path_xlsx)
 # Clean up
 unlink(path_pptx)
 unlink(path_docx)
+unlink(path_xlsx)
 }

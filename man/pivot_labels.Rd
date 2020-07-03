@@ -34,16 +34,22 @@ a \code{list} that can be use in \code{\link{pivot_format}}.
 Labels for \code{pivot_format}
 }
 \examples{
-data("diamonds", package = "ggplot2")
+library(flexpivot)
+library(magrittr)
+data("nobel_laureates")
 
-# With two variables
-pivot_format(
-  pivot = pivot_table(diamonds, rows = "cut", cols = "color"),
-  labels = pivot_labels(
-    stats = "Statistique",
-    n = "N",
-    p = "\%",
-    rows = c("Cut variable")
+# Change labels displayed in table
+nobel_laureates \%>\%
+  pivot_table("category", "gender", na_label = "Manquant") \%>\%
+  pivot_format(
+    labels = pivot_labels(
+      stats = "Statistique",
+      n = "Effectif",
+      p = "Pourcentage",
+      p_col = "\% colonne",
+      p_row = "\% ligne",
+      rows = c("Categorie"),
+      cols = "Genre"
+    )
   )
-)
 }

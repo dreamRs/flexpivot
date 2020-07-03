@@ -1,7 +1,6 @@
-
 library(shiny)
 library(flexpivot)
-data("diamonds", package = "ggplot2")
+data("nobel_laureates")
 
 ui <- fluidPage(
   tags$h2("Pivot table in Shiny"),
@@ -11,7 +10,7 @@ ui <- fluidPage(
       selectInput(
         inputId = "row",
         label = "Row",
-        choices = c("cut", "color", "clarity"),
+        choices = c("category", "gender", "birth_continent", "laureate_type"),
         width = "100%"
       )
     ),
@@ -20,8 +19,8 @@ ui <- fluidPage(
       selectInput(
         inputId = "col",
         label = "Col",
-        choices = c("cut", "color", "clarity"),
-        selected = "color",
+        choices = c("category", "gender", "birth_continent", "laureate_type"),
+        selected = "gender",
         width = "100%"
       )
     )
@@ -32,7 +31,7 @@ ui <- fluidPage(
 server <- function(input, output, session) {
 
   output$pivot <- renderPivot({
-    pivot_table(diamonds, input$row, input$col)
+    pivot_table(nobel_laureates, input$row, input$col)
   }, background = "#A3BE8C")
 
 }

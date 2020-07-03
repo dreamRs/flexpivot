@@ -17,9 +17,22 @@ From a \code{\link{pivot_table}} object put column(s) back as rows.
 }
 \examples{
 library(flexpivot)
-data("diamonds", package = "ggplot2")
+library(magrittr)
+data("nobel_laureates")
 
 # Revert format
-unpivot(pivot_table(diamonds, rows = "cut", cols = c("color", "clarity")))
-unpivot(pivot_table(diamonds, rows = "cut", cols = c("color")))
+nobel_laureates \%>\%
+  pivot_table(
+    rows = "category",
+    cols = c("gender", "birth_continent")
+  ) \%>\%
+  unpivot()
+
+nobel_laureates \%>\%
+  pivot_table(
+    rows = "category",
+    cols = "birth_continent"
+  ) \%>\%
+  unpivot()
+
 }
