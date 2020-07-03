@@ -8,6 +8,7 @@
 #' @param stats Statistic(s) to compute.
 #' @param total Logical, add total or not.
 #' @param total_label Label to use fo total.
+#' @param na_label Label to use for missing values.
 #' @param complete Complete missing combination between
 #'  \code{rows} if several and \code{cols} if any.
 #'
@@ -15,7 +16,7 @@
 #' @export
 #'
 #' @importFrom data.table is.data.table copy as.data.table := setnames
-#'  melt dcast setattr cube set .SD setorderv chmatch frankv setcolorder
+#'  melt dcast setattr cube set .SD setorderv chmatch frankv setcolorder fifelse
 #' @importFrom stats as.formula
 #'
 #' @example examples/pivot_table.R
@@ -26,6 +27,7 @@ pivot_table <- function(data,
                         stats = c("n", "p", "p_row", "p_col"),
                         total = TRUE,
                         total_label = "Total",
+                        na_label = "<missing>",
                         complete = TRUE) {
   stats <- match.arg(stats, several.ok = TRUE)
   if (is.data.table(data)) {
@@ -34,9 +36,12 @@ pivot_table <- function(data,
     data <- as.data.table(data)
   }
   rows_cols <- unique(c(rows, cols))
-  rows_values <- get_levels(data, rows)
+  for (variable in rows_cols) {
+    set(x = data, i = which(is.na(data[[variable]])), j = variable, value = na_label)
+  }
+  rows_values <- get_levels(data, rows, na_label = na_label)
   if (is_valid(data, cols))
-    cols_values <- get_levels(data, cols)
+    cols_values <- get_levels(data, cols, na_label = na_label)
   if (is.null(wt)) {
     set(data, j = "wt_pivot_table", value = 1)
   } else {
@@ -44,18 +49,22 @@ pivot_table <- function(data,
       stop("Invalid 'wt' column: must be an available column in data.", call. = FALSE)
     setnames(data, old = wt, new = "wt_pivot_table")
   }
+
   agg <- cube(
     x = data,
-    j = list(n = colSums(.SD)),
+    j = list(n = colSums(.SD, na.rm = TRUE)),
     .SDcols = "wt_pivot_table",
     by = rows_cols,
     id = TRUE
   )
   if (isTRUE(complete)) {
-    agg <- complete(
-      data = agg,
-      vars = rows_cols,
-      fill = list(grouping = 0, n = 0)
+    agg <- rbind(
+      complete(
+        data = agg[grouping == 0],
+        vars = rows_cols,
+        fill = list(grouping = 0, n = 0)
+      ),
+      agg[grouping > 0]
     )
   }
   agg[, (rows_cols) := lapply(.SD, function(x) {
@@ -64,7 +73,6 @@ pivot_table <- function(data,
     }
     x
   }), .SDcols = rows_cols]
-  setorderv(agg, cols = rows, na.last = TRUE)
   for (j in rows_cols) {
     ind <- is.na(agg[[j]]) & agg$grouping > 0
     if (isTRUE(total)) {
@@ -76,6 +84,11 @@ pivot_table <- function(data,
   agg[, p := round(n / sum(n, na.rm = TRUE) * 100, 2), by = "grouping"]
   if (is.null(cols)) {
     agg[, grouping := NULL]
+    for (row in rev(names(rows_values))) {
+      odr <- chmatch(as.character(agg[[row]]), table = c(rows_values[[row]], total_label))
+      odr <- frankv(odr, ties.method = "first")
+      agg <- agg[order(odr)]
+    }
     setattr(agg, "class", c(class(agg), "pivot_table"))
     setattr(agg, "rows", rows)
     setattr(agg, "cols", cols)
@@ -84,6 +97,10 @@ pivot_table <- function(data,
   agg[, p_row := round(n / sum(n, na.rm = TRUE) * 100, 2), by = c(rows, "grouping")]
   agg[, p_col := round(n / sum(n, na.rm = TRUE) * 100, 2), by = c(cols, "grouping")]
   agg[, (stats) := lapply(.SD, as.numeric), .SDcols = stats]
+  agg[, (stats) := lapply(.SD, function(x) {
+    fifelse(is.nan(x), 0, x)
+  }), .SDcols = stats]
+  # browser()
   agg <- melt(
     data = agg,
     id.vars = rows_cols,

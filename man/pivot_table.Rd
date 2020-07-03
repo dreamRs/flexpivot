@@ -12,6 +12,7 @@ pivot_table(
   stats = c("n", "p", "p_row", "p_col"),
   total = TRUE,
   total_label = "Total",
+  na_label = "<missing>",
   complete = TRUE
 )
 }
@@ -30,6 +31,8 @@ pivot_table(
 
 \item{total_label}{Label to use fo total.}
 
+\item{na_label}{Label to use for missing values.}
+
 \item{complete}{Complete missing combination between
 \code{rows} if several and \code{cols} if any.}
 }
@@ -40,30 +43,33 @@ a \code{data.table}
 Create a pivot table
 }
 \examples{
+library(flexpivot)
+data("nobel_laureates")
 
-data("diamonds", package = "ggplot2")
+# One variable
+pivot_table(nobel_laureates, rows = "category")
 
 # With two variables
-pivot_table(diamonds, rows = "cut", cols = "color")
+pivot_table(nobel_laureates, rows = "category", cols = "birth_continent")
 
 # Only count
-pivot_table(diamonds, rows = "cut", cols = "color", stats = "n")
+pivot_table(nobel_laureates, rows = "category", cols = "gender", stats = "n")
 
 # Only percent
-pivot_table(diamonds, rows = "cut", cols = "color", stats = "p")
+pivot_table(nobel_laureates, rows = "category", cols = "gender", stats = "p")
 
 # Without total
-pivot_table(diamonds, rows = "cut", cols = "color", total = FALSE)
+pivot_table(nobel_laureates, rows = "category", cols = "gender", total = FALSE)
 
 
 # Two variable as rows
-pivot_table(diamonds, rows = c("clarity", "cut"), cols = "color")
+pivot_table(nobel_laureates, rows = c("birth_continent", "category"), cols = "gender")
 
 # Two variable as cols
-pivot_table(diamonds, rows = "cut", cols = c("color", "clarity"))
+pivot_table(nobel_laureates, rows = "category", cols = c("gender", "laureate_type"))
 
 
 # Without cols
-pivot_table(diamonds, rows = "cut")
-pivot_table(diamonds, rows = c("clarity", "cut"))
+pivot_table(nobel_laureates, rows = "category")
+pivot_table(nobel_laureates, rows = c("category", "birth_continent"))
 }

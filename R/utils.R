@@ -16,15 +16,19 @@ is_valid <- function(data, cols) {
   }
 }
 
-get_levels <- function(data, vars) {
+get_levels <- function(data, vars, na_label = "<missing>") {
   lapply(data[, .SD, .SDcols = vars], function(x) {
     if (inherits(x, "factor")) {
-      levels(x)
+      res <- levels(x)
     } else if (inherits(x, c("Date", "POSIXt", "numeric", "integer"))) {
-      as.character(sort(unique(x)))
+      res <- as.character(sort(unique(x)))
     } else {
-      as.character(unique(x))
+      res <- as.character(unique(x))
     }
+    if (anyNA(x)) {
+      res <- c(setdiff(res[!is.na(res)], na_label), na_label)
+    }
+    return(res)
   })
 }
 
@@ -39,19 +43,22 @@ get_cols_order <- function(cols_values, total = TRUE, total_label = "Total") {
 
 #' @importFrom data.table CJ :=
 complete <- function(data, vars, fill = list()) {
-  data <- data[do.call(CJ, lapply(
-    X = mget(vars),
-    FUN = function(var) {
-      if (inherits(var, "factor")) {
-        if (anyNA(var)) {
-          factor(c(levels(var), NA_character_), levels = levels(var), ordered = is.ordered(var))
+  data <- data[do.call(CJ, c(
+    lapply(
+      X = mget(vars),
+      FUN = function(var) {
+        if (inherits(var, "factor")) {
+          if (anyNA(var)) {
+            factor(c(levels(var), NA_character_), levels = levels(var), ordered = is.ordered(var))
+          } else {
+            factor(levels(var), levels = levels(var), ordered = is.ordered(var))
+          }
         } else {
-          factor(levels(var), levels = levels(var), ordered = is.ordered(var))
+          unique(var)
         }
-      } else {
-        unique(var)
       }
-    }
+    ),
+    list(sorted = FALSE)
   )), on = vars]
   if (length(fill) > 0 && all(nzchar(names(fill)))) {
     for (fillvar in names(fill)) {
