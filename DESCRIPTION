@@ -25,4 +25,7 @@ Imports:
     writexl
 Suggests: 
     ggplot2,
-    esquisse
+    esquisse,
+    testthat
+Depends: 
+    R (>= 2.10)
