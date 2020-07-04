@@ -17,7 +17,7 @@
 #'   pivot_addin(nobel_laureates)
 #'
 #' }
-pivot_addin <- function(data) {
+pivot_addin <- function(data) { # nocov start
 
   if (!requireNamespace(package = "esquisse"))
     stop("Package 'esquisse' is required to run this function, please install it.", call. = FALSE)
@@ -31,7 +31,7 @@ pivot_addin <- function(data) {
       height = 750
     )
   )
-}
+} # nocov end
 
 
 
