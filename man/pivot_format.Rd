@@ -7,6 +7,7 @@
 pivot_format(
   pivot,
   background = "#81A1C1",
+  color = "#FFFFFF",
   border = "#FFFFFF",
   fontSize = 14,
   labels = pivot_labels(),
@@ -18,7 +19,9 @@ pivot_format(
 \arguments{
 \item{pivot}{A \code{\link{pivot_table}} object.}
 
-\item{background}{Background color.}
+\item{background}{Background color for the header and column(s) containing row(s).}
+
+\item{color}{Text color for the header and column(s) containing row(s).}
 
 \item{border}{Border color (applies to all table).}
 

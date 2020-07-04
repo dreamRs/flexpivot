@@ -2,7 +2,8 @@
 #' Flextable format for `pivot_table`
 #'
 #' @param pivot A \code{\link{pivot_table}} object.
-#' @param background Background color.
+#' @param background Background color for the header and column(s) containing row(s).
+#' @param color Text color for the header and column(s) containing row(s).
 #' @param border Border color (applies to all table).
 #' @param fontSize Font size (applies to all table).
 #' @param labels Custom labels for statistics, see \code{\link{pivot_labels}}.
@@ -22,6 +23,7 @@
 #' @example examples/pivot_format.R
 pivot_format <- function(pivot,
                          background = "#81A1C1",
+                         color = "#FFFFFF",
                          border = "#FFFFFF",
                          fontSize = 14,
                          labels = pivot_labels(),
@@ -98,7 +100,7 @@ pivot_format <- function(pivot,
   ft <- theme_zebra(ft, odd_header = "transparent", even_header = "transparent", odd_body = "#ECEFF4")
   ft <- merge_v(ft, part = "body", j = seq_along(rows))
   ft <- bg(ft, j = seq_along(rows), bg = background, part = "body")
-  ft <- color(ft, j = seq_along(rows), color = "#FFFFFF", part = "body")
+  ft <- color(ft, j = seq_along(rows), color = color, part = "body")
   ft <- bold(ft, j = seq_along(rows))
 
   if (!is.null(cols)) {
@@ -110,7 +112,7 @@ pivot_format <- function(pivot,
 
   if (is.null(cols)) {
     ft <- bg(ft, bg = background, part = "header")
-    ft <- color(ft, color = "#FFFFFF", part = "header")
+    ft <- color(ft, color = color, part = "header")
   } else {
     if (identical(length(cols), 1L)) {
       typology_what <- rep("", length(col_keys))
@@ -132,10 +134,10 @@ pivot_format <- function(pivot,
       ft <- align(ft, i = 2, align = "right", part = "header")
       ft <- bg(ft, i = 1, j = which(col_keys %in% cols_values[[cols]]), bg = background, part = "header")
       ft <- bg(ft, i = 2, bg = background, part = "header")
-      ft <- color(ft, color = "#FFFFFF", part = "header")
+      ft <- color(ft, color = color, part = "header")
     } else {
       ft <- bg(ft, bg = background, part = "header")
-      ft <- color(ft, color = "#FFFFFF", part = "header")
+      ft <- color(ft, color = color, part = "header")
     }
   }
   ft <- bold(ft, part = "header")

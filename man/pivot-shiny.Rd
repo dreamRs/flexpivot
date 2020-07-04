@@ -15,6 +15,7 @@ renderPivot2(
   expr,
   width = 1,
   background = "#81A1C1",
+  color = "#FFFFFF",
   border = "#FFFFFF",
   fontSize = 14,
   labels = pivot_labels(),
@@ -37,6 +38,7 @@ renderPivot(
   expr,
   width = 1,
   background = "#81A1C1",
+  color = "#FFFFFF",
   border = "#FFFFFF",
   fontSize = 14,
   labels = pivot_labels(),
@@ -56,7 +58,9 @@ This is useful for providing additional classes for the tag.}
 
 \item{expr}{An expression that generates a \code{\link{pivot_table}}.}
 
-\item{background}{Background color.}
+\item{background}{Background color for the header and column(s) containing row(s).}
+
+\item{color}{Text color for the header and column(s) containing row(s).}
 
 \item{border}{Border color (applies to all table).}
 
