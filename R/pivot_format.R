@@ -70,12 +70,6 @@ pivot_format <- function(pivot,
     if (hasName(pt, "p")) {
       pt[, p := formatter$p(as.numeric(p))]
     }
-    if (hasName(pt, "p_col")) {
-      pt[, p_col := formatter$p_col(as.numeric(p_col))]
-    }
-    if (hasName(pt, "p_row")) {
-      pt[, p_row := formatter$p_row(as.numeric(p_row))]
-    }
 
     # Apply labels
     setnames(

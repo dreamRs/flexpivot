@@ -9,7 +9,7 @@ Authors@R:
       person(given = "Fanny",
              family = "Meyer",
              role = "aut"))
-Description: Create pivot tables ready to be used in 'shiny' or 'markdown' and easily exportable to 'PowerPoint', 'Word' and 'Excel'.
+Description: Create pivot tables ready to be used in 'shiny' or 'rmarkdown' and easily exportable to 'PowerPoint', 'Word' and 'Excel'.
 License: GPL-3
 Encoding: UTF-8
 LazyData: true
@@ -19,7 +19,7 @@ Imports:
     data.table (>= 1.12.0),
     flextable (>= 0.5.10),
     officer,
-    shiny,
+    shiny (>= 1.4.0),
     htmltools,
     shinyWidgets (>= 0.5.3),
     writexl

@@ -22,7 +22,21 @@ pivot_addin <- function(data) {
   if (!requireNamespace(package = "esquisse"))
     stop("Package 'esquisse' is required to run this function, please install it.", call. = FALSE)
 
-  ui <- fluidPage(
+  runGadget(
+    app = pivot_addin_ui(variables = names(data)),
+    server = pivot_addin_server(data),
+    viewer = dialogViewer(
+      dialogName = "Flexpivot",
+      width = 1000,
+      height = 750
+    )
+  )
+}
+
+
+
+pivot_addin_ui <- function(variables) {
+  fluidPage(
     singleton(x = tagList(
       tags$link(rel = "stylesheet", type = "text/css", href = "flexpivot/css/styles.css")
     )),
@@ -40,14 +54,18 @@ pivot_addin <- function(data) {
         inputId = "vars",
         sourceLabel = "Variables",
         targetsLabels = c("row", "col"),
-        choices = names(data),
+        choices = variables,
         replace = FALSE
       ),
       pivotOutput(outputId = "pivot")
     )
   )
+}
 
-  server <- function(input, output, session) {
+
+
+pivot_addin_server <- function(data) {
+  function(input, output, session) {
 
     output$pivot <- renderPivot({
       req(input$vars$target$row)
@@ -62,15 +80,9 @@ pivot_addin <- function(data) {
     observeEvent(input$close, shiny::stopApp())
 
   }
-
-  runGadget(
-    app = ui,
-    server = server,
-    viewer = dialogViewer(
-      dialogName = "Flexpivot",
-      width = 1000,
-      height = 750
-    )
-  )
 }
+
+
+
+
 

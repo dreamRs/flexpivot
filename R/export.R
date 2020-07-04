@@ -20,6 +20,8 @@ export <- function(x, output, to = c("pptx", "docx", "xlsx"), ...) {
     export_pptx(x, output, ...)
   } else if (identical(to, "docx")) {
     export_docx(x, output, ...)
+  } else if (identical(to, "xlsx")) {
+    export_xlsx(x, output, ...)
   }
 }
 
@@ -74,8 +76,11 @@ export_docx <- function(x, output, ...) {
 #' @importFrom writexl write_xlsx
 export_xlsx <- function(x, output, ...) {
   output <- normalizePath(output, mustWork = FALSE)
+  if (inherits(x, "flexpivot")) {
+    x <- attr(x, "data")
+  }
   if (!inherits(x, "pivot_table")) {
-    stop("export_xlsx works only with pivot_table objects", call. = FALSE)
+    stop("export_xlsx works only with pivot_table or pivot_format objects", call. = FALSE)
   }
   x <- unpivot(x)
   write_xlsx(x = x, path = output)
