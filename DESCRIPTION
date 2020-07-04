@@ -26,6 +26,9 @@ Imports:
 Suggests: 
     magrittr,
     esquisse,
-    testthat
+    testthat,
+    knitr,
+    rmarkdown
 Depends: 
     R (>= 2.10)
+VignetteBuilder: knitr
