@@ -89,6 +89,11 @@ pivot_table <- function(data,
       odr <- frankv(odr, ties.method = "first")
       agg <- agg[order(odr)]
     }
+    vars <- c(
+      setdiff(names(agg), c("n", "p", "p_row", "p_col")),
+      intersect(names(agg), stats)
+    )
+    agg <- agg[, .SD, .SDcols = vars]
     setattr(agg, "class", c(class(agg), "pivot_table"))
     setattr(agg, "rows", rows)
     setattr(agg, "cols", cols)
