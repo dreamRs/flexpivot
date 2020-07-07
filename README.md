@@ -1,6 +1,6 @@
 # flexpivot
 
-> [{flextable}](https://github.com/davidgohel/flextable) extension to create pivot table interactively (or not)
+> [{flextable}](https://github.com/davidgohel/flextable) extension to create ready-to-use frequency tables in [shiny](https://shiny.rstudio.com/) and [rmarkdown](https://rmarkdown.rstudio.com/), and easily exportable to Word, PowerPoint and Excel.
 
 <!-- badges: start -->
 [![Lifecycle: experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://www.tidyverse.org/lifecycle/#experimental)
@@ -16,30 +16,28 @@ You can install the development version of {flexpivot} from GitHub with:
 remotes::install_github("dreamRs/flexpivot")
 ```
 
-## TODO
+## Example
 
-Pivot:
+```r
+library(flexpivot)
+library(magrittr)
 
-* [ ] make pivot_table2() robust to add totals
-* [ ] add value arg to compute summary statistic according to rows and cols
-* [ ] check NAs
+nobel_laureates %>%
+  subset(category %in% c("Chemistry", "Physics")) %>% 
+  pivot_table("category", "gender") %>%
+  pivot_format()
+```
 
-
-Flex: 
-
-* [ ] add column var above levels in header
-* [ ] if several cols make multi-level header method
-* [ ] format values : percent, integer, etc
-* [ ] conditional formating ?
+![](man/figures/flexpivot.png)
 
 
-Addin:
+More examples available in the vignette : https://dreamrs.github.io/flexpivot/articles/flexpivot.html
 
-* [ ] prettier
-* [ ] options to customize result : stats choices, etc
-* [ ] table styles : colors, etc
 
-General: 
 
-* [ ] export mehods: word, ppt (via officer), excel (via clipboard)
+## Related packages
+
+* [crosstable](https://github.com/DanChaltiel/crosstable) & [crosstableAssistant](https://github.com/DanChaltiel/crosstableAssistant) makes it easy to calculate descriptive statistics and export them into Office and has a nice Shiny app to create tables interactively.
+
+
 
