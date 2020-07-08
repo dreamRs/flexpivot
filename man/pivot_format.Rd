@@ -9,7 +9,8 @@ pivot_format(
   background = "#81A1C1",
   color = "#FFFFFF",
   border = "#FFFFFF",
-  fontSize = 14,
+  font_size = 14,
+  font_name = NULL,
   labels = pivot_labels(),
   formatter = pivot_formatter(),
   drop_stats = FALSE,
@@ -25,7 +26,9 @@ pivot_format(
 
 \item{border}{Border color (applies to all table).}
 
-\item{fontSize}{Font size (applies to all table).}
+\item{font_size}{Font size (applies to all table).}
+
+\item{font_name}{Font name (applies to all table).}
 
 \item{labels}{Custom labels for statistics, see \code{\link{pivot_labels}}.}
 

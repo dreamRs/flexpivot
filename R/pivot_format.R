@@ -5,7 +5,8 @@
 #' @param background Background color for the header and column(s) containing row(s).
 #' @param color Text color for the header and column(s) containing row(s).
 #' @param border Border color (applies to all table).
-#' @param fontSize Font size (applies to all table).
+#' @param font_size Font size (applies to all table).
+#' @param font_name Font name (applies to all table).
 #' @param labels Custom labels for statistics, see \code{\link{pivot_labels}}.
 #' @param formatter Function to format content, see \code{\link{pivot_formatter}}.
 #' @param drop_stats Drop the stats column, can be useful if have only one stat to show.
@@ -16,7 +17,7 @@
 #' @export
 #'
 #' @importFrom flextable flextable theme_zebra merge_v bg color
-#'  bold fontsize padding width border set_header_df merge_h align
+#'  bold fontsize font padding width border set_header_df merge_h align
 #' @importFrom officer fp_border
 #' @importFrom data.table copy .SD first := setnames setattr
 #'
@@ -25,7 +26,8 @@ pivot_format <- function(pivot,
                          background = "#81A1C1",
                          color = "#FFFFFF",
                          border = "#FFFFFF",
-                         fontSize = 14,
+                         font_size = 14,
+                         font_name = NULL,
                          labels = pivot_labels(),
                          formatter = pivot_formatter(),
                          drop_stats = FALSE,
@@ -141,7 +143,10 @@ pivot_format <- function(pivot,
     }
   }
   ft <- bold(ft, part = "header")
-  ft <- fontsize(x = ft, size = fontSize, part = "all")
+  ft <- fontsize(x = ft, size = font_size, part = "all")
+  if (!is.null(font_name)) {
+    ft <- font(x = ft, fontname = font_name, part = "all")
+  }
   ft <- padding(x = ft, padding = 10, part = "all")
   ft <- width(x = ft, width = 1.5)
   if (!is.null(border))
