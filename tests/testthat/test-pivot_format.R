@@ -6,7 +6,6 @@ test_that("pivot_format works: one row, one col", {
   expect_is(pf, "flextable")
   expect_is(pf, "flexpivot")
   expect_is(attr(pf, "data"), "pivot_table")
-  expect_identical(attr(pf, "data"), pt)
 
   expect_error(pivot_format(nobel_laureates))
 })

@@ -62,7 +62,7 @@ pivot_format <- function(pivot,
     pt[stats == "p_col", stats := labels$p_col]
     pt[stats == "p_row", stats := labels$p_row]
     setnames(pt, "stats", labels$stats)
-
+    setattr(pt, "stat", labels$stats)
   } else {
 
     # Apply formatter
@@ -91,6 +91,7 @@ pivot_format <- function(pivot,
       new = labels$rows,
       skip_absent = TRUE
     )
+    setattr(pt, "rows", labels$rows)
   }
 
   if (isTRUE(drop_stats)) {
@@ -153,7 +154,7 @@ pivot_format <- function(pivot,
     ft <- border(ft, border = fp_border(color = "#FFFFFF"), part = "all")
   setattr(ft, "class", c(class(ft), "flexpivot"))
   if (isTRUE(keep_data)) {
-    setattr(ft, "data", copy(pivot))
+    setattr(ft, "data", pt)
   }
   return(ft)
 }

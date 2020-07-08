@@ -136,6 +136,7 @@ pivot_table <- function(data,
   setattr(result, "class", c(class(result), "pivot_table"))
   setattr(result, "rows", rows)
   setattr(result, "cols", cols)
+  setattr(result, "stat", "stats")
   setattr(result, "cols_values", cols_values)
   result[]
 }

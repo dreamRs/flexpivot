@@ -17,17 +17,18 @@ unpivot <- function(x) {
   }
   cols <- attr(x, "cols", exact = TRUE)
   rows <- attr(x, "rows", exact = TRUE)
+  stat <- attr(x, "stat", exact = TRUE)
   if (is.null(cols))
     return(x)
   x <- melt(
     data = x,
-    id.vars = c(rows, "stats"),
+    id.vars = c(rows, stat),
     variable.factor = FALSE,
     variable.name = "var_pivot_col"
   )
   x[, (cols) := tstrsplit(.SD[[1]], split = "_|_", fixed = TRUE), .SDcols = "var_pivot_col"]
   set(x = x, j = "var_pivot_col", value = NULL)
-  setcolorder(x, c(rows, cols, "stats", "value"))
+  setcolorder(x, c(rows, cols, stat, "value"))
   return(x[])
 }
 
