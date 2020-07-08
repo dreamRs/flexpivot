@@ -193,6 +193,7 @@ export_labels <- function(export = "Export",
   )
 }
 
+#' @param label_value For Excel output, the label for variable containing the values.
 #' @param filename A string of the filename to export WITHOUT extension, it will be added accordint to type of export.
 #' @rdname pivot-shiny
 #' @export
@@ -209,6 +210,7 @@ renderPivot <- function(expr,
                         font_name = NULL,
                         labels = pivot_labels(),
                         formatter = pivot_formatter(),
+                        label_value = "value",
                         env = parent.frame(),
                         quoted = FALSE,
                         filename = "export-pivot") {
@@ -277,7 +279,7 @@ renderPivot <- function(expr,
       },
       content = function(file) {
         data <- attr(pivot, which = "data", exact = TRUE)
-        export_xlsx(x = data, output = file)
+        export_xlsx(x = data, output = file, label_value = label_value)
       }
     )
     if (is.reactive(width)) {

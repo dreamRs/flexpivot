@@ -14,7 +14,7 @@ export_pptx(x, output, ...)
 
 export_docx(x, output, ...)
 
-export_xlsx(x, output, ...)
+export_xlsx(x, output, label_value = "value", ...)
 }
 \arguments{
 \item{x}{A \code{\link{pivot_table}} or \code{\link{pivot_format}} object.}
@@ -24,6 +24,8 @@ export_xlsx(x, output, ...)
 \item{to}{Output document: \code{"pptx"} (PowerPoint), \code{"docx"} (Word) or \code{"xlsx"} (Excel).}
 
 \item{...}{Arguments passed to \code{\link{pivot_format}} if \code{x} isn't formated yet.}
+
+\item{label_value}{For Excel output, the label for variable containing the values.}
 }
 \value{
 Path to output (invisibly).

@@ -45,6 +45,7 @@ renderPivot(
   font_name = NULL,
   labels = pivot_labels(),
   formatter = pivot_formatter(),
+  label_value = "value",
   env = parent.frame(),
   quoted = FALSE,
   filename = "export-pivot"
@@ -83,6 +84,8 @@ is useful if you want to save an expression in a variable.}
 
 \item{clipboard, powerpoint, word, excel}{Labels to display in
 export menu, use \code{NULL} to disable specific format.}
+
+\item{label_value}{For Excel output, the label for variable containing the values.}
 
 \item{filename}{A string of the filename to export WITHOUT extension, it will be added accordint to type of export.}
 }

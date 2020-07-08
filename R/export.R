@@ -71,10 +71,12 @@ export_docx <- function(x, output, ...) {
 }
 
 
+#' @param label_value For Excel output, the label for variable containing the values.
 #' @rdname export-pivot
 #' @export
 #' @importFrom writexl write_xlsx
-export_xlsx <- function(x, output, ...) {
+#' @importFrom data.table setnames
+export_xlsx <- function(x, output, label_value = "value", ...) {
   output <- normalizePath(output, mustWork = FALSE)
   if (inherits(x, "flexpivot")) {
     x <- attr(x, "data")
@@ -83,6 +85,7 @@ export_xlsx <- function(x, output, ...) {
     stop("export_xlsx works only with pivot_table or pivot_format objects", call. = FALSE)
   }
   x <- unpivot(x)
+  setnames(x, "value", label_value)
   write_xlsx(x = x, path = output)
 }
 
