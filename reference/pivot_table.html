@@ -121,6 +121,7 @@
   <span class='kw'>cols</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
   <span class='kw'>wt</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
   <span class='kw'>stats</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"n"</span>, <span class='st'>"p"</span>, <span class='st'>"p_row"</span>, <span class='st'>"p_col"</span>),
+  <span class='kw'>digits</span> <span class='kw'>=</span> <span class='fl'>2</span>,
   <span class='kw'>total</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
   <span class='kw'>total_label</span> <span class='kw'>=</span> <span class='st'>"Total"</span>,
   <span class='kw'>na_label</span> <span class='kw'>=</span> <span class='st'>"&lt;missing&gt;"</span>,
@@ -149,6 +150,10 @@
     <tr>
       <th>stats</th>
       <td><p>Statistic(s) to compute.</p></td>
+    </tr>
+    <tr>
+      <th>digits</th>
+      <td><p>Integer indicating the number of decimal places to be used.</p></td>
     </tr>
     <tr>
       <th>total</th>
@@ -440,6 +445,15 @@
 #&gt; 28:              97.16                 2.84        100.00
 #&gt;     Total_|_Individual Total_|_Organisation Total_|_Total</div><div class='input'>
 
+<span class='co'># Round</span>
+<span class='fu'>pivot_table</span>(<span class='no'>nobel_laureates</span>, <span class='kw'>rows</span> <span class='kw'>=</span> <span class='st'>"category"</span>, <span class='kw'>digits</span> <span class='kw'>=</span> <span class='fl'>0</span>)</div><div class='output co'>#&gt;                  category   n   p
+#&gt; 1:              Chemistry 184  19
+#&gt; 2:      Economic Sciences  84   9
+#&gt; 3:             Literature 116  12
+#&gt; 4:                  Peace 134  14
+#&gt; 5:                Physics 213  22
+#&gt; 6: Physiology or Medicine 219  23
+#&gt; 7:                  Total 950 100</div><div class='input'>
 <span class='co'># Without cols</span>
 <span class='fu'>pivot_table</span>(<span class='no'>nobel_laureates</span>, <span class='kw'>rows</span> <span class='kw'>=</span> <span class='st'>"category"</span>)</div><div class='output co'>#&gt;                  category   n      p
 #&gt; 1:              Chemistry 184  19.37
