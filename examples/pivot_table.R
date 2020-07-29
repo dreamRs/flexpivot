@@ -24,6 +24,9 @@ pivot_table(nobel_laureates, rows = c("birth_continent", "category"), cols = "ge
 pivot_table(nobel_laureates, rows = "category", cols = c("gender", "laureate_type"))
 
 
+# Round
+pivot_table(nobel_laureates, rows = "category", digits = 0)
+
 # Without cols
 pivot_table(nobel_laureates, rows = "category")
 pivot_table(nobel_laureates, rows = c("category", "birth_continent"))

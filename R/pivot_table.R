@@ -6,6 +6,7 @@
 #' @param cols Character vector of variable(s) to use as columns.
 #' @param wt Character, variable to use as weights if any.
 #' @param stats Statistic(s) to compute.
+#' @param digits Integer indicating the number of decimal places to be used.
 #' @param total Logical, add total or not.
 #' @param total_label Label to use fo total.
 #' @param na_label Label to use for missing values.
@@ -25,6 +26,7 @@ pivot_table <- function(data,
                         cols = NULL,
                         wt = NULL,
                         stats = c("n", "p", "p_row", "p_col"),
+                        digits = 2,
                         total = TRUE,
                         total_label = "Total",
                         na_label = "<missing>",
@@ -81,7 +83,7 @@ pivot_table <- function(data,
       agg <- agg[-which(ind)]
     }
   }
-  agg[, p := round(n / sum(n, na.rm = TRUE) * 100, 2), by = "grouping"]
+  agg[, p := round(n / sum(n, na.rm = TRUE) * 100, digits), by = "grouping"]
   if (is.null(cols)) {
     agg[, grouping := NULL]
     for (row in rev(names(rows_values))) {
@@ -99,8 +101,8 @@ pivot_table <- function(data,
     setattr(agg, "cols", cols)
     return(agg[])
   }
-  agg[, p_row := round(n / sum(n, na.rm = TRUE) * 100, 2), by = c(rows, "grouping")]
-  agg[, p_col := round(n / sum(n, na.rm = TRUE) * 100, 2), by = c(cols, "grouping")]
+  agg[, p_row := round(n / sum(n, na.rm = TRUE) * 100, digits), by = c(rows, "grouping")]
+  agg[, p_col := round(n / sum(n, na.rm = TRUE) * 100, digits), by = c(cols, "grouping")]
   agg[, (stats) := lapply(.SD, as.numeric), .SDcols = stats]
   agg[, (stats) := lapply(.SD, function(x) {
     fifelse(is.nan(x), 0, x)

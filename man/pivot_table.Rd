@@ -10,6 +10,7 @@ pivot_table(
   cols = NULL,
   wt = NULL,
   stats = c("n", "p", "p_row", "p_col"),
+  digits = 2,
   total = TRUE,
   total_label = "Total",
   na_label = "<missing>",
@@ -26,6 +27,8 @@ pivot_table(
 \item{wt}{Character, variable to use as weights if any.}
 
 \item{stats}{Statistic(s) to compute.}
+
+\item{digits}{Integer indicating the number of decimal places to be used.}
 
 \item{total}{Logical, add total or not.}
 
@@ -68,6 +71,9 @@ pivot_table(nobel_laureates, rows = c("birth_continent", "category"), cols = "ge
 # Two variable as cols
 pivot_table(nobel_laureates, rows = "category", cols = c("gender", "laureate_type"))
 
+
+# Round
+pivot_table(nobel_laureates, rows = "category", digits = 0)
 
 # Without cols
 pivot_table(nobel_laureates, rows = "category")
