@@ -72,7 +72,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">flexpivot</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.0.9910</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.1</span>
       </span>
     </div>
 
@@ -124,6 +124,8 @@
   <span class='kw'>font_name</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
   <span class='kw'>labels</span> <span class='kw'>=</span> <span class='fu'><a href='pivot_labels.html'>pivot_labels</a></span>(),
   <span class='kw'>formatter</span> <span class='kw'>=</span> <span class='fu'><a href='pivot_formatter.html'>pivot_formatter</a></span>(),
+  <span class='kw'>zebra_style</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"classic"</span>, <span class='st'>"stats"</span>, <span class='st'>"none"</span>),
+  <span class='kw'>zebra_color</span> <span class='kw'>=</span> <span class='st'>"#ECEFF4"</span>,
   <span class='kw'>drop_stats</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
   <span class='kw'>keep_data</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>
 )</pre>
@@ -162,6 +164,14 @@
     <tr>
       <th>formatter</th>
       <td><p>Function to format content, see <code><a href='pivot_formatter.html'>pivot_formatter</a></code>.</p></td>
+    </tr>
+    <tr>
+      <th>zebra_style</th>
+      <td><p>Add zebra theme to table.</p></td>
+    </tr>
+    <tr>
+      <th>zebra_color</th>
+      <td><p>Color to use for zebra theme.</p></td>
     </tr>
     <tr>
       <th>drop_stats</th>
