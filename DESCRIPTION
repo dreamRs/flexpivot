@@ -1,6 +1,6 @@
 Package: flexpivot
 Title: Easy Pivot Table
-Version: 0.0.0.9910
+Version: 0.0.1
 Authors@R: 
     c(person(given = "Victor",
              family = "Perrier",

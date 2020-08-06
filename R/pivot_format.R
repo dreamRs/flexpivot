@@ -9,6 +9,8 @@
 #' @param font_name Font name (applies to all table).
 #' @param labels Custom labels for statistics, see \code{\link{pivot_labels}}.
 #' @param formatter Function to format content, see \code{\link{pivot_formatter}}.
+#' @param zebra_style Add zebra theme to table.
+#' @param zebra_color Color to use for zebra theme.
 #' @param drop_stats Drop the stats column, can be useful if have only one stat to show.
 #' @param keep_data Keep data as attribute, this can
 #'  be useful to retrieve the data from which the table was formatted.
@@ -19,7 +21,7 @@
 #' @importFrom flextable flextable theme_zebra merge_v bg color
 #'  bold fontsize font padding width border set_header_df merge_h align
 #' @importFrom officer fp_border
-#' @importFrom data.table copy .SD first := setnames setattr
+#' @importFrom data.table copy .SD first := setnames setattr uniqueN
 #'
 #' @example examples/pivot_format.R
 pivot_format <- function(pivot,
@@ -30,8 +32,11 @@ pivot_format <- function(pivot,
                          font_name = NULL,
                          labels = pivot_labels(),
                          formatter = pivot_formatter(),
+                         zebra_style = c("classic", "stats", "none"),
+                         zebra_color = "#ECEFF4",
                          drop_stats = FALSE,
                          keep_data = TRUE) {
+  zebra_style <- match.arg(zebra_style)
   if (!inherits(pivot, "pivot_table"))
     stop("pivot_format: 'pivot' must be a 'pivot_table' object", call. = FALSE)
   pt <- copy(pivot)
@@ -100,7 +105,19 @@ pivot_format <- function(pivot,
     col_keys <- names(pt)
   }
   ft <- flextable(pt, col_keys = col_keys)
-  ft <- theme_zebra(ft, odd_header = "transparent", even_header = "transparent", odd_body = "#ECEFF4")
+
+  if (!identical(zebra_style, "none")) {
+    if (is.null(cols)) {
+      ft <- theme_zebra(ft, odd_body = zebra_color)
+    } else {
+      if (identical(zebra_style, "stats")) {
+        ft <- bg(ft, i = ((seq_len(nrow(pt)) - 1) %/% uniqueN(pt[[labels$stats]])) %% 2 == 0, bg = zebra_color)
+      } else {
+        ft <- theme_zebra(ft, odd_body = zebra_color)
+      }
+    }
+  }
+
   ft <- merge_v(ft, part = "body", j = seq_along(rows))
   ft <- bg(ft, j = seq_along(rows), bg = background, part = "body")
   ft <- color(ft, j = seq_along(rows), color = color, part = "body")

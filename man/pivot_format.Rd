@@ -13,6 +13,8 @@ pivot_format(
   font_name = NULL,
   labels = pivot_labels(),
   formatter = pivot_formatter(),
+  zebra_style = c("classic", "stats", "none"),
+  zebra_color = "#ECEFF4",
   drop_stats = FALSE,
   keep_data = TRUE
 )
@@ -33,6 +35,10 @@ pivot_format(
 \item{labels}{Custom labels for statistics, see \code{\link{pivot_labels}}.}
 
 \item{formatter}{Function to format content, see \code{\link{pivot_formatter}}.}
+
+\item{zebra_style}{Add zebra theme to table.}
+
+\item{zebra_color}{Color to use for zebra theme.}
 
 \item{drop_stats}{Drop the stats column, can be useful if have only one stat to show.}
 
