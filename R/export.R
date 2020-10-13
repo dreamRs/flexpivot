@@ -85,7 +85,7 @@ export_xlsx <- function(x, output, label_value = "value", ...) {
     stop("export_xlsx works only with pivot_table or pivot_format objects", call. = FALSE)
   }
   x <- unpivot(x)
-  setnames(x, "value", label_value)
+  setnames(x, "value", label_value, skip_absent = TRUE)
   write_xlsx(x = x, path = output)
 }
 
