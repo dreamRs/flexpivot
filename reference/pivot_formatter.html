@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Formatters for <code>pivot_format</code> — pivot_formatter • flexpivot</title>
+<title>Formatters for pivot_format — pivot_formatter • flexpivot</title>
 
 
 <!-- jquery -->
@@ -39,7 +39,7 @@
 
 
 
-<meta property="og:title" content="Formatters for <code>pivot_format</code> — pivot_formatter" />
+<meta property="og:title" content="Formatters for pivot_format — pivot_formatter" />
 <meta property="og:description" content="Formatters for pivot_format" />
 
 
@@ -72,7 +72,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">flexpivot</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.0</span>
       </span>
     </div>
 
@@ -115,12 +115,12 @@
     <p>Formatters for <code>pivot_format</code></p>
     </div>
 
-    <pre class="usage"><span class='fu'>pivot_formatter</span>(
-  <span class='kw'>n</span> <span class='kw'>=</span> <span class='no'>round</span>,
-  <span class='kw'>p</span> <span class='kw'>=</span> <span class='kw'>function</span>(<span class='no'>x</span>) {     <span class='fu'><a href='https://rdrr.io/r/base/paste.html'>paste0</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/Round.html'>round</a></span>(<span class='no'>x</span>, <span class='fl'>1</span>), <span class='st'>"%"</span>) },
-  <span class='kw'>p_col</span> <span class='kw'>=</span> <span class='kw'>function</span>(<span class='no'>x</span>) {     <span class='fu'><a href='https://rdrr.io/r/base/paste.html'>paste0</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/Round.html'>round</a></span>(<span class='no'>x</span>, <span class='fl'>1</span>), <span class='st'>"%"</span>) },
-  <span class='kw'>p_row</span> <span class='kw'>=</span> <span class='kw'>function</span>(<span class='no'>x</span>) {     <span class='fu'><a href='https://rdrr.io/r/base/paste.html'>paste0</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/Round.html'>round</a></span>(<span class='no'>x</span>, <span class='fl'>1</span>), <span class='st'>"%"</span>) }
-)</pre>
+    <pre class="usage"><span class='fu'>pivot_formatter</span><span class='op'>(</span>
+  n <span class='op'>=</span> <span class='va'>round</span>,
+  p <span class='op'>=</span> <span class='kw'>function</span><span class='op'>(</span><span class='va'>x</span><span class='op'>)</span> <span class='op'>{</span>     <span class='fu'><a href='https://rdrr.io/r/base/paste.html'>paste0</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/Round.html'>round</a></span><span class='op'>(</span><span class='va'>x</span>, <span class='fl'>1</span><span class='op'>)</span>, <span class='st'>"%"</span><span class='op'>)</span> <span class='op'>}</span>,
+  p_col <span class='op'>=</span> <span class='kw'>function</span><span class='op'>(</span><span class='va'>x</span><span class='op'>)</span> <span class='op'>{</span>     <span class='fu'><a href='https://rdrr.io/r/base/paste.html'>paste0</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/Round.html'>round</a></span><span class='op'>(</span><span class='va'>x</span>, <span class='fl'>1</span><span class='op'>)</span>, <span class='st'>"%"</span><span class='op'>)</span> <span class='op'>}</span>,
+  p_row <span class='op'>=</span> <span class='kw'>function</span><span class='op'>(</span><span class='va'>x</span><span class='op'>)</span> <span class='op'>{</span>     <span class='fu'><a href='https://rdrr.io/r/base/paste.html'>paste0</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/Round.html'>round</a></span><span class='op'>(</span><span class='va'>x</span>, <span class='fl'>1</span><span class='op'>)</span>, <span class='st'>"%"</span><span class='op'>)</span> <span class='op'>}</span>
+<span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -148,13 +148,14 @@
     <p>a <code>list</code> of <code>function</code>s that can be use in <code><a href='pivot_format.html'>pivot_format</a></code>.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>flexpivot</span>)
-<span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span>(<span class='st'>"nobel_laureates"</span>)
+    <pre class="examples"><div class='input'><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'>flexpivot</span><span class='op'>)</span>
+<span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span><span class='op'>(</span><span class='st'>"nobel_laureates"</span><span class='op'>)</span>
 
 <span class='co'># One variable</span>
-<span class='no'>pt</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='pivot_table.html'>pivot_table</a></span>(<span class='no'>nobel_laureates</span>, <span class='kw'>rows</span> <span class='kw'>=</span> <span class='st'>"category"</span>)
+<span class='va'>pt</span> <span class='op'>&lt;-</span> <span class='fu'><a href='pivot_table.html'>pivot_table</a></span><span class='op'>(</span><span class='va'>nobel_laureates</span>, rows <span class='op'>=</span> <span class='st'>"category"</span><span class='op'>)</span>
 
-<span class='fu'><a href='pivot_format.html'>pivot_format</a></span>(<span class='no'>pt</span>)</div><div class='output co'>#&gt; a flextable object.
+<span class='fu'><a href='pivot_format.html'>pivot_format</a></span><span class='op'>(</span><span class='va'>pt</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; a flextable object.
 #&gt; col_keys: `category`, `N`, `%` 
 #&gt; header has 1 row(s) 
 #&gt; body has 7 row(s) 
@@ -164,11 +165,12 @@
 #&gt; 2 Economic Sciences  84  8.8%
 #&gt; 3        Literature 116 12.2%
 #&gt; 4             Peace 134 14.1%
-#&gt; 5           Physics 213 22.4%</div><div class='input'><span class='fu'><a href='pivot_format.html'>pivot_format</a></span>(<span class='no'>pt</span>, <span class='kw'>formatter</span> <span class='kw'>=</span> <span class='fu'>pivot_formatter</span>(
-  <span class='kw'>n</span> <span class='kw'>=</span> <span class='kw'>function</span>(<span class='no'>x</span>) {
-    <span class='fu'><a href='https://rdrr.io/r/base/format.html'>format</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/Round.html'>round</a></span>(<span class='no'>x</span> * <span class='fl'>100</span>), <span class='kw'>big.mark</span> <span class='kw'>=</span> <span class='st'>" "</span>)
-  }
-))</div><div class='output co'>#&gt; a flextable object.
+#&gt; 5           Physics 213 22.4%</div><div class='input'><span class='fu'><a href='pivot_format.html'>pivot_format</a></span><span class='op'>(</span><span class='va'>pt</span>, formatter <span class='op'>=</span> <span class='fu'>pivot_formatter</span><span class='op'>(</span>
+  n <span class='op'>=</span> <span class='kw'>function</span><span class='op'>(</span><span class='va'>x</span><span class='op'>)</span> <span class='op'>{</span>
+    <span class='fu'><a href='https://rdrr.io/r/base/format.html'>format</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/Round.html'>round</a></span><span class='op'>(</span><span class='va'>x</span> <span class='op'>*</span> <span class='fl'>100</span><span class='op'>)</span>, big.mark <span class='op'>=</span> <span class='st'>" "</span><span class='op'>)</span>
+  <span class='op'>}</span>
+<span class='op'>)</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; a flextable object.
 #&gt; col_keys: `category`, `N`, `%` 
 #&gt; header has 1 row(s) 
 #&gt; body has 7 row(s) 
@@ -181,9 +183,10 @@
 #&gt; 5           Physics 21 300 22.4%</div><div class='input'>
 
 <span class='co'># Two variable as rows</span>
-<span class='no'>pt</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='pivot_table.html'>pivot_table</a></span>(<span class='no'>nobel_laureates</span>, <span class='kw'>rows</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"category"</span>, <span class='st'>"gender"</span>))
+<span class='va'>pt</span> <span class='op'>&lt;-</span> <span class='fu'><a href='pivot_table.html'>pivot_table</a></span><span class='op'>(</span><span class='va'>nobel_laureates</span>, rows <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"category"</span>, <span class='st'>"gender"</span><span class='op'>)</span><span class='op'>)</span>
 
-<span class='fu'><a href='pivot_format.html'>pivot_format</a></span>(<span class='no'>pt</span>)</div><div class='output co'>#&gt; a flextable object.
+<span class='fu'><a href='pivot_format.html'>pivot_format</a></span><span class='op'>(</span><span class='va'>pt</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; a flextable object.
 #&gt; col_keys: `category`, `gender`, `N`, `%` 
 #&gt; header has 1 row(s) 
 #&gt; body has 28 row(s) 
@@ -193,11 +196,12 @@
 #&gt; 2         Chemistry    female   5  0.5%
 #&gt; 3         Chemistry &lt;missing&gt;   0    0%
 #&gt; 4         Chemistry     Total 184 19.4%
-#&gt; 5 Economic Sciences      male  82  8.6%</div><div class='input'><span class='fu'><a href='pivot_format.html'>pivot_format</a></span>(<span class='no'>pt</span>, <span class='kw'>formatter</span> <span class='kw'>=</span> <span class='fu'>pivot_formatter</span>(
-  <span class='kw'>n</span> <span class='kw'>=</span> <span class='kw'>function</span>(<span class='no'>x</span>) {
-    <span class='fu'><a href='https://rdrr.io/r/base/format.html'>format</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/Round.html'>round</a></span>(<span class='no'>x</span> * <span class='fl'>100</span>), <span class='kw'>big.mark</span> <span class='kw'>=</span> <span class='st'>" "</span>)
-  }
-))</div><div class='output co'>#&gt; a flextable object.
+#&gt; 5 Economic Sciences      male  82  8.6%</div><div class='input'><span class='fu'><a href='pivot_format.html'>pivot_format</a></span><span class='op'>(</span><span class='va'>pt</span>, formatter <span class='op'>=</span> <span class='fu'>pivot_formatter</span><span class='op'>(</span>
+  n <span class='op'>=</span> <span class='kw'>function</span><span class='op'>(</span><span class='va'>x</span><span class='op'>)</span> <span class='op'>{</span>
+    <span class='fu'><a href='https://rdrr.io/r/base/format.html'>format</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/Round.html'>round</a></span><span class='op'>(</span><span class='va'>x</span> <span class='op'>*</span> <span class='fl'>100</span><span class='op'>)</span>, big.mark <span class='op'>=</span> <span class='st'>" "</span><span class='op'>)</span>
+  <span class='op'>}</span>
+<span class='op'>)</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; a flextable object.
 #&gt; col_keys: `category`, `gender`, `N`, `%` 
 #&gt; header has 1 row(s) 
 #&gt; body has 28 row(s) 
@@ -211,9 +215,10 @@
 
 
 <span class='co'># One row, one column</span>
-<span class='no'>pt</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='pivot_table.html'>pivot_table</a></span>(<span class='no'>nobel_laureates</span>, <span class='kw'>rows</span> <span class='kw'>=</span> <span class='st'>"category"</span>, <span class='kw'>cols</span> <span class='kw'>=</span> <span class='st'>"gender"</span>)
+<span class='va'>pt</span> <span class='op'>&lt;-</span> <span class='fu'><a href='pivot_table.html'>pivot_table</a></span><span class='op'>(</span><span class='va'>nobel_laureates</span>, rows <span class='op'>=</span> <span class='st'>"category"</span>, cols <span class='op'>=</span> <span class='st'>"gender"</span><span class='op'>)</span>
 
-<span class='fu'><a href='pivot_format.html'>pivot_format</a></span>(<span class='no'>pt</span>)</div><div class='output co'>#&gt; a flextable object.
+<span class='fu'><a href='pivot_format.html'>pivot_format</a></span><span class='op'>(</span><span class='va'>pt</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; a flextable object.
 #&gt; col_keys: `category`, `Statistic`, `male`, `female`, `&lt;missing&gt;`, `Total` 
 #&gt; header has 2 row(s) 
 #&gt; body has 28 row(s) 
@@ -223,11 +228,12 @@
 #&gt; 2         Chemistry         % 18.8%   0.5%        0% 19.4%
 #&gt; 3         Chemistry     Col % 20.6%   9.3%        0% 19.4%
 #&gt; 4         Chemistry     Row % 97.3%   2.7%        0%  100%
-#&gt; 5 Economic Sciences         N    82      2         0    84</div><div class='input'><span class='fu'><a href='pivot_format.html'>pivot_format</a></span>(<span class='no'>pt</span>, <span class='kw'>formatter</span> <span class='kw'>=</span> <span class='fu'>pivot_formatter</span>(
-  <span class='kw'>n</span> <span class='kw'>=</span> <span class='kw'>function</span>(<span class='no'>x</span>) {
-    <span class='fu'><a href='https://rdrr.io/r/base/format.html'>format</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/Round.html'>round</a></span>(<span class='no'>x</span> * <span class='fl'>100</span>), <span class='kw'>big.mark</span> <span class='kw'>=</span> <span class='st'>" "</span>)
-  }
-))</div><div class='output co'>#&gt; a flextable object.
+#&gt; 5 Economic Sciences         N    82      2         0    84</div><div class='input'><span class='fu'><a href='pivot_format.html'>pivot_format</a></span><span class='op'>(</span><span class='va'>pt</span>, formatter <span class='op'>=</span> <span class='fu'>pivot_formatter</span><span class='op'>(</span>
+  n <span class='op'>=</span> <span class='kw'>function</span><span class='op'>(</span><span class='va'>x</span><span class='op'>)</span> <span class='op'>{</span>
+    <span class='fu'><a href='https://rdrr.io/r/base/format.html'>format</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/Round.html'>round</a></span><span class='op'>(</span><span class='va'>x</span> <span class='op'>*</span> <span class='fl'>100</span><span class='op'>)</span>, big.mark <span class='op'>=</span> <span class='st'>" "</span><span class='op'>)</span>
+  <span class='op'>}</span>
+<span class='op'>)</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; a flextable object.
 #&gt; col_keys: `category`, `Statistic`, `male`, `female`, `&lt;missing&gt;`, `Total` 
 #&gt; header has 2 row(s) 
 #&gt; body has 28 row(s) 
@@ -254,7 +260,7 @@
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>
