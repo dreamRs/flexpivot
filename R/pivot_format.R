@@ -28,7 +28,7 @@ pivot_format <- function(pivot,
                          background = "#81A1C1",
                          color = "#FFFFFF",
                          border = "#FFFFFF",
-                         font_size = 14,
+                         font_size = 11,
                          font_name = NULL,
                          labels = pivot_labels(),
                          formatter = pivot_formatter(),
@@ -133,6 +133,7 @@ pivot_format <- function(pivot,
   if (is.null(cols)) {
     ft <- bg(ft, bg = background, part = "header")
     ft <- color(ft, color = color, part = "header")
+    ft <- align(ft, j = seq_len(ncol(pt))[-1], align = "right", part = "all")
   } else {
     if (identical(length(cols), 1L)) {
       typology_what <- rep("", length(col_keys))
@@ -151,7 +152,8 @@ pivot_format <- function(pivot,
       ft <- set_header_df(ft, mapping = typology, key = "col_keys")
       ft <- merge_h(ft, part = "header")
       ft <- align(ft, i = 1, align = "center", part = "header")
-      ft <- align(ft, i = 2, align = "right", part = "header")
+      ft <- align(ft, i = 2, j = setdiff(col_keys, labels$stats)[-1], align = "right", part = "header")
+      ft <- align(ft, j = setdiff(col_keys, labels$stats)[-1], align = "right", part = "body")
       ft <- bg(ft, i = 1, j = which(col_keys %in% cols_values[[cols]]), bg = background, part = "header")
       ft <- bg(ft, i = 2, bg = background, part = "header")
       ft <- color(ft, color = color, part = "header")
