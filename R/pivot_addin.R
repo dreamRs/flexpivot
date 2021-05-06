@@ -6,7 +6,7 @@
 #' @return No value.
 #' @export
 #'
-#' @importFrom shiny fluidPage actionButton runGadget dialogViewer req observeEvent
+#' @importFrom shiny runGadget dialogViewer req observeEvent
 #' @importFrom htmltools tags tagList singleton
 #'
 #' @examples
@@ -19,12 +19,15 @@
 #' }
 pivot_addin <- function(data) { # nocov start
 
-  if (!requireNamespace(package = "esquisse"))
-    stop("Package 'esquisse' is required to run this function, please install it.", call. = FALSE)
-
   runGadget(
-    app = pivot_addin_ui(variables = names(data)),
-    server = pivot_addin_server(data),
+    app = ui(pivot_ui(id = "pivot", variables = names(data))),
+    server = function(input, output) {
+      pivot_server(
+        id = "pivot",
+        data = data
+      )
+      observeEvent(input$close, shiny::stopApp())
+    },
     viewer = dialogViewer(
       dialogName = "Flexpivot",
       width = 1000,
@@ -34,52 +37,93 @@ pivot_addin <- function(data) { # nocov start
 } # nocov end
 
 
-
-pivot_addin_ui <- function(variables) {
-  fluidPage(
+#' @importFrom shiny bootstrapPage actionButton
+#' @importFrom htmltools singleton tagList tags
+ui <- function(...) {
+  bootstrapPage(
     singleton(x = tagList(
       tags$link(rel = "stylesheet", type = "text/css", href = "flexpivot/css/styles.css")
     )),
     tags$div(
-      class = "pivot-addin-title-box",
-      tags$h1(shiny::icon("wrench"), "Pivot table builder", class = "pivot-addin-title"),
+      class = "pivot-title-container",
+      tags$h1("flexpivot", class = "pivot-title"),
       tags$div(
-        class = "pivot-addin-closebtn",
-        actionButton(inputId = "close", label = "Close", class = "btn-sm")
+        class = "pull-right",
+        actionButton(
+          inputId = "close",
+          label = NULL,
+          icon = icon("times", class = "fa-lg"),
+          class = "btn-sm",
+          title = "Close Window"
+        )
       )
     ),
     tags$div(
-      class = "pivot-addin-container",
-      esquisse::dragulaInput(
-        inputId = "vars",
-        sourceLabel = "Variables",
-        targetsLabels = c("row", "col"),
-        choices = variables,
-        replace = FALSE
-      ),
-      pivotOutput(outputId = "pivot")
+      class = "container-fluid",
+      ...
     )
   )
 }
 
 
-
-pivot_addin_server <- function(data) {
-  function(input, output, session) {
-
-    output$pivot <- renderPivot({
-      req(input$vars$target$row)
-      pivot_table(
-        data = data,
-        rows = input$vars$target$row,
-        cols = input$vars$target$col
+#' @importFrom shiny NS fluidRow column
+#' @importFrom shinyWidgets pickerInput pickerOptions
+#' @importFrom htmltools tags
+pivot_ui <- function(id, variables) {
+  ns <- NS(id)
+  tags$div(
+    class = "pivot-main-container",
+    fluidRow(
+      column(
+        width = 6,
+        pickerInput(
+          inputId = ns("rows"),
+          label = "Rows:",
+          choices = variables,
+          multiple = TRUE,
+          options = pickerOptions(
+            liveSearch = TRUE
+          ),
+          width = "100%"
+        )
+      ),
+      column(
+        width = 6,
+        pickerInput(
+          inputId = ns("cols"),
+          label = "Column:",
+          choices = variables,
+          multiple = TRUE,
+          options = pickerOptions(
+            liveSearch = TRUE,
+            maxOptions = 1
+          ),
+          width = "100%"
+        )
       )
-    })
+    ),
+    pivotOutput(outputId = ns("pivot"))
+  )
+}
 
-    # Close addin
-    observeEvent(input$close, shiny::stopApp())
 
-  }
+#' @importFrom shiny moduleServer req
+pivot_server <- function(id, data) {
+  moduleServer(
+    id = id,
+    module = function(input, output, session) {
+
+      output$pivot <- renderPivot({
+        req(input$rows)
+        pivot_table(
+          data = data,
+          rows = input$rows,
+          cols = input$cols
+        )
+      })
+
+    }
+  )
 }
 
 

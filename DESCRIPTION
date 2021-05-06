@@ -1,14 +1,17 @@
 Package: flexpivot
 Title: Easy Pivot Table
-Version: 0.1.1
+Version: 0.1.2
 Authors@R: 
     c(person(given = "Victor",
              family = "Perrier",
-             role = c("aut", "cre"),
+             role = c("aut", "cre", "cph"),
              email = "victor.perrier@dreamrs.fr"),
       person(given = "Fanny",
              family = "Meyer",
-             role = "aut"))
+             role = "aut"),
+      person("Zeno", "Rocha", 
+             role = "cph",
+             comment = "author of clipboard JavaScript library"))
 Description: Create pivot tables ready to be used in 'shiny' or 'rmarkdown' and easily exportable to 'PowerPoint', 'Word' and 'Excel'.
 License: GPL-3
 Encoding: UTF-8
@@ -25,7 +28,6 @@ Imports:
     writexl
 Suggests: 
     magrittr,
-    esquisse,
     testthat,
     knitr,
     rmarkdown

@@ -1,28 +1,40 @@
 
-.pivot-addin-title-box {
-  position: fixed;
-  top: 0;
-  right: 0;
-  left: 0;
+.pivot-title-container {
+  -webkit-flex: none;
+  -ms-flex: none;
+  flex: none;
+  position: relative;
   background-color: #112446;
   height: 45px;
+  margin-bottom: 5px;
+  padding: 0;
 }
 
-.pivot-addin-title {
+.pivot-title {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  line-height: 44px;
+  margin: 0;
+  z-index: 0;
   color: white;
   text-align: center;
   font-size: 30px;
-  font-weight: bold;
-  margin: auto;
-  line-height: 45px;
 }
 
-.pivot-addin-closebtn {
-  position: absolute;
-  right: 7px;
-  top: 8px;
+.pivot-title-container button.btn {
+  position: relative;
+  height: 31px;
+  z-index: 10;
+  color: #FFF;
+  background: transparent;
+  border: none;
+  margin: 7px 5px 0px 5px;
 }
 
-.pivot-addin-container {
-  margin-top: 50px;
+.pivot-main-container {
+  padding: 5px;
 }
+
