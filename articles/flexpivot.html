@@ -4,90 +4,82 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="description" content="flexpivot">
 <title>flexpivot • flexpivot</title>
-<!-- jquery --><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script><!-- Bootstrap --><link href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/3.4.0/flatly/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha256-nuL8/2cJ5NDSSwnKD8VqreErSWHtnEP9E7AySL+1ev4=" crossorigin="anonymous"></script><!-- bootstrap-toc --><link rel="stylesheet" href="../bootstrap-toc.css">
-<script src="../bootstrap-toc.js"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous">
+<script src="../deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link href="../deps/bootstrap-5.1.0/bootstrap.min.css" rel="stylesheet">
+<script src="../deps/bootstrap-5.1.0/bootstrap.bundle.min.js"></script><link href="../deps/_Poppins-0.4.0/font.css" rel="stylesheet">
+<!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous">
-<!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- pkgdown --><link href="../pkgdown.css" rel="stylesheet">
-<script src="../pkgdown.js"></script><meta property="og:title" content="flexpivot">
+<!-- bootstrap-toc --><script src="https://cdn.rawgit.com/afeld/bootstrap-toc/v1.0.1/dist/bootstrap-toc.min.js"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><!-- search --><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- pkgdown --><script src="../pkgdown.js"></script><meta property="og:title" content="flexpivot">
 <meta property="og:description" content="flexpivot">
 <!-- mathjax --><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js" integrity="sha256-nvJJv9wWKEm88qvoQl9ekL2J+k/RWIsaSScxxlsrv8k=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/config/TeX-AMS-MML_HTMLorMML.js" integrity="sha256-84DKXVJXs0/F8OTMzX4UR909+jtl4G7SPypPavF+GfA=" crossorigin="anonymous"></script><!--[if lt IE 9]>
 <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
 <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
 <![endif]-->
 </head>
-<body data-spy="scroll" data-target="#toc">
-    <div class="container template-article">
-      <header><div class="navbar navbar-default navbar-fixed-top" role="navigation">
-  <div class="container">
-    <div class="navbar-header">
-      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false">
-        <span class="sr-only">Toggle navigation</span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
-      <span class="navbar-brand">
-        <a class="navbar-link" href="../index.html">flexpivot</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.1.2</span>
-      </span>
-    </div>
+<body>
+    <a href="#main" class="visually-hidden-focusable">Skip to contents</a>
+    
 
-    <div id="navbar" class="navbar-collapse collapse">
-      <ul class="nav navbar-nav">
-<li>
-  <a href="../index.html">
-    <span class="fas fa-home fa-lg"></span>
-     
-  </a>
+    <nav class="navbar fixed-top navbar-dark navbar-expand-lg bg-primary"><div class="container">
+    
+    <a class="navbar-brand me-2" href="../index.html">flexpivot</a>
+
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.1.2</small>
+
+    
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div id="navbar" class="collapse navbar-collapse ms-2">
+      <ul class="navbar-nav me-auto">
+<li class="active nav-item">
+  <a class="nav-link" href="../articles/flexpivot.html">Get started</a>
 </li>
-<li>
-  <a href="../articles/flexpivot.html">Get started</a>
-</li>
-<li>
-  <a href="../reference/index.html">Reference</a>
+<li class="nav-item">
+  <a class="nav-link" href="../reference/index.html">Reference</a>
 </li>
       </ul>
-<ul class="nav navbar-nav navbar-right"></ul>
+<form class="form-inline my-2 my-lg-0" role="search">
+        <input type="search" class="form-control me-sm-2" aria-label="Toggle navigation" name="search-input" data-search-index="../search.json" id="search-input" placeholder="Search for" autocomplete="off">
+</form>
+
+      <ul class="navbar-nav"></ul>
 </div>
-<!--/.nav-collapse -->
+
+    
   </div>
-<!--/.container -->
-</div>
-<!--/.navbar -->
-
-      
-
-      </header><script src="flexpivot_files/accessible-code-block-0.0.1/empty-anchor.js"></script><link href="flexpivot_files/tabwid-1.0.0/tabwid.css" rel="stylesheet">
+</nav><div class="container template-article">
+<script src="flexpivot_files/accessible-code-block-0.0.1/empty-anchor.js"></script><link href="flexpivot_files/tabwid-1.0.0/tabwid.css" rel="stylesheet">
 <div class="row">
-  <div class="col-md-9 contents">
-    <div class="page-header toc-ignore">
-      <h1 data-toc-skip>flexpivot</h1>
+  <main id="main"><div class="page-header">
+      <img src="" class="logo" alt=""><h1>flexpivot</h1>
             
       
       
-      <div class="hidden name"><code>flexpivot.Rmd</code></div>
-
+      <div class="d-none name"><code>flexpivot.Rmd</code></div>
     </div>
 
     
     
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va">flexpivot</span><span class="op">)</span>
-<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://magrittr.tidyverse.org">magrittr</a></span><span class="op">)</span></code></pre></div>
-<p>Create contingency tables ready to be used in <a href="https://shiny.rstudio.com/">shiny</a> and <a href="https://rmarkdown.rstudio.com/">rmarkdown</a>, and to be exported to Microsoft Office products via package <a href="https://davidgohel.github.io/officer/">officer</a>.</p>
-<div id="usage" class="section level2">
-<h2 class="hasAnchor">
-<a href="#usage" class="anchor"></a>Usage</h2>
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://dreamrs.github.io/flexpivot/">flexpivot</a></span><span class="op">)</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://magrittr.tidyverse.org" class="external-link">magrittr</a></span><span class="op">)</span></code></pre></div>
+<p>Create contingency tables ready to be used in <a href="https://shiny.rstudio.com/" class="external-link">shiny</a> and <a href="https://rmarkdown.rstudio.com/" class="external-link">rmarkdown</a>, and to be exported to Microsoft Office products via package <a href="https://davidgohel.github.io/officer/" class="external-link">officer</a>.</p>
+<div class="section level2">
+<h2 id="usage">Usage<a class="anchor" aria-label="anchor" href="#usage"></a>
+</h2>
 <p>Get count and percentage with one variable:</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">nobel_laureates</span> <span class="op">%&gt;%</span>
-  <span class="fu"><a href="../reference/pivot_table.html">pivot_table</a></span><span class="op">(</span><span class="st">"category"</span><span class="op">)</span> <span class="op">%&gt;%</span>
+<code class="sourceCode R"><span class="va">nobel_laureates</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
+  <span class="fu"><a href="../reference/pivot_table.html">pivot_table</a></span><span class="op">(</span><span class="st">"category"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
   <span class="fu"><a href="../reference/pivot_format.html">pivot_format</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
-<template id="edc97b84-aefd-4fdc-9d09-18e4eb43fd72"><style>
+<template id="74e5ac64-553d-4421-be86-2bd2aa9a33ef"><style>
 .tabwid table{
+  border-spacing:0px !important;
   border-collapse:collapse;
   line-height:1;
   margin-left:auto;
@@ -96,7 +88,6 @@
   display: table;
   margin-top: 1.275em;
   margin-bottom: 1.275em;
-  border-spacing: 0;
   border-color: transparent;
 }
 .tabwid_left table{
@@ -122,55 +113,55 @@ background-color: transparent;
 }
 </style>
 <div class="tabwid">
-<style>.cl-11a16abc{border-collapse:collapse;}.cl-1198e5d6{font-family:'Helvetica';font-size:11pt;font-weight:bold;font-style:normal;text-decoration:none;color:rgba(255, 255, 255, 1.00);background-color:transparent;}.cl-1198e608{font-family:'Helvetica';font-size:11pt;font-weight:normal;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}.cl-11990192{margin:0;text-align:left;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:10pt;padding-top:10pt;padding-left:10pt;padding-right:10pt;line-height: 1;background-color:transparent;}.cl-119901b0{margin:0;text-align:right;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:10pt;padding-top:10pt;padding-left:10pt;padding-right:10pt;line-height: 1;background-color:transparent;}.cl-11995552{width:108pt;background-clip: padding-box;background-color:rgba(236, 239, 244, 1.00);vertical-align: middle;border-bottom: 1pt solid rgba(255, 255, 255, 1.00);border-top: 1pt solid rgba(255, 255, 255, 1.00);border-left: 1pt solid rgba(255, 255, 255, 1.00);border-right: 1pt solid rgba(255, 255, 255, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-11995570{width:108pt;background-clip: padding-box;background-color:rgba(129, 161, 193, 1.00);vertical-align: middle;border-bottom: 1pt solid rgba(255, 255, 255, 1.00);border-top: 1pt solid rgba(255, 255, 255, 1.00);border-left: 1pt solid rgba(255, 255, 255, 1.00);border-right: 1pt solid rgba(255, 255, 255, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-1199557a{width:108pt;background-color:transparent;vertical-align: middle;border-bottom: 1pt solid rgba(255, 255, 255, 1.00);border-top: 1pt solid rgba(255, 255, 255, 1.00);border-left: 1pt solid rgba(255, 255, 255, 1.00);border-right: 1pt solid rgba(255, 255, 255, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-11995584{width:108pt;background-clip: padding-box;background-color:rgba(129, 161, 193, 1.00);vertical-align: middle;border-bottom: 1pt solid rgba(255, 255, 255, 1.00);border-top: 1pt solid rgba(255, 255, 255, 1.00);border-left: 1pt solid rgba(255, 255, 255, 1.00);border-right: 1pt solid rgba(255, 255, 255, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}</style>
-<table class="table cl-11a16abc">
+<style>.cl-7ee7b08e{}.cl-7ee1766a{font-family:'DejaVu Sans';font-size:11pt;font-weight:bold;font-style:normal;text-decoration:none;color:rgba(255, 255, 255, 1.00);background-color:transparent;}.cl-7ee17674{font-family:'DejaVu Sans';font-size:11pt;font-weight:normal;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}.cl-7ee18e7a{margin:0;text-align:left;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:10pt;padding-top:10pt;padding-left:10pt;padding-right:10pt;line-height: 1;background-color:transparent;}.cl-7ee18e84{margin:0;text-align:right;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:10pt;padding-top:10pt;padding-left:10pt;padding-right:10pt;line-height: 1;background-color:transparent;}.cl-7ee1d042{width:108pt;background-color:rgba(236, 239, 244, 1.00);vertical-align: middle;border-bottom: 1pt solid rgba(255, 255, 255, 1.00);border-top: 1pt solid rgba(255, 255, 255, 1.00);border-left: 1pt solid rgba(255, 255, 255, 1.00);border-right: 1pt solid rgba(255, 255, 255, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-7ee1d04c{width:108pt;background-color:rgba(129, 161, 193, 1.00);vertical-align: middle;border-bottom: 1pt solid rgba(255, 255, 255, 1.00);border-top: 1pt solid rgba(255, 255, 255, 1.00);border-left: 1pt solid rgba(255, 255, 255, 1.00);border-right: 1pt solid rgba(255, 255, 255, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-7ee1d056{width:108pt;background-color:transparent;vertical-align: middle;border-bottom: 1pt solid rgba(255, 255, 255, 1.00);border-top: 1pt solid rgba(255, 255, 255, 1.00);border-left: 1pt solid rgba(255, 255, 255, 1.00);border-right: 1pt solid rgba(255, 255, 255, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-7ee1d057{width:108pt;background-color:rgba(129, 161, 193, 1.00);vertical-align: middle;border-bottom: 1pt solid rgba(255, 255, 255, 1.00);border-top: 1pt solid rgba(255, 255, 255, 1.00);border-left: 1pt solid rgba(255, 255, 255, 1.00);border-right: 1pt solid rgba(255, 255, 255, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}</style>
+<table class="table cl-7ee7b08e">
 <thead><tr style="overflow-wrap:break-word;">
-<td class="cl-11995570"><p class="cl-11990192"><span class="cl-1198e5d6">category</span></p></td>
-<td class="cl-11995584"><p class="cl-119901b0"><span class="cl-1198e5d6">N</span></p></td>
-<td class="cl-11995584"><p class="cl-119901b0"><span class="cl-1198e5d6">%</span></p></td>
+<td class="cl-7ee1d04c"><p class="cl-7ee18e7a"><span class="cl-7ee1766a">category</span></p></td>
+<td class="cl-7ee1d057"><p class="cl-7ee18e84"><span class="cl-7ee1766a">N</span></p></td>
+<td class="cl-7ee1d057"><p class="cl-7ee18e84"><span class="cl-7ee1766a">%</span></p></td>
 </tr></thead>
 <tbody>
 <tr style="overflow-wrap:break-word;">
-<td class="cl-11995570"><p class="cl-11990192"><span class="cl-1198e5d6">Chemistry</span></p></td>
-<td class="cl-11995552"><p class="cl-119901b0"><span class="cl-1198e608">184</span></p></td>
-<td class="cl-11995552"><p class="cl-119901b0"><span class="cl-1198e608">19.4%</span></p></td>
+<td class="cl-7ee1d04c"><p class="cl-7ee18e7a"><span class="cl-7ee1766a">Chemistry</span></p></td>
+<td class="cl-7ee1d042"><p class="cl-7ee18e84"><span class="cl-7ee17674">184</span></p></td>
+<td class="cl-7ee1d042"><p class="cl-7ee18e84"><span class="cl-7ee17674">19.4%</span></p></td>
 </tr>
 <tr style="overflow-wrap:break-word;">
-<td class="cl-11995570"><p class="cl-11990192"><span class="cl-1198e5d6">Economic Sciences</span></p></td>
-<td class="cl-1199557a"><p class="cl-119901b0"><span class="cl-1198e608">84</span></p></td>
-<td class="cl-1199557a"><p class="cl-119901b0"><span class="cl-1198e608">8.8%</span></p></td>
+<td class="cl-7ee1d04c"><p class="cl-7ee18e7a"><span class="cl-7ee1766a">Economic Sciences</span></p></td>
+<td class="cl-7ee1d056"><p class="cl-7ee18e84"><span class="cl-7ee17674">84</span></p></td>
+<td class="cl-7ee1d056"><p class="cl-7ee18e84"><span class="cl-7ee17674">8.8%</span></p></td>
 </tr>
 <tr style="overflow-wrap:break-word;">
-<td class="cl-11995570"><p class="cl-11990192"><span class="cl-1198e5d6">Literature</span></p></td>
-<td class="cl-11995552"><p class="cl-119901b0"><span class="cl-1198e608">116</span></p></td>
-<td class="cl-11995552"><p class="cl-119901b0"><span class="cl-1198e608">12.2%</span></p></td>
+<td class="cl-7ee1d04c"><p class="cl-7ee18e7a"><span class="cl-7ee1766a">Literature</span></p></td>
+<td class="cl-7ee1d042"><p class="cl-7ee18e84"><span class="cl-7ee17674">116</span></p></td>
+<td class="cl-7ee1d042"><p class="cl-7ee18e84"><span class="cl-7ee17674">12.2%</span></p></td>
 </tr>
 <tr style="overflow-wrap:break-word;">
-<td class="cl-11995570"><p class="cl-11990192"><span class="cl-1198e5d6">Peace</span></p></td>
-<td class="cl-1199557a"><p class="cl-119901b0"><span class="cl-1198e608">134</span></p></td>
-<td class="cl-1199557a"><p class="cl-119901b0"><span class="cl-1198e608">14.1%</span></p></td>
+<td class="cl-7ee1d04c"><p class="cl-7ee18e7a"><span class="cl-7ee1766a">Peace</span></p></td>
+<td class="cl-7ee1d056"><p class="cl-7ee18e84"><span class="cl-7ee17674">134</span></p></td>
+<td class="cl-7ee1d056"><p class="cl-7ee18e84"><span class="cl-7ee17674">14.1%</span></p></td>
 </tr>
 <tr style="overflow-wrap:break-word;">
-<td class="cl-11995570"><p class="cl-11990192"><span class="cl-1198e5d6">Physics</span></p></td>
-<td class="cl-11995552"><p class="cl-119901b0"><span class="cl-1198e608">213</span></p></td>
-<td class="cl-11995552"><p class="cl-119901b0"><span class="cl-1198e608">22.4%</span></p></td>
+<td class="cl-7ee1d04c"><p class="cl-7ee18e7a"><span class="cl-7ee1766a">Physics</span></p></td>
+<td class="cl-7ee1d042"><p class="cl-7ee18e84"><span class="cl-7ee17674">213</span></p></td>
+<td class="cl-7ee1d042"><p class="cl-7ee18e84"><span class="cl-7ee17674">22.4%</span></p></td>
 </tr>
 <tr style="overflow-wrap:break-word;">
-<td class="cl-11995570"><p class="cl-11990192"><span class="cl-1198e5d6">Physiology or Medicine</span></p></td>
-<td class="cl-1199557a"><p class="cl-119901b0"><span class="cl-1198e608">219</span></p></td>
-<td class="cl-1199557a"><p class="cl-119901b0"><span class="cl-1198e608">23%</span></p></td>
+<td class="cl-7ee1d04c"><p class="cl-7ee18e7a"><span class="cl-7ee1766a">Physiology or Medicine</span></p></td>
+<td class="cl-7ee1d056"><p class="cl-7ee18e84"><span class="cl-7ee17674">219</span></p></td>
+<td class="cl-7ee1d056"><p class="cl-7ee18e84"><span class="cl-7ee17674">23%</span></p></td>
 </tr>
 <tr style="overflow-wrap:break-word;">
-<td class="cl-11995570"><p class="cl-11990192"><span class="cl-1198e5d6">Total</span></p></td>
-<td class="cl-11995552"><p class="cl-119901b0"><span class="cl-1198e608">950</span></p></td>
-<td class="cl-11995552"><p class="cl-119901b0"><span class="cl-1198e608">100%</span></p></td>
+<td class="cl-7ee1d04c"><p class="cl-7ee18e7a"><span class="cl-7ee1766a">Total</span></p></td>
+<td class="cl-7ee1d042"><p class="cl-7ee18e84"><span class="cl-7ee17674">950</span></p></td>
+<td class="cl-7ee1d042"><p class="cl-7ee18e84"><span class="cl-7ee17674">100%</span></p></td>
 </tr>
 </tbody>
 </table>
-</div></template><div class="flextable-shadow-host" id="72e7b720-c9de-4754-bdf6-0f7d1b28a578"></div>
+</div></template><div class="flextable-shadow-host" id="0d308a6a-286a-4ef9-bf7f-032316bd736a"></div>
 <script>
-var dest = document.getElementById("72e7b720-c9de-4754-bdf6-0f7d1b28a578");
-var template = document.getElementById("edc97b84-aefd-4fdc-9d09-18e4eb43fd72");
+var dest = document.getElementById("0d308a6a-286a-4ef9-bf7f-032316bd736a");
+var template = document.getElementById("74e5ac64-553d-4421-be86-2bd2aa9a33ef");
 var caption = template.content.querySelector("caption");
 if(caption) {
   caption.style.cssText = "display:block;text-align:center;";
@@ -183,11 +174,12 @@ var templateContent = template.content;
 fantome.appendChild(templateContent);
 </script><p>Add a second variable as row or col :</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">nobel_laureates</span> <span class="op">%&gt;%</span>
-  <span class="fu"><a href="../reference/pivot_table.html">pivot_table</a></span><span class="op">(</span><span class="st">"category"</span>, <span class="st">"gender"</span><span class="op">)</span> <span class="op">%&gt;%</span>
+<code class="sourceCode R"><span class="va">nobel_laureates</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
+  <span class="fu"><a href="../reference/pivot_table.html">pivot_table</a></span><span class="op">(</span><span class="st">"category"</span>, <span class="st">"gender"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
   <span class="fu"><a href="../reference/pivot_format.html">pivot_format</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
-<template id="c194b55d-8424-4030-ac58-edf79ef9c21a"><style>
+<template id="808c9d43-4c5e-4556-a057-f4eede48601c"><style>
 .tabwid table{
+  border-spacing:0px !important;
   border-collapse:collapse;
   line-height:1;
   margin-left:auto;
@@ -196,7 +188,6 @@ fantome.appendChild(templateContent);
   display: table;
   margin-top: 1.275em;
   margin-bottom: 1.275em;
-  border-spacing: 0;
   border-color: transparent;
 }
 .tabwid_left table{
@@ -222,233 +213,233 @@ background-color: transparent;
 }
 </style>
 <div class="tabwid">
-<style>.cl-11e1fd52{border-collapse:collapse;}.cl-11d73480{font-family:'Helvetica';font-size:11pt;font-weight:bold;font-style:normal;text-decoration:none;color:rgba(255, 255, 255, 1.00);background-color:transparent;}.cl-11d734a8{font-family:'Helvetica';font-size:11pt;font-weight:normal;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}.cl-11d748f8{margin:0;text-align:center;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:10pt;padding-top:10pt;padding-left:10pt;padding-right:10pt;line-height: 1;background-color:transparent;}.cl-11d7490c{margin:0;text-align:left;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:10pt;padding-top:10pt;padding-left:10pt;padding-right:10pt;line-height: 1;background-color:transparent;}.cl-11d74916{margin:0;text-align:right;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:10pt;padding-top:10pt;padding-left:10pt;padding-right:10pt;line-height: 1;background-color:transparent;}.cl-11d7d2dc{width:108pt;background-clip: padding-box;background-color:rgba(236, 239, 244, 1.00);vertical-align: middle;border-bottom: 1pt solid rgba(255, 255, 255, 1.00);border-top: 1pt solid rgba(255, 255, 255, 1.00);border-left: 1pt solid rgba(255, 255, 255, 1.00);border-right: 1pt solid rgba(255, 255, 255, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-11d7d2fa{width:108pt;background-clip: padding-box;background-color:rgba(129, 161, 193, 1.00);vertical-align: middle;border-bottom: 1pt solid rgba(255, 255, 255, 1.00);border-top: 1pt solid rgba(255, 255, 255, 1.00);border-left: 1pt solid rgba(255, 255, 255, 1.00);border-right: 1pt solid rgba(255, 255, 255, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-11d7d304{width:108pt;background-clip: padding-box;background-color:rgba(236, 239, 244, 1.00);vertical-align: middle;border-bottom: 1pt solid rgba(255, 255, 255, 1.00);border-top: 1pt solid rgba(255, 255, 255, 1.00);border-left: 1pt solid rgba(255, 255, 255, 1.00);border-right: 1pt solid rgba(255, 255, 255, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-11d7d30e{width:108pt;background-color:transparent;vertical-align: middle;border-bottom: 1pt solid rgba(255, 255, 255, 1.00);border-top: 1pt solid rgba(255, 255, 255, 1.00);border-left: 1pt solid rgba(255, 255, 255, 1.00);border-right: 1pt solid rgba(255, 255, 255, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-11d7d318{width:108pt;background-color:transparent;vertical-align: middle;border-bottom: 1pt solid rgba(255, 255, 255, 1.00);border-top: 1pt solid rgba(255, 255, 255, 1.00);border-left: 1pt solid rgba(255, 255, 255, 1.00);border-right: 1pt solid rgba(255, 255, 255, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-11d7d322{width:108pt;background-clip: padding-box;background-color:rgba(129, 161, 193, 1.00);vertical-align: middle;border-bottom: 1pt solid rgba(255, 255, 255, 1.00);border-top: 1pt solid rgba(255, 255, 255, 1.00);border-left: 1pt solid rgba(255, 255, 255, 1.00);border-right: 1pt solid rgba(255, 255, 255, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-11d7d32c{width:108pt;background-color:transparent;vertical-align: middle;border-bottom: 1pt solid rgba(255, 255, 255, 1.00);border-top: 1pt solid rgba(255, 255, 255, 1.00);border-left: 1pt solid rgba(255, 255, 255, 1.00);border-right: 1pt solid rgba(255, 255, 255, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-11d7d336{width:108pt;background-clip: padding-box;background-color:rgba(129, 161, 193, 1.00);vertical-align: middle;border-bottom: 1pt solid rgba(255, 255, 255, 1.00);border-top: 1pt solid rgba(255, 255, 255, 1.00);border-left: 1pt solid rgba(255, 255, 255, 1.00);border-right: 1pt solid rgba(255, 255, 255, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-11d7d340{width:108pt;background-clip: padding-box;background-color:rgba(129, 161, 193, 1.00);vertical-align: middle;border-bottom: 1pt solid rgba(255, 255, 255, 1.00);border-top: 1pt solid rgba(255, 255, 255, 1.00);border-left: 1pt solid rgba(255, 255, 255, 1.00);border-right: 1pt solid rgba(255, 255, 255, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}</style>
-<table class="table cl-11e1fd52">
+<style>.cl-7f18f252{}.cl-7f11a1a0{font-family:'DejaVu Sans';font-size:11pt;font-weight:bold;font-style:normal;text-decoration:none;color:rgba(255, 255, 255, 1.00);background-color:transparent;}.cl-7f11a1aa{font-family:'DejaVu Sans';font-size:11pt;font-weight:normal;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}.cl-7f11b398{margin:0;text-align:center;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:10pt;padding-top:10pt;padding-left:10pt;padding-right:10pt;line-height: 1;background-color:transparent;}.cl-7f11b3a2{margin:0;text-align:left;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:10pt;padding-top:10pt;padding-left:10pt;padding-right:10pt;line-height: 1;background-color:transparent;}.cl-7f11b3ac{margin:0;text-align:right;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:10pt;padding-top:10pt;padding-left:10pt;padding-right:10pt;line-height: 1;background-color:transparent;}.cl-7f12323c{width:108pt;background-color:rgba(236, 239, 244, 1.00);vertical-align: middle;border-bottom: 1pt solid rgba(255, 255, 255, 1.00);border-top: 1pt solid rgba(255, 255, 255, 1.00);border-left: 1pt solid rgba(255, 255, 255, 1.00);border-right: 1pt solid rgba(255, 255, 255, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-7f123246{width:108pt;background-color:rgba(129, 161, 193, 1.00);vertical-align: middle;border-bottom: 1pt solid rgba(255, 255, 255, 1.00);border-top: 1pt solid rgba(255, 255, 255, 1.00);border-left: 1pt solid rgba(255, 255, 255, 1.00);border-right: 1pt solid rgba(255, 255, 255, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-7f123250{width:108pt;background-color:rgba(236, 239, 244, 1.00);vertical-align: middle;border-bottom: 1pt solid rgba(255, 255, 255, 1.00);border-top: 1pt solid rgba(255, 255, 255, 1.00);border-left: 1pt solid rgba(255, 255, 255, 1.00);border-right: 1pt solid rgba(255, 255, 255, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-7f123251{width:108pt;background-color:transparent;vertical-align: middle;border-bottom: 1pt solid rgba(255, 255, 255, 1.00);border-top: 1pt solid rgba(255, 255, 255, 1.00);border-left: 1pt solid rgba(255, 255, 255, 1.00);border-right: 1pt solid rgba(255, 255, 255, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-7f12325a{width:108pt;background-color:transparent;vertical-align: middle;border-bottom: 1pt solid rgba(255, 255, 255, 1.00);border-top: 1pt solid rgba(255, 255, 255, 1.00);border-left: 1pt solid rgba(255, 255, 255, 1.00);border-right: 1pt solid rgba(255, 255, 255, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-7f12325b{width:108pt;background-color:rgba(129, 161, 193, 1.00);vertical-align: middle;border-bottom: 1pt solid rgba(255, 255, 255, 1.00);border-top: 1pt solid rgba(255, 255, 255, 1.00);border-left: 1pt solid rgba(255, 255, 255, 1.00);border-right: 1pt solid rgba(255, 255, 255, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-7f12325c{width:108pt;background-color:transparent;vertical-align: middle;border-bottom: 1pt solid rgba(255, 255, 255, 1.00);border-top: 1pt solid rgba(255, 255, 255, 1.00);border-left: 1pt solid rgba(255, 255, 255, 1.00);border-right: 1pt solid rgba(255, 255, 255, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-7f12325d{width:108pt;background-color:rgba(129, 161, 193, 1.00);vertical-align: middle;border-bottom: 1pt solid rgba(255, 255, 255, 1.00);border-top: 1pt solid rgba(255, 255, 255, 1.00);border-left: 1pt solid rgba(255, 255, 255, 1.00);border-right: 1pt solid rgba(255, 255, 255, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-7f123264{width:108pt;background-color:rgba(129, 161, 193, 1.00);vertical-align: middle;border-bottom: 1pt solid rgba(255, 255, 255, 1.00);border-top: 1pt solid rgba(255, 255, 255, 1.00);border-left: 1pt solid rgba(255, 255, 255, 1.00);border-right: 1pt solid rgba(255, 255, 255, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}</style>
+<table class="table cl-7f18f252">
 <thead>
 <tr style="overflow-wrap:break-word;">
-<td colspan="2" class="cl-11d7d32c"><p class="cl-11d748f8"><span class="cl-11d73480"></span></p></td>
-<td colspan="3" class="cl-11d7d322"><p class="cl-11d748f8"><span class="cl-11d73480">gender</span></p></td>
-<td class="cl-11d7d32c"><p class="cl-11d748f8"><span class="cl-11d73480"></span></p></td>
+<td colspan="2" class="cl-7f12325c"><p class="cl-7f11b398"><span class="cl-7f11a1a0"></span></p></td>
+<td colspan="3" class="cl-7f12325b"><p class="cl-7f11b398"><span class="cl-7f11a1a0">gender</span></p></td>
+<td class="cl-7f12325c"><p class="cl-7f11b398"><span class="cl-7f11a1a0"></span></p></td>
 </tr>
 <tr style="overflow-wrap:break-word;">
-<td class="cl-11d7d336"><p class="cl-11d7490c"><span class="cl-11d73480">category</span></p></td>
-<td class="cl-11d7d336"><p class="cl-11d7490c"><span class="cl-11d73480">Statistic</span></p></td>
-<td class="cl-11d7d340"><p class="cl-11d74916"><span class="cl-11d73480">male</span></p></td>
-<td class="cl-11d7d340"><p class="cl-11d74916"><span class="cl-11d73480">female</span></p></td>
-<td class="cl-11d7d340"><p class="cl-11d74916"><span class="cl-11d73480">&lt;missing&gt;</span></p></td>
-<td class="cl-11d7d340"><p class="cl-11d74916"><span class="cl-11d73480">Total</span></p></td>
+<td class="cl-7f12325d"><p class="cl-7f11b3a2"><span class="cl-7f11a1a0">category</span></p></td>
+<td class="cl-7f12325d"><p class="cl-7f11b3a2"><span class="cl-7f11a1a0">Statistic</span></p></td>
+<td class="cl-7f123264"><p class="cl-7f11b3ac"><span class="cl-7f11a1a0">male</span></p></td>
+<td class="cl-7f123264"><p class="cl-7f11b3ac"><span class="cl-7f11a1a0">female</span></p></td>
+<td class="cl-7f123264"><p class="cl-7f11b3ac"><span class="cl-7f11a1a0">&lt;missing&gt;</span></p></td>
+<td class="cl-7f123264"><p class="cl-7f11b3ac"><span class="cl-7f11a1a0">Total</span></p></td>
 </tr>
 </thead>
 <tbody>
 <tr style="overflow-wrap:break-word;">
-<td rowspan="4" class="cl-11d7d2fa"><p class="cl-11d7490c"><span class="cl-11d73480">Chemistry</span></p></td>
-<td class="cl-11d7d2dc"><p class="cl-11d7490c"><span class="cl-11d734a8">N</span></p></td>
-<td class="cl-11d7d304"><p class="cl-11d74916"><span class="cl-11d734a8">179</span></p></td>
-<td class="cl-11d7d304"><p class="cl-11d74916"><span class="cl-11d734a8">5</span></p></td>
-<td class="cl-11d7d304"><p class="cl-11d74916"><span class="cl-11d734a8">0</span></p></td>
-<td class="cl-11d7d304"><p class="cl-11d74916"><span class="cl-11d734a8">184</span></p></td>
+<td rowspan="4" class="cl-7f123246"><p class="cl-7f11b3a2"><span class="cl-7f11a1a0">Chemistry</span></p></td>
+<td class="cl-7f12323c"><p class="cl-7f11b3a2"><span class="cl-7f11a1aa">N</span></p></td>
+<td class="cl-7f123250"><p class="cl-7f11b3ac"><span class="cl-7f11a1aa">179</span></p></td>
+<td class="cl-7f123250"><p class="cl-7f11b3ac"><span class="cl-7f11a1aa">5</span></p></td>
+<td class="cl-7f123250"><p class="cl-7f11b3ac"><span class="cl-7f11a1aa">0</span></p></td>
+<td class="cl-7f123250"><p class="cl-7f11b3ac"><span class="cl-7f11a1aa">184</span></p></td>
 </tr>
 <tr style="overflow-wrap:break-word;">
-<td class="cl-11d7d318"><p class="cl-11d7490c"><span class="cl-11d734a8">%</span></p></td>
-<td class="cl-11d7d30e"><p class="cl-11d74916"><span class="cl-11d734a8">18.8%</span></p></td>
-<td class="cl-11d7d30e"><p class="cl-11d74916"><span class="cl-11d734a8">0.5%</span></p></td>
-<td class="cl-11d7d30e"><p class="cl-11d74916"><span class="cl-11d734a8">0%</span></p></td>
-<td class="cl-11d7d30e"><p class="cl-11d74916"><span class="cl-11d734a8">19.4%</span></p></td>
+<td class="cl-7f12325a"><p class="cl-7f11b3a2"><span class="cl-7f11a1aa">%</span></p></td>
+<td class="cl-7f123251"><p class="cl-7f11b3ac"><span class="cl-7f11a1aa">18.8%</span></p></td>
+<td class="cl-7f123251"><p class="cl-7f11b3ac"><span class="cl-7f11a1aa">0.5%</span></p></td>
+<td class="cl-7f123251"><p class="cl-7f11b3ac"><span class="cl-7f11a1aa">0%</span></p></td>
+<td class="cl-7f123251"><p class="cl-7f11b3ac"><span class="cl-7f11a1aa">19.4%</span></p></td>
 </tr>
 <tr style="overflow-wrap:break-word;">
-<td class="cl-11d7d2dc"><p class="cl-11d7490c"><span class="cl-11d734a8">Col %</span></p></td>
-<td class="cl-11d7d304"><p class="cl-11d74916"><span class="cl-11d734a8">20.6%</span></p></td>
-<td class="cl-11d7d304"><p class="cl-11d74916"><span class="cl-11d734a8">9.3%</span></p></td>
-<td class="cl-11d7d304"><p class="cl-11d74916"><span class="cl-11d734a8">0%</span></p></td>
-<td class="cl-11d7d304"><p class="cl-11d74916"><span class="cl-11d734a8">19.4%</span></p></td>
+<td class="cl-7f12323c"><p class="cl-7f11b3a2"><span class="cl-7f11a1aa">Col %</span></p></td>
+<td class="cl-7f123250"><p class="cl-7f11b3ac"><span class="cl-7f11a1aa">20.6%</span></p></td>
+<td class="cl-7f123250"><p class="cl-7f11b3ac"><span class="cl-7f11a1aa">9.3%</span></p></td>
+<td class="cl-7f123250"><p class="cl-7f11b3ac"><span class="cl-7f11a1aa">0%</span></p></td>
+<td class="cl-7f123250"><p class="cl-7f11b3ac"><span class="cl-7f11a1aa">19.4%</span></p></td>
 </tr>
 <tr style="overflow-wrap:break-word;">
-<td class="cl-11d7d318"><p class="cl-11d7490c"><span class="cl-11d734a8">Row %</span></p></td>
-<td class="cl-11d7d30e"><p class="cl-11d74916"><span class="cl-11d734a8">97.3%</span></p></td>
-<td class="cl-11d7d30e"><p class="cl-11d74916"><span class="cl-11d734a8">2.7%</span></p></td>
-<td class="cl-11d7d30e"><p class="cl-11d74916"><span class="cl-11d734a8">0%</span></p></td>
-<td class="cl-11d7d30e"><p class="cl-11d74916"><span class="cl-11d734a8">100%</span></p></td>
+<td class="cl-7f12325a"><p class="cl-7f11b3a2"><span class="cl-7f11a1aa">Row %</span></p></td>
+<td class="cl-7f123251"><p class="cl-7f11b3ac"><span class="cl-7f11a1aa">97.3%</span></p></td>
+<td class="cl-7f123251"><p class="cl-7f11b3ac"><span class="cl-7f11a1aa">2.7%</span></p></td>
+<td class="cl-7f123251"><p class="cl-7f11b3ac"><span class="cl-7f11a1aa">0%</span></p></td>
+<td class="cl-7f123251"><p class="cl-7f11b3ac"><span class="cl-7f11a1aa">100%</span></p></td>
 </tr>
 <tr style="overflow-wrap:break-word;">
-<td rowspan="4" class="cl-11d7d2fa"><p class="cl-11d7490c"><span class="cl-11d73480">Economic Sciences</span></p></td>
-<td class="cl-11d7d2dc"><p class="cl-11d7490c"><span class="cl-11d734a8">N</span></p></td>
-<td class="cl-11d7d304"><p class="cl-11d74916"><span class="cl-11d734a8">82</span></p></td>
-<td class="cl-11d7d304"><p class="cl-11d74916"><span class="cl-11d734a8">2</span></p></td>
-<td class="cl-11d7d304"><p class="cl-11d74916"><span class="cl-11d734a8">0</span></p></td>
-<td class="cl-11d7d304"><p class="cl-11d74916"><span class="cl-11d734a8">84</span></p></td>
+<td rowspan="4" class="cl-7f123246"><p class="cl-7f11b3a2"><span class="cl-7f11a1a0">Economic Sciences</span></p></td>
+<td class="cl-7f12323c"><p class="cl-7f11b3a2"><span class="cl-7f11a1aa">N</span></p></td>
+<td class="cl-7f123250"><p class="cl-7f11b3ac"><span class="cl-7f11a1aa">82</span></p></td>
+<td class="cl-7f123250"><p class="cl-7f11b3ac"><span class="cl-7f11a1aa">2</span></p></td>
+<td class="cl-7f123250"><p class="cl-7f11b3ac"><span class="cl-7f11a1aa">0</span></p></td>
+<td class="cl-7f123250"><p class="cl-7f11b3ac"><span class="cl-7f11a1aa">84</span></p></td>
 </tr>
 <tr style="overflow-wrap:break-word;">
-<td class="cl-11d7d318"><p class="cl-11d7490c"><span class="cl-11d734a8">%</span></p></td>
-<td class="cl-11d7d30e"><p class="cl-11d74916"><span class="cl-11d734a8">8.6%</span></p></td>
-<td class="cl-11d7d30e"><p class="cl-11d74916"><span class="cl-11d734a8">0.2%</span></p></td>
-<td class="cl-11d7d30e"><p class="cl-11d74916"><span class="cl-11d734a8">0%</span></p></td>
-<td class="cl-11d7d30e"><p class="cl-11d74916"><span class="cl-11d734a8">8.8%</span></p></td>
+<td class="cl-7f12325a"><p class="cl-7f11b3a2"><span class="cl-7f11a1aa">%</span></p></td>
+<td class="cl-7f123251"><p class="cl-7f11b3ac"><span class="cl-7f11a1aa">8.6%</span></p></td>
+<td class="cl-7f123251"><p class="cl-7f11b3ac"><span class="cl-7f11a1aa">0.2%</span></p></td>
+<td class="cl-7f123251"><p class="cl-7f11b3ac"><span class="cl-7f11a1aa">0%</span></p></td>
+<td class="cl-7f123251"><p class="cl-7f11b3ac"><span class="cl-7f11a1aa">8.8%</span></p></td>
 </tr>
 <tr style="overflow-wrap:break-word;">
-<td class="cl-11d7d2dc"><p class="cl-11d7490c"><span class="cl-11d734a8">Col %</span></p></td>
-<td class="cl-11d7d304"><p class="cl-11d74916"><span class="cl-11d734a8">9.4%</span></p></td>
-<td class="cl-11d7d304"><p class="cl-11d74916"><span class="cl-11d734a8">3.7%</span></p></td>
-<td class="cl-11d7d304"><p class="cl-11d74916"><span class="cl-11d734a8">0%</span></p></td>
-<td class="cl-11d7d304"><p class="cl-11d74916"><span class="cl-11d734a8">8.8%</span></p></td>
+<td class="cl-7f12323c"><p class="cl-7f11b3a2"><span class="cl-7f11a1aa">Col %</span></p></td>
+<td class="cl-7f123250"><p class="cl-7f11b3ac"><span class="cl-7f11a1aa">9.4%</span></p></td>
+<td class="cl-7f123250"><p class="cl-7f11b3ac"><span class="cl-7f11a1aa">3.7%</span></p></td>
+<td class="cl-7f123250"><p class="cl-7f11b3ac"><span class="cl-7f11a1aa">0%</span></p></td>
+<td class="cl-7f123250"><p class="cl-7f11b3ac"><span class="cl-7f11a1aa">8.8%</span></p></td>
 </tr>
 <tr style="overflow-wrap:break-word;">
-<td class="cl-11d7d318"><p class="cl-11d7490c"><span class="cl-11d734a8">Row %</span></p></td>
-<td class="cl-11d7d30e"><p class="cl-11d74916"><span class="cl-11d734a8">97.6%</span></p></td>
-<td class="cl-11d7d30e"><p class="cl-11d74916"><span class="cl-11d734a8">2.4%</span></p></td>
-<td class="cl-11d7d30e"><p class="cl-11d74916"><span class="cl-11d734a8">0%</span></p></td>
-<td class="cl-11d7d30e"><p class="cl-11d74916"><span class="cl-11d734a8">100%</span></p></td>
+<td class="cl-7f12325a"><p class="cl-7f11b3a2"><span class="cl-7f11a1aa">Row %</span></p></td>
+<td class="cl-7f123251"><p class="cl-7f11b3ac"><span class="cl-7f11a1aa">97.6%</span></p></td>
+<td class="cl-7f123251"><p class="cl-7f11b3ac"><span class="cl-7f11a1aa">2.4%</span></p></td>
+<td class="cl-7f123251"><p class="cl-7f11b3ac"><span class="cl-7f11a1aa">0%</span></p></td>
+<td class="cl-7f123251"><p class="cl-7f11b3ac"><span class="cl-7f11a1aa">100%</span></p></td>
 </tr>
 <tr style="overflow-wrap:break-word;">
-<td rowspan="4" class="cl-11d7d2fa"><p class="cl-11d7490c"><span class="cl-11d73480">Literature</span></p></td>
-<td class="cl-11d7d2dc"><p class="cl-11d7490c"><span class="cl-11d734a8">N</span></p></td>
-<td class="cl-11d7d304"><p class="cl-11d74916"><span class="cl-11d734a8">101</span></p></td>
-<td class="cl-11d7d304"><p class="cl-11d74916"><span class="cl-11d734a8">15</span></p></td>
-<td class="cl-11d7d304"><p class="cl-11d74916"><span class="cl-11d734a8">0</span></p></td>
-<td class="cl-11d7d304"><p class="cl-11d74916"><span class="cl-11d734a8">116</span></p></td>
+<td rowspan="4" class="cl-7f123246"><p class="cl-7f11b3a2"><span class="cl-7f11a1a0">Literature</span></p></td>
+<td class="cl-7f12323c"><p class="cl-7f11b3a2"><span class="cl-7f11a1aa">N</span></p></td>
+<td class="cl-7f123250"><p class="cl-7f11b3ac"><span class="cl-7f11a1aa">101</span></p></td>
+<td class="cl-7f123250"><p class="cl-7f11b3ac"><span class="cl-7f11a1aa">15</span></p></td>
+<td class="cl-7f123250"><p class="cl-7f11b3ac"><span class="cl-7f11a1aa">0</span></p></td>
+<td class="cl-7f123250"><p class="cl-7f11b3ac"><span class="cl-7f11a1aa">116</span></p></td>
 </tr>
 <tr style="overflow-wrap:break-word;">
-<td class="cl-11d7d318"><p class="cl-11d7490c"><span class="cl-11d734a8">%</span></p></td>
-<td class="cl-11d7d30e"><p class="cl-11d74916"><span class="cl-11d734a8">10.6%</span></p></td>
-<td class="cl-11d7d30e"><p class="cl-11d74916"><span class="cl-11d734a8">1.6%</span></p></td>
-<td class="cl-11d7d30e"><p class="cl-11d74916"><span class="cl-11d734a8">0%</span></p></td>
-<td class="cl-11d7d30e"><p class="cl-11d74916"><span class="cl-11d734a8">12.2%</span></p></td>
+<td class="cl-7f12325a"><p class="cl-7f11b3a2"><span class="cl-7f11a1aa">%</span></p></td>
+<td class="cl-7f123251"><p class="cl-7f11b3ac"><span class="cl-7f11a1aa">10.6%</span></p></td>
+<td class="cl-7f123251"><p class="cl-7f11b3ac"><span class="cl-7f11a1aa">1.6%</span></p></td>
+<td class="cl-7f123251"><p class="cl-7f11b3ac"><span class="cl-7f11a1aa">0%</span></p></td>
+<td class="cl-7f123251"><p class="cl-7f11b3ac"><span class="cl-7f11a1aa">12.2%</span></p></td>
 </tr>
 <tr style="overflow-wrap:break-word;">
-<td class="cl-11d7d2dc"><p class="cl-11d7490c"><span class="cl-11d734a8">Col %</span></p></td>
-<td class="cl-11d7d304"><p class="cl-11d74916"><span class="cl-11d734a8">11.6%</span></p></td>
-<td class="cl-11d7d304"><p class="cl-11d74916"><span class="cl-11d734a8">27.8%</span></p></td>
-<td class="cl-11d7d304"><p class="cl-11d74916"><span class="cl-11d734a8">0%</span></p></td>
-<td class="cl-11d7d304"><p class="cl-11d74916"><span class="cl-11d734a8">12.2%</span></p></td>
+<td class="cl-7f12323c"><p class="cl-7f11b3a2"><span class="cl-7f11a1aa">Col %</span></p></td>
+<td class="cl-7f123250"><p class="cl-7f11b3ac"><span class="cl-7f11a1aa">11.6%</span></p></td>
+<td class="cl-7f123250"><p class="cl-7f11b3ac"><span class="cl-7f11a1aa">27.8%</span></p></td>
+<td class="cl-7f123250"><p class="cl-7f11b3ac"><span class="cl-7f11a1aa">0%</span></p></td>
+<td class="cl-7f123250"><p class="cl-7f11b3ac"><span class="cl-7f11a1aa">12.2%</span></p></td>
 </tr>
 <tr style="overflow-wrap:break-word;">
-<td class="cl-11d7d318"><p class="cl-11d7490c"><span class="cl-11d734a8">Row %</span></p></td>
-<td class="cl-11d7d30e"><p class="cl-11d74916"><span class="cl-11d734a8">87.1%</span></p></td>
-<td class="cl-11d7d30e"><p class="cl-11d74916"><span class="cl-11d734a8">12.9%</span></p></td>
-<td class="cl-11d7d30e"><p class="cl-11d74916"><span class="cl-11d734a8">0%</span></p></td>
-<td class="cl-11d7d30e"><p class="cl-11d74916"><span class="cl-11d734a8">100%</span></p></td>
+<td class="cl-7f12325a"><p class="cl-7f11b3a2"><span class="cl-7f11a1aa">Row %</span></p></td>
+<td class="cl-7f123251"><p class="cl-7f11b3ac"><span class="cl-7f11a1aa">87.1%</span></p></td>
+<td class="cl-7f123251"><p class="cl-7f11b3ac"><span class="cl-7f11a1aa">12.9%</span></p></td>
+<td class="cl-7f123251"><p class="cl-7f11b3ac"><span class="cl-7f11a1aa">0%</span></p></td>
+<td class="cl-7f123251"><p class="cl-7f11b3ac"><span class="cl-7f11a1aa">100%</span></p></td>
 </tr>
 <tr style="overflow-wrap:break-word;">
-<td rowspan="4" class="cl-11d7d2fa"><p class="cl-11d7490c"><span class="cl-11d73480">Peace</span></p></td>
-<td class="cl-11d7d2dc"><p class="cl-11d7490c"><span class="cl-11d734a8">N</span></p></td>
-<td class="cl-11d7d304"><p class="cl-11d74916"><span class="cl-11d734a8">90</span></p></td>
-<td class="cl-11d7d304"><p class="cl-11d74916"><span class="cl-11d734a8">17</span></p></td>
-<td class="cl-11d7d304"><p class="cl-11d74916"><span class="cl-11d734a8">27</span></p></td>
-<td class="cl-11d7d304"><p class="cl-11d74916"><span class="cl-11d734a8">134</span></p></td>
+<td rowspan="4" class="cl-7f123246"><p class="cl-7f11b3a2"><span class="cl-7f11a1a0">Peace</span></p></td>
+<td class="cl-7f12323c"><p class="cl-7f11b3a2"><span class="cl-7f11a1aa">N</span></p></td>
+<td class="cl-7f123250"><p class="cl-7f11b3ac"><span class="cl-7f11a1aa">90</span></p></td>
+<td class="cl-7f123250"><p class="cl-7f11b3ac"><span class="cl-7f11a1aa">17</span></p></td>
+<td class="cl-7f123250"><p class="cl-7f11b3ac"><span class="cl-7f11a1aa">27</span></p></td>
+<td class="cl-7f123250"><p class="cl-7f11b3ac"><span class="cl-7f11a1aa">134</span></p></td>
 </tr>
 <tr style="overflow-wrap:break-word;">
-<td class="cl-11d7d318"><p class="cl-11d7490c"><span class="cl-11d734a8">%</span></p></td>
-<td class="cl-11d7d30e"><p class="cl-11d74916"><span class="cl-11d734a8">9.5%</span></p></td>
-<td class="cl-11d7d30e"><p class="cl-11d74916"><span class="cl-11d734a8">1.8%</span></p></td>
-<td class="cl-11d7d30e"><p class="cl-11d74916"><span class="cl-11d734a8">2.8%</span></p></td>
-<td class="cl-11d7d30e"><p class="cl-11d74916"><span class="cl-11d734a8">14.1%</span></p></td>
+<td class="cl-7f12325a"><p class="cl-7f11b3a2"><span class="cl-7f11a1aa">%</span></p></td>
+<td class="cl-7f123251"><p class="cl-7f11b3ac"><span class="cl-7f11a1aa">9.5%</span></p></td>
+<td class="cl-7f123251"><p class="cl-7f11b3ac"><span class="cl-7f11a1aa">1.8%</span></p></td>
+<td class="cl-7f123251"><p class="cl-7f11b3ac"><span class="cl-7f11a1aa">2.8%</span></p></td>
+<td class="cl-7f123251"><p class="cl-7f11b3ac"><span class="cl-7f11a1aa">14.1%</span></p></td>
 </tr>
 <tr style="overflow-wrap:break-word;">
-<td class="cl-11d7d2dc"><p class="cl-11d7490c"><span class="cl-11d734a8">Col %</span></p></td>
-<td class="cl-11d7d304"><p class="cl-11d74916"><span class="cl-11d734a8">10.4%</span></p></td>
-<td class="cl-11d7d304"><p class="cl-11d74916"><span class="cl-11d734a8">31.5%</span></p></td>
-<td class="cl-11d7d304"><p class="cl-11d74916"><span class="cl-11d734a8">100%</span></p></td>
-<td class="cl-11d7d304"><p class="cl-11d74916"><span class="cl-11d734a8">14.1%</span></p></td>
+<td class="cl-7f12323c"><p class="cl-7f11b3a2"><span class="cl-7f11a1aa">Col %</span></p></td>
+<td class="cl-7f123250"><p class="cl-7f11b3ac"><span class="cl-7f11a1aa">10.4%</span></p></td>
+<td class="cl-7f123250"><p class="cl-7f11b3ac"><span class="cl-7f11a1aa">31.5%</span></p></td>
+<td class="cl-7f123250"><p class="cl-7f11b3ac"><span class="cl-7f11a1aa">100%</span></p></td>
+<td class="cl-7f123250"><p class="cl-7f11b3ac"><span class="cl-7f11a1aa">14.1%</span></p></td>
 </tr>
 <tr style="overflow-wrap:break-word;">
-<td class="cl-11d7d318"><p class="cl-11d7490c"><span class="cl-11d734a8">Row %</span></p></td>
-<td class="cl-11d7d30e"><p class="cl-11d74916"><span class="cl-11d734a8">67.2%</span></p></td>
-<td class="cl-11d7d30e"><p class="cl-11d74916"><span class="cl-11d734a8">12.7%</span></p></td>
-<td class="cl-11d7d30e"><p class="cl-11d74916"><span class="cl-11d734a8">20.1%</span></p></td>
-<td class="cl-11d7d30e"><p class="cl-11d74916"><span class="cl-11d734a8">100%</span></p></td>
+<td class="cl-7f12325a"><p class="cl-7f11b3a2"><span class="cl-7f11a1aa">Row %</span></p></td>
+<td class="cl-7f123251"><p class="cl-7f11b3ac"><span class="cl-7f11a1aa">67.2%</span></p></td>
+<td class="cl-7f123251"><p class="cl-7f11b3ac"><span class="cl-7f11a1aa">12.7%</span></p></td>
+<td class="cl-7f123251"><p class="cl-7f11b3ac"><span class="cl-7f11a1aa">20.1%</span></p></td>
+<td class="cl-7f123251"><p class="cl-7f11b3ac"><span class="cl-7f11a1aa">100%</span></p></td>
 </tr>
 <tr style="overflow-wrap:break-word;">
-<td rowspan="4" class="cl-11d7d2fa"><p class="cl-11d7490c"><span class="cl-11d73480">Physics</span></p></td>
-<td class="cl-11d7d2dc"><p class="cl-11d7490c"><span class="cl-11d734a8">N</span></p></td>
-<td class="cl-11d7d304"><p class="cl-11d74916"><span class="cl-11d734a8">210</span></p></td>
-<td class="cl-11d7d304"><p class="cl-11d74916"><span class="cl-11d734a8">3</span></p></td>
-<td class="cl-11d7d304"><p class="cl-11d74916"><span class="cl-11d734a8">0</span></p></td>
-<td class="cl-11d7d304"><p class="cl-11d74916"><span class="cl-11d734a8">213</span></p></td>
+<td rowspan="4" class="cl-7f123246"><p class="cl-7f11b3a2"><span class="cl-7f11a1a0">Physics</span></p></td>
+<td class="cl-7f12323c"><p class="cl-7f11b3a2"><span class="cl-7f11a1aa">N</span></p></td>
+<td class="cl-7f123250"><p class="cl-7f11b3ac"><span class="cl-7f11a1aa">210</span></p></td>
+<td class="cl-7f123250"><p class="cl-7f11b3ac"><span class="cl-7f11a1aa">3</span></p></td>
+<td class="cl-7f123250"><p class="cl-7f11b3ac"><span class="cl-7f11a1aa">0</span></p></td>
+<td class="cl-7f123250"><p class="cl-7f11b3ac"><span class="cl-7f11a1aa">213</span></p></td>
 </tr>
 <tr style="overflow-wrap:break-word;">
-<td class="cl-11d7d318"><p class="cl-11d7490c"><span class="cl-11d734a8">%</span></p></td>
-<td class="cl-11d7d30e"><p class="cl-11d74916"><span class="cl-11d734a8">22.1%</span></p></td>
-<td class="cl-11d7d30e"><p class="cl-11d74916"><span class="cl-11d734a8">0.3%</span></p></td>
-<td class="cl-11d7d30e"><p class="cl-11d74916"><span class="cl-11d734a8">0%</span></p></td>
-<td class="cl-11d7d30e"><p class="cl-11d74916"><span class="cl-11d734a8">22.4%</span></p></td>
+<td class="cl-7f12325a"><p class="cl-7f11b3a2"><span class="cl-7f11a1aa">%</span></p></td>
+<td class="cl-7f123251"><p class="cl-7f11b3ac"><span class="cl-7f11a1aa">22.1%</span></p></td>
+<td class="cl-7f123251"><p class="cl-7f11b3ac"><span class="cl-7f11a1aa">0.3%</span></p></td>
+<td class="cl-7f123251"><p class="cl-7f11b3ac"><span class="cl-7f11a1aa">0%</span></p></td>
+<td class="cl-7f123251"><p class="cl-7f11b3ac"><span class="cl-7f11a1aa">22.4%</span></p></td>
 </tr>
 <tr style="overflow-wrap:break-word;">
-<td class="cl-11d7d2dc"><p class="cl-11d7490c"><span class="cl-11d734a8">Col %</span></p></td>
-<td class="cl-11d7d304"><p class="cl-11d74916"><span class="cl-11d734a8">24.2%</span></p></td>
-<td class="cl-11d7d304"><p class="cl-11d74916"><span class="cl-11d734a8">5.6%</span></p></td>
-<td class="cl-11d7d304"><p class="cl-11d74916"><span class="cl-11d734a8">0%</span></p></td>
-<td class="cl-11d7d304"><p class="cl-11d74916"><span class="cl-11d734a8">22.4%</span></p></td>
+<td class="cl-7f12323c"><p class="cl-7f11b3a2"><span class="cl-7f11a1aa">Col %</span></p></td>
+<td class="cl-7f123250"><p class="cl-7f11b3ac"><span class="cl-7f11a1aa">24.2%</span></p></td>
+<td class="cl-7f123250"><p class="cl-7f11b3ac"><span class="cl-7f11a1aa">5.6%</span></p></td>
+<td class="cl-7f123250"><p class="cl-7f11b3ac"><span class="cl-7f11a1aa">0%</span></p></td>
+<td class="cl-7f123250"><p class="cl-7f11b3ac"><span class="cl-7f11a1aa">22.4%</span></p></td>
 </tr>
 <tr style="overflow-wrap:break-word;">
-<td class="cl-11d7d318"><p class="cl-11d7490c"><span class="cl-11d734a8">Row %</span></p></td>
-<td class="cl-11d7d30e"><p class="cl-11d74916"><span class="cl-11d734a8">98.6%</span></p></td>
-<td class="cl-11d7d30e"><p class="cl-11d74916"><span class="cl-11d734a8">1.4%</span></p></td>
-<td class="cl-11d7d30e"><p class="cl-11d74916"><span class="cl-11d734a8">0%</span></p></td>
-<td class="cl-11d7d30e"><p class="cl-11d74916"><span class="cl-11d734a8">100%</span></p></td>
+<td class="cl-7f12325a"><p class="cl-7f11b3a2"><span class="cl-7f11a1aa">Row %</span></p></td>
+<td class="cl-7f123251"><p class="cl-7f11b3ac"><span class="cl-7f11a1aa">98.6%</span></p></td>
+<td class="cl-7f123251"><p class="cl-7f11b3ac"><span class="cl-7f11a1aa">1.4%</span></p></td>
+<td class="cl-7f123251"><p class="cl-7f11b3ac"><span class="cl-7f11a1aa">0%</span></p></td>
+<td class="cl-7f123251"><p class="cl-7f11b3ac"><span class="cl-7f11a1aa">100%</span></p></td>
 </tr>
 <tr style="overflow-wrap:break-word;">
-<td rowspan="4" class="cl-11d7d2fa"><p class="cl-11d7490c"><span class="cl-11d73480">Physiology or Medicine</span></p></td>
-<td class="cl-11d7d2dc"><p class="cl-11d7490c"><span class="cl-11d734a8">N</span></p></td>
-<td class="cl-11d7d304"><p class="cl-11d74916"><span class="cl-11d734a8">207</span></p></td>
-<td class="cl-11d7d304"><p class="cl-11d74916"><span class="cl-11d734a8">12</span></p></td>
-<td class="cl-11d7d304"><p class="cl-11d74916"><span class="cl-11d734a8">0</span></p></td>
-<td class="cl-11d7d304"><p class="cl-11d74916"><span class="cl-11d734a8">219</span></p></td>
+<td rowspan="4" class="cl-7f123246"><p class="cl-7f11b3a2"><span class="cl-7f11a1a0">Physiology or Medicine</span></p></td>
+<td class="cl-7f12323c"><p class="cl-7f11b3a2"><span class="cl-7f11a1aa">N</span></p></td>
+<td class="cl-7f123250"><p class="cl-7f11b3ac"><span class="cl-7f11a1aa">207</span></p></td>
+<td class="cl-7f123250"><p class="cl-7f11b3ac"><span class="cl-7f11a1aa">12</span></p></td>
+<td class="cl-7f123250"><p class="cl-7f11b3ac"><span class="cl-7f11a1aa">0</span></p></td>
+<td class="cl-7f123250"><p class="cl-7f11b3ac"><span class="cl-7f11a1aa">219</span></p></td>
 </tr>
 <tr style="overflow-wrap:break-word;">
-<td class="cl-11d7d318"><p class="cl-11d7490c"><span class="cl-11d734a8">%</span></p></td>
-<td class="cl-11d7d30e"><p class="cl-11d74916"><span class="cl-11d734a8">21.8%</span></p></td>
-<td class="cl-11d7d30e"><p class="cl-11d74916"><span class="cl-11d734a8">1.3%</span></p></td>
-<td class="cl-11d7d30e"><p class="cl-11d74916"><span class="cl-11d734a8">0%</span></p></td>
-<td class="cl-11d7d30e"><p class="cl-11d74916"><span class="cl-11d734a8">23%</span></p></td>
+<td class="cl-7f12325a"><p class="cl-7f11b3a2"><span class="cl-7f11a1aa">%</span></p></td>
+<td class="cl-7f123251"><p class="cl-7f11b3ac"><span class="cl-7f11a1aa">21.8%</span></p></td>
+<td class="cl-7f123251"><p class="cl-7f11b3ac"><span class="cl-7f11a1aa">1.3%</span></p></td>
+<td class="cl-7f123251"><p class="cl-7f11b3ac"><span class="cl-7f11a1aa">0%</span></p></td>
+<td class="cl-7f123251"><p class="cl-7f11b3ac"><span class="cl-7f11a1aa">23%</span></p></td>
 </tr>
 <tr style="overflow-wrap:break-word;">
-<td class="cl-11d7d2dc"><p class="cl-11d7490c"><span class="cl-11d734a8">Col %</span></p></td>
-<td class="cl-11d7d304"><p class="cl-11d74916"><span class="cl-11d734a8">23.8%</span></p></td>
-<td class="cl-11d7d304"><p class="cl-11d74916"><span class="cl-11d734a8">22.2%</span></p></td>
-<td class="cl-11d7d304"><p class="cl-11d74916"><span class="cl-11d734a8">0%</span></p></td>
-<td class="cl-11d7d304"><p class="cl-11d74916"><span class="cl-11d734a8">23%</span></p></td>
+<td class="cl-7f12323c"><p class="cl-7f11b3a2"><span class="cl-7f11a1aa">Col %</span></p></td>
+<td class="cl-7f123250"><p class="cl-7f11b3ac"><span class="cl-7f11a1aa">23.8%</span></p></td>
+<td class="cl-7f123250"><p class="cl-7f11b3ac"><span class="cl-7f11a1aa">22.2%</span></p></td>
+<td class="cl-7f123250"><p class="cl-7f11b3ac"><span class="cl-7f11a1aa">0%</span></p></td>
+<td class="cl-7f123250"><p class="cl-7f11b3ac"><span class="cl-7f11a1aa">23%</span></p></td>
 </tr>
 <tr style="overflow-wrap:break-word;">
-<td class="cl-11d7d318"><p class="cl-11d7490c"><span class="cl-11d734a8">Row %</span></p></td>
-<td class="cl-11d7d30e"><p class="cl-11d74916"><span class="cl-11d734a8">94.5%</span></p></td>
-<td class="cl-11d7d30e"><p class="cl-11d74916"><span class="cl-11d734a8">5.5%</span></p></td>
-<td class="cl-11d7d30e"><p class="cl-11d74916"><span class="cl-11d734a8">0%</span></p></td>
-<td class="cl-11d7d30e"><p class="cl-11d74916"><span class="cl-11d734a8">100%</span></p></td>
+<td class="cl-7f12325a"><p class="cl-7f11b3a2"><span class="cl-7f11a1aa">Row %</span></p></td>
+<td class="cl-7f123251"><p class="cl-7f11b3ac"><span class="cl-7f11a1aa">94.5%</span></p></td>
+<td class="cl-7f123251"><p class="cl-7f11b3ac"><span class="cl-7f11a1aa">5.5%</span></p></td>
+<td class="cl-7f123251"><p class="cl-7f11b3ac"><span class="cl-7f11a1aa">0%</span></p></td>
+<td class="cl-7f123251"><p class="cl-7f11b3ac"><span class="cl-7f11a1aa">100%</span></p></td>
 </tr>
 <tr style="overflow-wrap:break-word;">
-<td rowspan="4" class="cl-11d7d2fa"><p class="cl-11d7490c"><span class="cl-11d73480">Total</span></p></td>
-<td class="cl-11d7d2dc"><p class="cl-11d7490c"><span class="cl-11d734a8">N</span></p></td>
-<td class="cl-11d7d304"><p class="cl-11d74916"><span class="cl-11d734a8">869</span></p></td>
-<td class="cl-11d7d304"><p class="cl-11d74916"><span class="cl-11d734a8">54</span></p></td>
-<td class="cl-11d7d304"><p class="cl-11d74916"><span class="cl-11d734a8">27</span></p></td>
-<td class="cl-11d7d304"><p class="cl-11d74916"><span class="cl-11d734a8">950</span></p></td>
+<td rowspan="4" class="cl-7f123246"><p class="cl-7f11b3a2"><span class="cl-7f11a1a0">Total</span></p></td>
+<td class="cl-7f12323c"><p class="cl-7f11b3a2"><span class="cl-7f11a1aa">N</span></p></td>
+<td class="cl-7f123250"><p class="cl-7f11b3ac"><span class="cl-7f11a1aa">869</span></p></td>
+<td class="cl-7f123250"><p class="cl-7f11b3ac"><span class="cl-7f11a1aa">54</span></p></td>
+<td class="cl-7f123250"><p class="cl-7f11b3ac"><span class="cl-7f11a1aa">27</span></p></td>
+<td class="cl-7f123250"><p class="cl-7f11b3ac"><span class="cl-7f11a1aa">950</span></p></td>
 </tr>
 <tr style="overflow-wrap:break-word;">
-<td class="cl-11d7d318"><p class="cl-11d7490c"><span class="cl-11d734a8">%</span></p></td>
-<td class="cl-11d7d30e"><p class="cl-11d74916"><span class="cl-11d734a8">91.5%</span></p></td>
-<td class="cl-11d7d30e"><p class="cl-11d74916"><span class="cl-11d734a8">5.7%</span></p></td>
-<td class="cl-11d7d30e"><p class="cl-11d74916"><span class="cl-11d734a8">2.8%</span></p></td>
-<td class="cl-11d7d30e"><p class="cl-11d74916"><span class="cl-11d734a8">100%</span></p></td>
+<td class="cl-7f12325a"><p class="cl-7f11b3a2"><span class="cl-7f11a1aa">%</span></p></td>
+<td class="cl-7f123251"><p class="cl-7f11b3ac"><span class="cl-7f11a1aa">91.5%</span></p></td>
+<td class="cl-7f123251"><p class="cl-7f11b3ac"><span class="cl-7f11a1aa">5.7%</span></p></td>
+<td class="cl-7f123251"><p class="cl-7f11b3ac"><span class="cl-7f11a1aa">2.8%</span></p></td>
+<td class="cl-7f123251"><p class="cl-7f11b3ac"><span class="cl-7f11a1aa">100%</span></p></td>
 </tr>
 <tr style="overflow-wrap:break-word;">
-<td class="cl-11d7d2dc"><p class="cl-11d7490c"><span class="cl-11d734a8">Col %</span></p></td>
-<td class="cl-11d7d304"><p class="cl-11d74916"><span class="cl-11d734a8">100%</span></p></td>
-<td class="cl-11d7d304"><p class="cl-11d74916"><span class="cl-11d734a8">100%</span></p></td>
-<td class="cl-11d7d304"><p class="cl-11d74916"><span class="cl-11d734a8">100%</span></p></td>
-<td class="cl-11d7d304"><p class="cl-11d74916"><span class="cl-11d734a8">100%</span></p></td>
+<td class="cl-7f12323c"><p class="cl-7f11b3a2"><span class="cl-7f11a1aa">Col %</span></p></td>
+<td class="cl-7f123250"><p class="cl-7f11b3ac"><span class="cl-7f11a1aa">100%</span></p></td>
+<td class="cl-7f123250"><p class="cl-7f11b3ac"><span class="cl-7f11a1aa">100%</span></p></td>
+<td class="cl-7f123250"><p class="cl-7f11b3ac"><span class="cl-7f11a1aa">100%</span></p></td>
+<td class="cl-7f123250"><p class="cl-7f11b3ac"><span class="cl-7f11a1aa">100%</span></p></td>
 </tr>
 <tr style="overflow-wrap:break-word;">
-<td class="cl-11d7d318"><p class="cl-11d7490c"><span class="cl-11d734a8">Row %</span></p></td>
-<td class="cl-11d7d30e"><p class="cl-11d74916"><span class="cl-11d734a8">91.5%</span></p></td>
-<td class="cl-11d7d30e"><p class="cl-11d74916"><span class="cl-11d734a8">5.7%</span></p></td>
-<td class="cl-11d7d30e"><p class="cl-11d74916"><span class="cl-11d734a8">2.8%</span></p></td>
-<td class="cl-11d7d30e"><p class="cl-11d74916"><span class="cl-11d734a8">100%</span></p></td>
+<td class="cl-7f12325a"><p class="cl-7f11b3a2"><span class="cl-7f11a1aa">Row %</span></p></td>
+<td class="cl-7f123251"><p class="cl-7f11b3ac"><span class="cl-7f11a1aa">91.5%</span></p></td>
+<td class="cl-7f123251"><p class="cl-7f11b3ac"><span class="cl-7f11a1aa">5.7%</span></p></td>
+<td class="cl-7f123251"><p class="cl-7f11b3ac"><span class="cl-7f11a1aa">2.8%</span></p></td>
+<td class="cl-7f123251"><p class="cl-7f11b3ac"><span class="cl-7f11a1aa">100%</span></p></td>
 </tr>
 </tbody>
 </table>
-</div></template><div class="flextable-shadow-host" id="2b8ce10a-4cf6-491b-9f73-d6e0a9f761a7"></div>
+</div></template><div class="flextable-shadow-host" id="a88f890b-e13c-4242-96d8-fe32c57c49da"></div>
 <script>
-var dest = document.getElementById("2b8ce10a-4cf6-491b-9f73-d6e0a9f761a7");
-var template = document.getElementById("c194b55d-8424-4030-ac58-edf79ef9c21a");
+var dest = document.getElementById("a88f890b-e13c-4242-96d8-fe32c57c49da");
+var template = document.getElementById("808c9d43-4c5e-4556-a057-f4eede48601c");
 var caption = template.content.querySelector("caption");
 if(caption) {
   caption.style.cssText = "display:block;text-align:center;";
@@ -460,11 +451,12 @@ var fantome = dest.attachShadow({mode: 'open'});
 var templateContent = template.content;
 fantome.appendChild(templateContent);
 </script><div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">nobel_laureates</span> <span class="op">%&gt;%</span>
-  <span class="fu"><a href="../reference/pivot_table.html">pivot_table</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"category"</span>, <span class="st">"gender"</span><span class="op">)</span>, total <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span> <span class="op">%&gt;%</span>
+<code class="sourceCode R"><span class="va">nobel_laureates</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
+  <span class="fu"><a href="../reference/pivot_table.html">pivot_table</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"category"</span>, <span class="st">"gender"</span><span class="op">)</span>, total <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
   <span class="fu"><a href="../reference/pivot_format.html">pivot_format</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
-<template id="4b63fe3d-b75e-4641-96e8-b7e1e7f9fe84"><style>
+<template id="d0a41e49-72ec-4818-b4d6-6dedacb45e37"><style>
 .tabwid table{
+  border-spacing:0px !important;
   border-collapse:collapse;
   line-height:1;
   margin-left:auto;
@@ -473,7 +465,6 @@ fantome.appendChild(templateContent);
   display: table;
   margin-top: 1.275em;
   margin-bottom: 1.275em;
-  border-spacing: 0;
   border-color: transparent;
 }
 .tabwid_left table{
@@ -499,117 +490,117 @@ background-color: transparent;
 }
 </style>
 <div class="tabwid">
-<style>.cl-120b96c6{border-collapse:collapse;}.cl-12031c94{font-family:'Helvetica';font-size:11pt;font-weight:bold;font-style:normal;text-decoration:none;color:rgba(255, 255, 255, 1.00);background-color:transparent;}.cl-12031cc6{font-family:'Helvetica';font-size:11pt;font-weight:normal;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}.cl-1203342c{margin:0;text-align:left;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:10pt;padding-top:10pt;padding-left:10pt;padding-right:10pt;line-height: 1;background-color:transparent;}.cl-1203344a{margin:0;text-align:right;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:10pt;padding-top:10pt;padding-left:10pt;padding-right:10pt;line-height: 1;background-color:transparent;}.cl-120394ee{width:108pt;background-clip: padding-box;background-color:rgba(236, 239, 244, 1.00);vertical-align: middle;border-bottom: 1pt solid rgba(255, 255, 255, 1.00);border-top: 1pt solid rgba(255, 255, 255, 1.00);border-left: 1pt solid rgba(255, 255, 255, 1.00);border-right: 1pt solid rgba(255, 255, 255, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-1203952a{width:108pt;background-clip: padding-box;background-color:rgba(129, 161, 193, 1.00);vertical-align: middle;border-bottom: 1pt solid rgba(255, 255, 255, 1.00);border-top: 1pt solid rgba(255, 255, 255, 1.00);border-left: 1pt solid rgba(255, 255, 255, 1.00);border-right: 1pt solid rgba(255, 255, 255, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-12039534{width:108pt;background-clip: padding-box;background-color:rgba(129, 161, 193, 1.00);vertical-align: middle;border-bottom: 1pt solid rgba(255, 255, 255, 1.00);border-top: 1pt solid rgba(255, 255, 255, 1.00);border-left: 1pt solid rgba(255, 255, 255, 1.00);border-right: 1pt solid rgba(255, 255, 255, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-1203953e{width:108pt;background-color:transparent;vertical-align: middle;border-bottom: 1pt solid rgba(255, 255, 255, 1.00);border-top: 1pt solid rgba(255, 255, 255, 1.00);border-left: 1pt solid rgba(255, 255, 255, 1.00);border-right: 1pt solid rgba(255, 255, 255, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}</style>
-<table class="table cl-120b96c6">
+<style>.cl-7f39e994{}.cl-7f331a4c{font-family:'DejaVu Sans';font-size:11pt;font-weight:bold;font-style:normal;text-decoration:none;color:rgba(255, 255, 255, 1.00);background-color:transparent;}.cl-7f331a60{font-family:'DejaVu Sans';font-size:11pt;font-weight:normal;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}.cl-7f332b18{margin:0;text-align:left;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:10pt;padding-top:10pt;padding-left:10pt;padding-right:10pt;line-height: 1;background-color:transparent;}.cl-7f332b22{margin:0;text-align:right;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:10pt;padding-top:10pt;padding-left:10pt;padding-right:10pt;line-height: 1;background-color:transparent;}.cl-7f3373ca{width:108pt;background-color:rgba(236, 239, 244, 1.00);vertical-align: middle;border-bottom: 1pt solid rgba(255, 255, 255, 1.00);border-top: 1pt solid rgba(255, 255, 255, 1.00);border-left: 1pt solid rgba(255, 255, 255, 1.00);border-right: 1pt solid rgba(255, 255, 255, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-7f3373d4{width:108pt;background-color:rgba(129, 161, 193, 1.00);vertical-align: middle;border-bottom: 1pt solid rgba(255, 255, 255, 1.00);border-top: 1pt solid rgba(255, 255, 255, 1.00);border-left: 1pt solid rgba(255, 255, 255, 1.00);border-right: 1pt solid rgba(255, 255, 255, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-7f3373d5{width:108pt;background-color:rgba(129, 161, 193, 1.00);vertical-align: middle;border-bottom: 1pt solid rgba(255, 255, 255, 1.00);border-top: 1pt solid rgba(255, 255, 255, 1.00);border-left: 1pt solid rgba(255, 255, 255, 1.00);border-right: 1pt solid rgba(255, 255, 255, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-7f3373d6{width:108pt;background-color:transparent;vertical-align: middle;border-bottom: 1pt solid rgba(255, 255, 255, 1.00);border-top: 1pt solid rgba(255, 255, 255, 1.00);border-left: 1pt solid rgba(255, 255, 255, 1.00);border-right: 1pt solid rgba(255, 255, 255, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}</style>
+<table class="table cl-7f39e994">
 <thead><tr style="overflow-wrap:break-word;">
-<td class="cl-12039534"><p class="cl-1203342c"><span class="cl-12031c94">category</span></p></td>
-<td class="cl-1203952a"><p class="cl-1203344a"><span class="cl-12031c94">gender</span></p></td>
-<td class="cl-1203952a"><p class="cl-1203344a"><span class="cl-12031c94">N</span></p></td>
-<td class="cl-1203952a"><p class="cl-1203344a"><span class="cl-12031c94">%</span></p></td>
+<td class="cl-7f3373d5"><p class="cl-7f332b18"><span class="cl-7f331a4c">category</span></p></td>
+<td class="cl-7f3373d4"><p class="cl-7f332b22"><span class="cl-7f331a4c">gender</span></p></td>
+<td class="cl-7f3373d4"><p class="cl-7f332b22"><span class="cl-7f331a4c">N</span></p></td>
+<td class="cl-7f3373d4"><p class="cl-7f332b22"><span class="cl-7f331a4c">%</span></p></td>
 </tr></thead>
 <tbody>
 <tr style="overflow-wrap:break-word;">
-<td rowspan="3" class="cl-12039534"><p class="cl-1203342c"><span class="cl-12031c94">Chemistry</span></p></td>
-<td class="cl-1203952a"><p class="cl-1203344a"><span class="cl-12031c94">male</span></p></td>
-<td class="cl-120394ee"><p class="cl-1203344a"><span class="cl-12031cc6">179</span></p></td>
-<td class="cl-120394ee"><p class="cl-1203344a"><span class="cl-12031cc6">18.8%</span></p></td>
+<td rowspan="3" class="cl-7f3373d5"><p class="cl-7f332b18"><span class="cl-7f331a4c">Chemistry</span></p></td>
+<td class="cl-7f3373d4"><p class="cl-7f332b22"><span class="cl-7f331a4c">male</span></p></td>
+<td class="cl-7f3373ca"><p class="cl-7f332b22"><span class="cl-7f331a60">179</span></p></td>
+<td class="cl-7f3373ca"><p class="cl-7f332b22"><span class="cl-7f331a60">18.8%</span></p></td>
 </tr>
 <tr style="overflow-wrap:break-word;">
-<td class="cl-1203952a"><p class="cl-1203344a"><span class="cl-12031c94">female</span></p></td>
-<td class="cl-1203953e"><p class="cl-1203344a"><span class="cl-12031cc6">5</span></p></td>
-<td class="cl-1203953e"><p class="cl-1203344a"><span class="cl-12031cc6">0.5%</span></p></td>
+<td class="cl-7f3373d4"><p class="cl-7f332b22"><span class="cl-7f331a4c">female</span></p></td>
+<td class="cl-7f3373d6"><p class="cl-7f332b22"><span class="cl-7f331a60">5</span></p></td>
+<td class="cl-7f3373d6"><p class="cl-7f332b22"><span class="cl-7f331a60">0.5%</span></p></td>
 </tr>
 <tr style="overflow-wrap:break-word;">
-<td class="cl-1203952a"><p class="cl-1203344a"><span class="cl-12031c94">&lt;missing&gt;</span></p></td>
-<td class="cl-120394ee"><p class="cl-1203344a"><span class="cl-12031cc6">0</span></p></td>
-<td class="cl-120394ee"><p class="cl-1203344a"><span class="cl-12031cc6">0%</span></p></td>
+<td class="cl-7f3373d4"><p class="cl-7f332b22"><span class="cl-7f331a4c">&lt;missing&gt;</span></p></td>
+<td class="cl-7f3373ca"><p class="cl-7f332b22"><span class="cl-7f331a60">0</span></p></td>
+<td class="cl-7f3373ca"><p class="cl-7f332b22"><span class="cl-7f331a60">0%</span></p></td>
 </tr>
 <tr style="overflow-wrap:break-word;">
-<td rowspan="3" class="cl-12039534"><p class="cl-1203342c"><span class="cl-12031c94">Economic Sciences</span></p></td>
-<td class="cl-1203952a"><p class="cl-1203344a"><span class="cl-12031c94">male</span></p></td>
-<td class="cl-1203953e"><p class="cl-1203344a"><span class="cl-12031cc6">82</span></p></td>
-<td class="cl-1203953e"><p class="cl-1203344a"><span class="cl-12031cc6">8.6%</span></p></td>
+<td rowspan="3" class="cl-7f3373d5"><p class="cl-7f332b18"><span class="cl-7f331a4c">Economic Sciences</span></p></td>
+<td class="cl-7f3373d4"><p class="cl-7f332b22"><span class="cl-7f331a4c">male</span></p></td>
+<td class="cl-7f3373d6"><p class="cl-7f332b22"><span class="cl-7f331a60">82</span></p></td>
+<td class="cl-7f3373d6"><p class="cl-7f332b22"><span class="cl-7f331a60">8.6%</span></p></td>
 </tr>
 <tr style="overflow-wrap:break-word;">
-<td class="cl-1203952a"><p class="cl-1203344a"><span class="cl-12031c94">female</span></p></td>
-<td class="cl-120394ee"><p class="cl-1203344a"><span class="cl-12031cc6">2</span></p></td>
-<td class="cl-120394ee"><p class="cl-1203344a"><span class="cl-12031cc6">0.2%</span></p></td>
+<td class="cl-7f3373d4"><p class="cl-7f332b22"><span class="cl-7f331a4c">female</span></p></td>
+<td class="cl-7f3373ca"><p class="cl-7f332b22"><span class="cl-7f331a60">2</span></p></td>
+<td class="cl-7f3373ca"><p class="cl-7f332b22"><span class="cl-7f331a60">0.2%</span></p></td>
 </tr>
 <tr style="overflow-wrap:break-word;">
-<td class="cl-1203952a"><p class="cl-1203344a"><span class="cl-12031c94">&lt;missing&gt;</span></p></td>
-<td class="cl-1203953e"><p class="cl-1203344a"><span class="cl-12031cc6">0</span></p></td>
-<td class="cl-1203953e"><p class="cl-1203344a"><span class="cl-12031cc6">0%</span></p></td>
+<td class="cl-7f3373d4"><p class="cl-7f332b22"><span class="cl-7f331a4c">&lt;missing&gt;</span></p></td>
+<td class="cl-7f3373d6"><p class="cl-7f332b22"><span class="cl-7f331a60">0</span></p></td>
+<td class="cl-7f3373d6"><p class="cl-7f332b22"><span class="cl-7f331a60">0%</span></p></td>
 </tr>
 <tr style="overflow-wrap:break-word;">
-<td rowspan="3" class="cl-12039534"><p class="cl-1203342c"><span class="cl-12031c94">Literature</span></p></td>
-<td class="cl-1203952a"><p class="cl-1203344a"><span class="cl-12031c94">male</span></p></td>
-<td class="cl-120394ee"><p class="cl-1203344a"><span class="cl-12031cc6">101</span></p></td>
-<td class="cl-120394ee"><p class="cl-1203344a"><span class="cl-12031cc6">10.6%</span></p></td>
+<td rowspan="3" class="cl-7f3373d5"><p class="cl-7f332b18"><span class="cl-7f331a4c">Literature</span></p></td>
+<td class="cl-7f3373d4"><p class="cl-7f332b22"><span class="cl-7f331a4c">male</span></p></td>
+<td class="cl-7f3373ca"><p class="cl-7f332b22"><span class="cl-7f331a60">101</span></p></td>
+<td class="cl-7f3373ca"><p class="cl-7f332b22"><span class="cl-7f331a60">10.6%</span></p></td>
 </tr>
 <tr style="overflow-wrap:break-word;">
-<td class="cl-1203952a"><p class="cl-1203344a"><span class="cl-12031c94">female</span></p></td>
-<td class="cl-1203953e"><p class="cl-1203344a"><span class="cl-12031cc6">15</span></p></td>
-<td class="cl-1203953e"><p class="cl-1203344a"><span class="cl-12031cc6">1.6%</span></p></td>
+<td class="cl-7f3373d4"><p class="cl-7f332b22"><span class="cl-7f331a4c">female</span></p></td>
+<td class="cl-7f3373d6"><p class="cl-7f332b22"><span class="cl-7f331a60">15</span></p></td>
+<td class="cl-7f3373d6"><p class="cl-7f332b22"><span class="cl-7f331a60">1.6%</span></p></td>
 </tr>
 <tr style="overflow-wrap:break-word;">
-<td class="cl-1203952a"><p class="cl-1203344a"><span class="cl-12031c94">&lt;missing&gt;</span></p></td>
-<td class="cl-120394ee"><p class="cl-1203344a"><span class="cl-12031cc6">0</span></p></td>
-<td class="cl-120394ee"><p class="cl-1203344a"><span class="cl-12031cc6">0%</span></p></td>
+<td class="cl-7f3373d4"><p class="cl-7f332b22"><span class="cl-7f331a4c">&lt;missing&gt;</span></p></td>
+<td class="cl-7f3373ca"><p class="cl-7f332b22"><span class="cl-7f331a60">0</span></p></td>
+<td class="cl-7f3373ca"><p class="cl-7f332b22"><span class="cl-7f331a60">0%</span></p></td>
 </tr>
 <tr style="overflow-wrap:break-word;">
-<td rowspan="3" class="cl-12039534"><p class="cl-1203342c"><span class="cl-12031c94">Peace</span></p></td>
-<td class="cl-1203952a"><p class="cl-1203344a"><span class="cl-12031c94">male</span></p></td>
-<td class="cl-1203953e"><p class="cl-1203344a"><span class="cl-12031cc6">90</span></p></td>
-<td class="cl-1203953e"><p class="cl-1203344a"><span class="cl-12031cc6">9.5%</span></p></td>
+<td rowspan="3" class="cl-7f3373d5"><p class="cl-7f332b18"><span class="cl-7f331a4c">Peace</span></p></td>
+<td class="cl-7f3373d4"><p class="cl-7f332b22"><span class="cl-7f331a4c">male</span></p></td>
+<td class="cl-7f3373d6"><p class="cl-7f332b22"><span class="cl-7f331a60">90</span></p></td>
+<td class="cl-7f3373d6"><p class="cl-7f332b22"><span class="cl-7f331a60">9.5%</span></p></td>
 </tr>
 <tr style="overflow-wrap:break-word;">
-<td class="cl-1203952a"><p class="cl-1203344a"><span class="cl-12031c94">female</span></p></td>
-<td class="cl-120394ee"><p class="cl-1203344a"><span class="cl-12031cc6">17</span></p></td>
-<td class="cl-120394ee"><p class="cl-1203344a"><span class="cl-12031cc6">1.8%</span></p></td>
+<td class="cl-7f3373d4"><p class="cl-7f332b22"><span class="cl-7f331a4c">female</span></p></td>
+<td class="cl-7f3373ca"><p class="cl-7f332b22"><span class="cl-7f331a60">17</span></p></td>
+<td class="cl-7f3373ca"><p class="cl-7f332b22"><span class="cl-7f331a60">1.8%</span></p></td>
 </tr>
 <tr style="overflow-wrap:break-word;">
-<td class="cl-1203952a"><p class="cl-1203344a"><span class="cl-12031c94">&lt;missing&gt;</span></p></td>
-<td class="cl-1203953e"><p class="cl-1203344a"><span class="cl-12031cc6">27</span></p></td>
-<td class="cl-1203953e"><p class="cl-1203344a"><span class="cl-12031cc6">2.8%</span></p></td>
+<td class="cl-7f3373d4"><p class="cl-7f332b22"><span class="cl-7f331a4c">&lt;missing&gt;</span></p></td>
+<td class="cl-7f3373d6"><p class="cl-7f332b22"><span class="cl-7f331a60">27</span></p></td>
+<td class="cl-7f3373d6"><p class="cl-7f332b22"><span class="cl-7f331a60">2.8%</span></p></td>
 </tr>
 <tr style="overflow-wrap:break-word;">
-<td rowspan="3" class="cl-12039534"><p class="cl-1203342c"><span class="cl-12031c94">Physics</span></p></td>
-<td class="cl-1203952a"><p class="cl-1203344a"><span class="cl-12031c94">male</span></p></td>
-<td class="cl-120394ee"><p class="cl-1203344a"><span class="cl-12031cc6">210</span></p></td>
-<td class="cl-120394ee"><p class="cl-1203344a"><span class="cl-12031cc6">22.1%</span></p></td>
+<td rowspan="3" class="cl-7f3373d5"><p class="cl-7f332b18"><span class="cl-7f331a4c">Physics</span></p></td>
+<td class="cl-7f3373d4"><p class="cl-7f332b22"><span class="cl-7f331a4c">male</span></p></td>
+<td class="cl-7f3373ca"><p class="cl-7f332b22"><span class="cl-7f331a60">210</span></p></td>
+<td class="cl-7f3373ca"><p class="cl-7f332b22"><span class="cl-7f331a60">22.1%</span></p></td>
 </tr>
 <tr style="overflow-wrap:break-word;">
-<td class="cl-1203952a"><p class="cl-1203344a"><span class="cl-12031c94">female</span></p></td>
-<td class="cl-1203953e"><p class="cl-1203344a"><span class="cl-12031cc6">3</span></p></td>
-<td class="cl-1203953e"><p class="cl-1203344a"><span class="cl-12031cc6">0.3%</span></p></td>
+<td class="cl-7f3373d4"><p class="cl-7f332b22"><span class="cl-7f331a4c">female</span></p></td>
+<td class="cl-7f3373d6"><p class="cl-7f332b22"><span class="cl-7f331a60">3</span></p></td>
+<td class="cl-7f3373d6"><p class="cl-7f332b22"><span class="cl-7f331a60">0.3%</span></p></td>
 </tr>
 <tr style="overflow-wrap:break-word;">
-<td class="cl-1203952a"><p class="cl-1203344a"><span class="cl-12031c94">&lt;missing&gt;</span></p></td>
-<td class="cl-120394ee"><p class="cl-1203344a"><span class="cl-12031cc6">0</span></p></td>
-<td class="cl-120394ee"><p class="cl-1203344a"><span class="cl-12031cc6">0%</span></p></td>
+<td class="cl-7f3373d4"><p class="cl-7f332b22"><span class="cl-7f331a4c">&lt;missing&gt;</span></p></td>
+<td class="cl-7f3373ca"><p class="cl-7f332b22"><span class="cl-7f331a60">0</span></p></td>
+<td class="cl-7f3373ca"><p class="cl-7f332b22"><span class="cl-7f331a60">0%</span></p></td>
 </tr>
 <tr style="overflow-wrap:break-word;">
-<td rowspan="3" class="cl-12039534"><p class="cl-1203342c"><span class="cl-12031c94">Physiology or Medicine</span></p></td>
-<td class="cl-1203952a"><p class="cl-1203344a"><span class="cl-12031c94">male</span></p></td>
-<td class="cl-1203953e"><p class="cl-1203344a"><span class="cl-12031cc6">207</span></p></td>
-<td class="cl-1203953e"><p class="cl-1203344a"><span class="cl-12031cc6">21.8%</span></p></td>
+<td rowspan="3" class="cl-7f3373d5"><p class="cl-7f332b18"><span class="cl-7f331a4c">Physiology or Medicine</span></p></td>
+<td class="cl-7f3373d4"><p class="cl-7f332b22"><span class="cl-7f331a4c">male</span></p></td>
+<td class="cl-7f3373d6"><p class="cl-7f332b22"><span class="cl-7f331a60">207</span></p></td>
+<td class="cl-7f3373d6"><p class="cl-7f332b22"><span class="cl-7f331a60">21.8%</span></p></td>
 </tr>
 <tr style="overflow-wrap:break-word;">
-<td class="cl-1203952a"><p class="cl-1203344a"><span class="cl-12031c94">female</span></p></td>
-<td class="cl-120394ee"><p class="cl-1203344a"><span class="cl-12031cc6">12</span></p></td>
-<td class="cl-120394ee"><p class="cl-1203344a"><span class="cl-12031cc6">1.3%</span></p></td>
+<td class="cl-7f3373d4"><p class="cl-7f332b22"><span class="cl-7f331a4c">female</span></p></td>
+<td class="cl-7f3373ca"><p class="cl-7f332b22"><span class="cl-7f331a60">12</span></p></td>
+<td class="cl-7f3373ca"><p class="cl-7f332b22"><span class="cl-7f331a60">1.3%</span></p></td>
 </tr>
 <tr style="overflow-wrap:break-word;">
-<td class="cl-1203952a"><p class="cl-1203344a"><span class="cl-12031c94">&lt;missing&gt;</span></p></td>
-<td class="cl-1203953e"><p class="cl-1203344a"><span class="cl-12031cc6">0</span></p></td>
-<td class="cl-1203953e"><p class="cl-1203344a"><span class="cl-12031cc6">0%</span></p></td>
+<td class="cl-7f3373d4"><p class="cl-7f332b22"><span class="cl-7f331a4c">&lt;missing&gt;</span></p></td>
+<td class="cl-7f3373d6"><p class="cl-7f332b22"><span class="cl-7f331a60">0</span></p></td>
+<td class="cl-7f3373d6"><p class="cl-7f332b22"><span class="cl-7f331a60">0%</span></p></td>
 </tr>
 </tbody>
 </table>
-</div></template><div class="flextable-shadow-host" id="217f4e5e-2942-4830-918f-3598364c45a2"></div>
+</div></template><div class="flextable-shadow-host" id="861b81b6-f6bf-45f8-9d69-2f911c9a9ad0"></div>
 <script>
-var dest = document.getElementById("217f4e5e-2942-4830-918f-3598364c45a2");
-var template = document.getElementById("4b63fe3d-b75e-4641-96e8-b7e1e7f9fe84");
+var dest = document.getElementById("861b81b6-f6bf-45f8-9d69-2f911c9a9ad0");
+var template = document.getElementById("d0a41e49-72ec-4818-b4d6-6dedacb45e37");
 var caption = template.content.querySelector("caption");
 if(caption) {
   caption.style.cssText = "display:block;text-align:center;";
@@ -622,13 +613,13 @@ var templateContent = template.content;
 fantome.appendChild(templateContent);
 </script>
 </div>
-<div id="customize" class="section level2">
-<h2 class="hasAnchor">
-<a href="#customize" class="anchor"></a>Customize</h2>
+<div class="section level2">
+<h2 id="customize">Customize<a class="anchor" aria-label="anchor" href="#customize"></a>
+</h2>
 <p>Change color and labels :</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">nobel_laureates</span> <span class="op">%&gt;%</span>
-  <span class="fu"><a href="../reference/pivot_table.html">pivot_table</a></span><span class="op">(</span><span class="st">"category"</span><span class="op">)</span> <span class="op">%&gt;%</span>
+<code class="sourceCode R"><span class="va">nobel_laureates</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
+  <span class="fu"><a href="../reference/pivot_table.html">pivot_table</a></span><span class="op">(</span><span class="st">"category"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
   <span class="fu"><a href="../reference/pivot_format.html">pivot_format</a></span><span class="op">(</span>
     background <span class="op">=</span> <span class="st">"#D8DEE9"</span>,
     color <span class="op">=</span> <span class="st">"#3B4252"</span>,
@@ -638,8 +629,9 @@ fantome.appendChild(templateContent);
       rows <span class="op">=</span> <span class="st">"Nobel category"</span>
     <span class="op">)</span>
   <span class="op">)</span></code></pre></div>
-<template id="ba3c97e4-8576-4aac-b48f-c245456a24aa"><style>
+<template id="ca10c3a6-6c70-46cc-8086-850cb8c9ec79"><style>
 .tabwid table{
+  border-spacing:0px !important;
   border-collapse:collapse;
   line-height:1;
   margin-left:auto;
@@ -648,7 +640,6 @@ fantome.appendChild(templateContent);
   display: table;
   margin-top: 1.275em;
   margin-bottom: 1.275em;
-  border-spacing: 0;
   border-color: transparent;
 }
 .tabwid_left table{
@@ -674,55 +665,55 @@ background-color: transparent;
 }
 </style>
 <div class="tabwid">
-<style>.cl-12310564{border-collapse:collapse;}.cl-1228fb62{font-family:'Helvetica';font-size:11pt;font-weight:bold;font-style:normal;text-decoration:none;color:rgba(59, 66, 82, 1.00);background-color:transparent;}.cl-1228fb80{font-family:'Helvetica';font-size:11pt;font-weight:normal;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}.cl-12290fbc{margin:0;text-align:left;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:10pt;padding-top:10pt;padding-left:10pt;padding-right:10pt;line-height: 1;background-color:transparent;}.cl-12290fda{margin:0;text-align:right;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:10pt;padding-top:10pt;padding-left:10pt;padding-right:10pt;line-height: 1;background-color:transparent;}.cl-12295436{width:108pt;background-clip: padding-box;background-color:rgba(236, 239, 244, 1.00);vertical-align: middle;border-bottom: 1pt solid rgba(255, 255, 255, 1.00);border-top: 1pt solid rgba(255, 255, 255, 1.00);border-left: 1pt solid rgba(255, 255, 255, 1.00);border-right: 1pt solid rgba(255, 255, 255, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-1229545e{width:108pt;background-clip: padding-box;background-color:rgba(216, 222, 233, 1.00);vertical-align: middle;border-bottom: 1pt solid rgba(255, 255, 255, 1.00);border-top: 1pt solid rgba(255, 255, 255, 1.00);border-left: 1pt solid rgba(255, 255, 255, 1.00);border-right: 1pt solid rgba(255, 255, 255, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-1229545f{width:108pt;background-color:transparent;vertical-align: middle;border-bottom: 1pt solid rgba(255, 255, 255, 1.00);border-top: 1pt solid rgba(255, 255, 255, 1.00);border-left: 1pt solid rgba(255, 255, 255, 1.00);border-right: 1pt solid rgba(255, 255, 255, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-12295468{width:108pt;background-clip: padding-box;background-color:rgba(216, 222, 233, 1.00);vertical-align: middle;border-bottom: 1pt solid rgba(255, 255, 255, 1.00);border-top: 1pt solid rgba(255, 255, 255, 1.00);border-left: 1pt solid rgba(255, 255, 255, 1.00);border-right: 1pt solid rgba(255, 255, 255, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}</style>
-<table class="table cl-12310564">
+<style>.cl-7f56cca8{}.cl-7f511a56{font-family:'DejaVu Sans';font-size:11pt;font-weight:bold;font-style:normal;text-decoration:none;color:rgba(59, 66, 82, 1.00);background-color:transparent;}.cl-7f511a6a{font-family:'DejaVu Sans';font-size:11pt;font-weight:normal;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}.cl-7f512cb2{margin:0;text-align:left;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:10pt;padding-top:10pt;padding-left:10pt;padding-right:10pt;line-height: 1;background-color:transparent;}.cl-7f512cbc{margin:0;text-align:right;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:10pt;padding-top:10pt;padding-left:10pt;padding-right:10pt;line-height: 1;background-color:transparent;}.cl-7f5164de{width:108pt;background-color:rgba(236, 239, 244, 1.00);vertical-align: middle;border-bottom: 1pt solid rgba(255, 255, 255, 1.00);border-top: 1pt solid rgba(255, 255, 255, 1.00);border-left: 1pt solid rgba(255, 255, 255, 1.00);border-right: 1pt solid rgba(255, 255, 255, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-7f5164e8{width:108pt;background-color:rgba(216, 222, 233, 1.00);vertical-align: middle;border-bottom: 1pt solid rgba(255, 255, 255, 1.00);border-top: 1pt solid rgba(255, 255, 255, 1.00);border-left: 1pt solid rgba(255, 255, 255, 1.00);border-right: 1pt solid rgba(255, 255, 255, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-7f5164e9{width:108pt;background-color:transparent;vertical-align: middle;border-bottom: 1pt solid rgba(255, 255, 255, 1.00);border-top: 1pt solid rgba(255, 255, 255, 1.00);border-left: 1pt solid rgba(255, 255, 255, 1.00);border-right: 1pt solid rgba(255, 255, 255, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-7f5164f2{width:108pt;background-color:rgba(216, 222, 233, 1.00);vertical-align: middle;border-bottom: 1pt solid rgba(255, 255, 255, 1.00);border-top: 1pt solid rgba(255, 255, 255, 1.00);border-left: 1pt solid rgba(255, 255, 255, 1.00);border-right: 1pt solid rgba(255, 255, 255, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}</style>
+<table class="table cl-7f56cca8">
 <thead><tr style="overflow-wrap:break-word;">
-<td class="cl-1229545e"><p class="cl-12290fbc"><span class="cl-1228fb62">Nobel category</span></p></td>
-<td class="cl-12295468"><p class="cl-12290fda"><span class="cl-1228fb62">Count</span></p></td>
-<td class="cl-12295468"><p class="cl-12290fda"><span class="cl-1228fb62">Percentage</span></p></td>
+<td class="cl-7f5164e8"><p class="cl-7f512cb2"><span class="cl-7f511a56">Nobel category</span></p></td>
+<td class="cl-7f5164f2"><p class="cl-7f512cbc"><span class="cl-7f511a56">Count</span></p></td>
+<td class="cl-7f5164f2"><p class="cl-7f512cbc"><span class="cl-7f511a56">Percentage</span></p></td>
 </tr></thead>
 <tbody>
 <tr style="overflow-wrap:break-word;">
-<td class="cl-1229545e"><p class="cl-12290fbc"><span class="cl-1228fb62">Chemistry</span></p></td>
-<td class="cl-12295436"><p class="cl-12290fda"><span class="cl-1228fb80">184</span></p></td>
-<td class="cl-12295436"><p class="cl-12290fda"><span class="cl-1228fb80">19.4%</span></p></td>
+<td class="cl-7f5164e8"><p class="cl-7f512cb2"><span class="cl-7f511a56">Chemistry</span></p></td>
+<td class="cl-7f5164de"><p class="cl-7f512cbc"><span class="cl-7f511a6a">184</span></p></td>
+<td class="cl-7f5164de"><p class="cl-7f512cbc"><span class="cl-7f511a6a">19.4%</span></p></td>
 </tr>
 <tr style="overflow-wrap:break-word;">
-<td class="cl-1229545e"><p class="cl-12290fbc"><span class="cl-1228fb62">Economic Sciences</span></p></td>
-<td class="cl-1229545f"><p class="cl-12290fda"><span class="cl-1228fb80">84</span></p></td>
-<td class="cl-1229545f"><p class="cl-12290fda"><span class="cl-1228fb80">8.8%</span></p></td>
+<td class="cl-7f5164e8"><p class="cl-7f512cb2"><span class="cl-7f511a56">Economic Sciences</span></p></td>
+<td class="cl-7f5164e9"><p class="cl-7f512cbc"><span class="cl-7f511a6a">84</span></p></td>
+<td class="cl-7f5164e9"><p class="cl-7f512cbc"><span class="cl-7f511a6a">8.8%</span></p></td>
 </tr>
 <tr style="overflow-wrap:break-word;">
-<td class="cl-1229545e"><p class="cl-12290fbc"><span class="cl-1228fb62">Literature</span></p></td>
-<td class="cl-12295436"><p class="cl-12290fda"><span class="cl-1228fb80">116</span></p></td>
-<td class="cl-12295436"><p class="cl-12290fda"><span class="cl-1228fb80">12.2%</span></p></td>
+<td class="cl-7f5164e8"><p class="cl-7f512cb2"><span class="cl-7f511a56">Literature</span></p></td>
+<td class="cl-7f5164de"><p class="cl-7f512cbc"><span class="cl-7f511a6a">116</span></p></td>
+<td class="cl-7f5164de"><p class="cl-7f512cbc"><span class="cl-7f511a6a">12.2%</span></p></td>
 </tr>
 <tr style="overflow-wrap:break-word;">
-<td class="cl-1229545e"><p class="cl-12290fbc"><span class="cl-1228fb62">Peace</span></p></td>
-<td class="cl-1229545f"><p class="cl-12290fda"><span class="cl-1228fb80">134</span></p></td>
-<td class="cl-1229545f"><p class="cl-12290fda"><span class="cl-1228fb80">14.1%</span></p></td>
+<td class="cl-7f5164e8"><p class="cl-7f512cb2"><span class="cl-7f511a56">Peace</span></p></td>
+<td class="cl-7f5164e9"><p class="cl-7f512cbc"><span class="cl-7f511a6a">134</span></p></td>
+<td class="cl-7f5164e9"><p class="cl-7f512cbc"><span class="cl-7f511a6a">14.1%</span></p></td>
 </tr>
 <tr style="overflow-wrap:break-word;">
-<td class="cl-1229545e"><p class="cl-12290fbc"><span class="cl-1228fb62">Physics</span></p></td>
-<td class="cl-12295436"><p class="cl-12290fda"><span class="cl-1228fb80">213</span></p></td>
-<td class="cl-12295436"><p class="cl-12290fda"><span class="cl-1228fb80">22.4%</span></p></td>
+<td class="cl-7f5164e8"><p class="cl-7f512cb2"><span class="cl-7f511a56">Physics</span></p></td>
+<td class="cl-7f5164de"><p class="cl-7f512cbc"><span class="cl-7f511a6a">213</span></p></td>
+<td class="cl-7f5164de"><p class="cl-7f512cbc"><span class="cl-7f511a6a">22.4%</span></p></td>
 </tr>
 <tr style="overflow-wrap:break-word;">
-<td class="cl-1229545e"><p class="cl-12290fbc"><span class="cl-1228fb62">Physiology or Medicine</span></p></td>
-<td class="cl-1229545f"><p class="cl-12290fda"><span class="cl-1228fb80">219</span></p></td>
-<td class="cl-1229545f"><p class="cl-12290fda"><span class="cl-1228fb80">23%</span></p></td>
+<td class="cl-7f5164e8"><p class="cl-7f512cb2"><span class="cl-7f511a56">Physiology or Medicine</span></p></td>
+<td class="cl-7f5164e9"><p class="cl-7f512cbc"><span class="cl-7f511a6a">219</span></p></td>
+<td class="cl-7f5164e9"><p class="cl-7f512cbc"><span class="cl-7f511a6a">23%</span></p></td>
 </tr>
 <tr style="overflow-wrap:break-word;">
-<td class="cl-1229545e"><p class="cl-12290fbc"><span class="cl-1228fb62">Total</span></p></td>
-<td class="cl-12295436"><p class="cl-12290fda"><span class="cl-1228fb80">950</span></p></td>
-<td class="cl-12295436"><p class="cl-12290fda"><span class="cl-1228fb80">100%</span></p></td>
+<td class="cl-7f5164e8"><p class="cl-7f512cb2"><span class="cl-7f511a56">Total</span></p></td>
+<td class="cl-7f5164de"><p class="cl-7f512cbc"><span class="cl-7f511a6a">950</span></p></td>
+<td class="cl-7f5164de"><p class="cl-7f512cbc"><span class="cl-7f511a6a">100%</span></p></td>
 </tr>
 </tbody>
 </table>
-</div></template><div class="flextable-shadow-host" id="d8fbbca2-8eff-48fd-86bc-e2e1413df47f"></div>
+</div></template><div class="flextable-shadow-host" id="6418ca54-0f25-4e4e-833c-8b1584130bbf"></div>
 <script>
-var dest = document.getElementById("d8fbbca2-8eff-48fd-86bc-e2e1413df47f");
-var template = document.getElementById("ba3c97e4-8576-4aac-b48f-c245456a24aa");
+var dest = document.getElementById("6418ca54-0f25-4e4e-833c-8b1584130bbf");
+var template = document.getElementById("ca10c3a6-6c70-46cc-8086-850cb8c9ec79");
 var caption = template.content.querySelector("caption");
 if(caption) {
   caption.style.cssText = "display:block;text-align:center;";
@@ -735,16 +726,16 @@ var templateContent = template.content;
 fantome.appendChild(templateContent);
 </script>
 </div>
-<div id="export" class="section level2">
-<h2 class="hasAnchor">
-<a href="#export" class="anchor"></a>Export</h2>
+<div class="section level2">
+<h2 id="export">Export<a class="anchor" aria-label="anchor" href="#export"></a>
+</h2>
 <p>Export pivot table to Word, PowerPoint or Excel:</p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">pt</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/pivot_table.html">pivot_table</a></span><span class="op">(</span>
   data <span class="op">=</span> <span class="va">nobel_laureates</span>,
   <span class="st">"category"</span>, <span class="st">"gender"</span>, 
   total <span class="op">=</span> <span class="cn">FALSE</span>,
-  stats <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"n"</span>, <span class="st">"p"</span><span class="op">)</span>
+  stats <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"n"</span>, <span class="st">"p"</span><span class="op">)</span>
 <span class="op">)</span>
 
 <span class="co"># PowerPoint</span>
@@ -757,16 +748,16 @@ fantome.appendChild(templateContent);
 <span class="fu"><a href="../reference/export-pivot.html">export_xlsx</a></span><span class="op">(</span><span class="va">pt</span>, <span class="st">"my-workbook.xlsx"</span><span class="op">)</span></code></pre></div>
 <p><img src="figures/example-ppt.png" style="width:100%"></p>
 </div>
-<div id="shiny" class="section level2">
-<h2 class="hasAnchor">
-<a href="#shiny" class="anchor"></a>Shiny</h2>
+<div class="section level2">
+<h2 id="shiny">Shiny<a class="anchor" aria-label="anchor" href="#shiny"></a>
+</h2>
 <p>Use in shiny with <code><a href="../reference/pivot-shiny.html">pivotOutput()</a></code> and <code><a href="../reference/pivot-shiny.html">renderPivot()</a></code>, a menu is automatically added to export the pivot table (can be disabled or allow specific export to):</p>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://shiny.rstudio.com/">shiny</a></span><span class="op">)</span>
-<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va">flexpivot</span><span class="op">)</span>
-<span class="fu"><a href="https://rdrr.io/r/utils/data.html">data</a></span><span class="op">(</span><span class="st">"nobel_laureates"</span><span class="op">)</span>
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://shiny.rstudio.com/" class="external-link">shiny</a></span><span class="op">)</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://dreamrs.github.io/flexpivot/">flexpivot</a></span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="st">"nobel_laureates"</span><span class="op">)</span>
 
-<span class="va">ui</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/fluidPage.html">fluidPage</a></span><span class="op">(</span>
+<span class="va">ui</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/shiny/man/fluidPage.html" class="external-link">fluidPage</a></span><span class="op">(</span>
   <span class="va">tags</span><span class="op">$</span><span class="fu">h2</span><span class="op">(</span><span class="st">"Pivot table in Shiny"</span><span class="op">)</span>,
   <span class="fu"><a href="../reference/pivot-shiny.html">pivotOutput</a></span><span class="op">(</span><span class="st">"pivot"</span><span class="op">)</span>
 <span class="op">)</span>
@@ -774,39 +765,36 @@ fantome.appendChild(templateContent);
 <span class="va">server</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">input</span>, <span class="va">output</span>, <span class="va">session</span><span class="op">)</span> <span class="op">{</span>
   
   <span class="va">output</span><span class="op">$</span><span class="va">pivot</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/pivot-shiny.html">renderPivot</a></span><span class="op">(</span><span class="op">{</span>
-    <span class="fu"><a href="../reference/pivot_table.html">pivot_table</a></span><span class="op">(</span><span class="va">nobel_laureates</span>, <span class="st">"category"</span>, <span class="st">"birth_continent"</span>, stats <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"n"</span>, <span class="st">"p"</span><span class="op">)</span><span class="op">)</span>
+    <span class="fu"><a href="../reference/pivot_table.html">pivot_table</a></span><span class="op">(</span><span class="va">nobel_laureates</span>, <span class="st">"category"</span>, <span class="st">"birth_continent"</span>, stats <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"n"</span>, <span class="st">"p"</span><span class="op">)</span><span class="op">)</span>
   <span class="op">}</span>, background <span class="op">=</span> <span class="st">"#A3BE8C"</span><span class="op">)</span>
   
 <span class="op">}</span>
 
-<span class="fu"><a href="https://rdrr.io/pkg/shiny/man/shinyApp.html">shinyApp</a></span><span class="op">(</span><span class="va">ui</span>, <span class="va">server</span><span class="op">)</span></code></pre></div>
+<span class="fu"><a href="https://rdrr.io/pkg/shiny/man/shinyApp.html" class="external-link">shinyApp</a></span><span class="op">(</span><span class="va">ui</span>, <span class="va">server</span><span class="op">)</span></code></pre></div>
 <p><img src="figures/example-shiny.png" style="width:100%"></p>
 </div>
-  </div>
-
-  <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
-
-        <nav id="toc" data-toggle="toc"><h2 data-toc-skip>Contents</h2>
-    </nav>
-</div>
-
+  </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>
+    </nav></aside>
 </div>
 
 
 
-      <footer><div class="copyright">
-  <p>Developed by <a href="https://twitter.com/_pvictorr"><img src="https://pbs.twimg.com/profile_images/844237339404722177/E1U61aM8_normal.jpg"> Victor Perrier</a>, <a href="https://twitter.com/_mfaan"><img src="https://pbs.twimg.com/profile_images/912313931326218240/o1-wvA18_normal.jpg"> Fanny Meyer</a>.</p>
+    <footer><div class="pkgdown-footer-left">
+  <p></p>
+<p>Developed by <a href="https://twitter.com/_pvictorr" class="external-link"><img src="https://pbs.twimg.com/profile_images/844237339404722177/E1U61aM8_normal.jpg"> Victor Perrier</a>, <a href="https://twitter.com/_mfaan" class="external-link"><img src="https://pbs.twimg.com/profile_images/912313931326218240/o1-wvA18_normal.jpg"> Fanny Meyer</a>.</p>
 </div>
 
-<div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
+<div class="pkgdown-footer-right">
+  <p></p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.1.</p>
 </div>
 
-      </footer>
+    </footer>
 </div>
 
   
 
+  
 
   </body>
 </html>
