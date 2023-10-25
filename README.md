@@ -1,11 +1,11 @@
 # flexpivot
 
-> [{flextable}](https://github.com/davidgohel/flextable) extension to create ready-to-use frequency tables in [shiny](https://shiny.rstudio.com/) and [rmarkdown](https://rmarkdown.rstudio.com/), and easily exportable to Word, PowerPoint and Excel.
+> [{flextable}](https://github.com/davidgohel/flextable) extension to create ready-to-use frequency tables in [shiny](https://shiny.posit.co/) and [rmarkdown](https://rmarkdown.rstudio.com/), and easily exportable to Word, PowerPoint and Excel.
 
 <!-- badges: start -->
-[![Lifecycle: experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://www.tidyverse.org/lifecycle/#experimental)
-[![R build status](https://github.com/dreamRs/flexpivot/workflows/R-CMD-check/badge.svg)](https://github.com/dreamRs/flexpivot/actions)
-[![Codecov test coverage](https://codecov.io/gh/dreamRs/flexpivot/branch/master/graph/badge.svg)](https://codecov.io/gh/dreamRs/flexpivot?branch=master)
+[![Lifecycle: experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://lifecycle.r-lib.org/articles/stages.html)
+[![R-CMD-check](https://github.com/dreamRs/flexpivot/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/dreamRs/flexpivot/actions/workflows/R-CMD-check.yaml)
+[![Codecov test coverage](https://codecov.io/gh/dreamRs/flexpivot/branch/master/graph/badge.svg)](https://app.codecov.io/gh/dreamRs/flexpivot?branch=master)
 <!-- badges: end -->
 
 

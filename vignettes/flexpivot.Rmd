@@ -20,7 +20,7 @@ library(magrittr)
 ```
 
 
-Create contingency tables ready to be used in [shiny](https://shiny.rstudio.com/) and [rmarkdown](https://rmarkdown.rstudio.com/), and to be exported to Microsoft Office products via package [officer](https://davidgohel.github.io/officer/).
+Create contingency tables ready to be used in [shiny](https://shiny.posit.co/) and [rmarkdown](https://rmarkdown.rstudio.com/), and to be exported to Microsoft Office products via package [officer](https://davidgohel.github.io/officer/).
 
 ## Usage
 
