@@ -34,4 +34,5 @@ Suggests:
 Depends: 
     R (>= 2.10)
 VignetteBuilder: knitr
-URL: https://dreamrs.github.io/flexpivot/
+URL: https://dreamrs.github.io/flexpivot/, https://github.com/dreamRs/flexpivot
+BugReports: https://github.com/dreamRs/flexpivot/issues
